@@ -2,7 +2,7 @@
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
-@include('layouts/header')
+<?php echo $__env->make('layouts/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <link rel="stylesheet" type="text/css" href="./app-assets/css/pages/page-profile.css">
     <!-- END: Page CSS-->
@@ -13,11 +13,11 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: navbar-->
-    @include('layouts/navbar')
+    <?php echo $__env->make('layouts/navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END navbar -->
 
     <!-- BEGIN LAYOUT -->
-    @include('layouts/layout')
+    <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
     
     <!-- BEGIN: Content-->
@@ -39,12 +39,12 @@
                                     <!-- profile picture -->
                                     <div class="profile-img-container d-flex align-items-center">
                                         <div class="profile-img" style="opacity:0">
-                                            <h2 class="text-white"> {{Auth::user()->name}}</h2>
+                                            <h2 class="text-white"> <?php echo e(Auth::user()->name); ?></h2>
                                         </div>
                                         <!-- profile title -->
                                         <div class="profile-title ml-3">
-                                            <h2 class="text-white">{{Auth::user()->name}}</h2>
-                                            <p class="text-white">{{Auth::user()->role}}</p>
+                                            <h2 class="text-white"><?php echo e(Auth::user()->name); ?></h2>
+                                            <p class="text-white"><?php echo e(Auth::user()->role); ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('layouts/footer')
+    <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
@@ -83,4 +83,4 @@
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?php /**PATH D:\Lebanon\phpframe\data\resources\views/dashboard.blade.php ENDPATH**/ ?>

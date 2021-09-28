@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
-@include('layouts/header')
+<?php echo $__env->make('layouts/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- END: Head-->
 <!-- BEGIN: Body-->
 
@@ -9,11 +9,11 @@
     data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: navbar-->
-    @include('layouts/navbar')
+    <?php echo $__env->make('layouts/navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END navbar -->
 
     <!-- BEGIN LAYOUT -->
-    @include('layouts/layout')
+    <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -42,34 +42,34 @@
                                         <th>Maker</th>
                                         <th>Quantity</th>
                                         <th>Status</th>                                    
-                                        <th class="{{Auth::user()->role}}">Action</th>
+                                        <th class="<?php echo e(Auth::user()->role); ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $index = 1; ?>
-                                    @foreach ($items as $item)
+                                    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
-                                        <td>{{$item -> categoryname}}</td>
-                                        <td>{{$item -> title}}</td>
-                                        <td>{{$item -> description}}</td>
-                                        <td><img src="{{$item -> photo}}" style="width:48px; height:34px;"></td>
-                                        <td>${{$item -> usprice}}</td>
-                                        <td>${{$item -> lbpprice}}</td>
-                                        <td>{{$item -> marker}}</td>
-                                        <td>{{$item -> quantity}}</td>
-                                        <td>{{$item -> status}}</td>
+                                        <td><?php echo e($item -> categoryname); ?></td>
+                                        <td><?php echo e($item -> title); ?></td>
+                                        <td><?php echo e($item -> description); ?></td>
+                                        <td><img src="<?php echo e($item -> photo); ?>" style="width:48px; height:34px;"></td>
+                                        <td>$<?php echo e($item -> usprice); ?></td>
+                                        <td>$<?php echo e($item -> lbpprice); ?></td>
+                                        <td><?php echo e($item -> marker); ?></td>
+                                        <td><?php echo e($item -> quantity); ?></td>
+                                        <td><?php echo e($item -> status); ?></td>
                                         <td>
                                             <button class="dropdown-item userupdate_new"
-                                                data-id="{{$item -> id}}" data-categoryname="{{$item -> categoryname}}"
-                                                data-title="{{$item -> title}}"
-                                                data-description="{{$item -> description}}"
-                                                data-photo="{{$item -> photo}}"
-                                                data-usprice="{{$item -> usprice}}"
-                                                data-lbpprice="{{$item -> lbpprice}}"
-                                                data-marker="{{$item -> marker}}"
-                                                data-quantity="{{$item -> quantity}}"
-                                                data-status="{{$item -> status}}"
+                                                data-id="<?php echo e($item -> id); ?>" data-categoryname="<?php echo e($item -> categoryname); ?>"
+                                                data-title="<?php echo e($item -> title); ?>"
+                                                data-description="<?php echo e($item -> description); ?>"
+                                                data-photo="<?php echo e($item -> photo); ?>"
+                                                data-usprice="<?php echo e($item -> usprice); ?>"
+                                                data-lbpprice="<?php echo e($item -> lbpprice); ?>"
+                                                data-marker="<?php echo e($item -> marker); ?>"
+                                                data-quantity="<?php echo e($item -> quantity); ?>"
+                                                data-status="<?php echo e($item -> status); ?>"
                                                 >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -83,7 +83,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <a class="dropdown-item" href="itemsdelete/{{$item->id}}">
+                                            <a class="dropdown-item" href="itemsdelete/<?php echo e($item->id); ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -96,61 +96,9 @@
                                                 <span></span>
                                             </a>
                                         </td>
-                                        {{-- <td class="{{Auth::user()->role}}">
-                                            <div class="dropdown">
-                                                <button type="button" class="btn btn-sm dropdown-toggle hide-arrow"
-                                                    data-toggle="dropdown">
-                                                    <!-- <i data-feather="more-vertical"></i> -->
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-more-vertical">
-                                                        <circle cx="12" cy="12" r="1"></circle>
-                                                        <circle cx="12" cy="5" r="1"></circle>
-                                                        <circle cx="12" cy="19" r="1"></circle>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <button class="dropdown-item userupdate_new"
-                                                        data-id="{{$item -> id}}" data-categoryname="{{$item -> categoryname}}"
-                                                        data-title="{{$item -> title}}"
-                                                        data-description="{{$item -> description}}"
-                                                        data-photo="{{$item -> photo}}"
-                                                        data-usprice="{{$item -> usprice}}"
-                                                        data-lbpprice="{{$item -> lbpprice}}"
-                                                        data-marker="{{$item -> marker}}"
-                                                        data-quantity="{{$item -> quantity}}"
-                                                        data-status="{{$item -> status}}"
-                                                        >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="feather feather-edit-2 mr-50">
-                                                            <path
-                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                            </path>
-                                                        </svg>
-                                                        <span>Edit</span>
-                                                    </button>
-                                                    <a class="dropdown-item" href="itemsdelete/{{$item->id}}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="feather feather-trash mr-50">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path
-                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                            </path>
-                                                        </svg>
-                                                        <span>Delete</span>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                        </td> --}}
+                                        
                                     </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -158,7 +106,8 @@
                         <div class="modal modal-slide-in new-user-modal fade" id="modals-slide-in">
                             <div class="modal-dialog">
                                 <form class="add-new-user modal-content pt-0">
-                                    {{csrf_field()}}
+                                    <?php echo e(csrf_field()); ?>
+
                                     <button type="button" class="close" data-dismiss="modal"
                                         aria-label="Close">×</button>
                                     <div class="modal-header mb-1">
@@ -170,9 +119,9 @@
                                             <label class="form-label" for="categoryname">Category Name</label>
                                             <select id="categoryname" aria-describedby="categoryname2" name="categoryname"
                                             class="form-control">
-                                                @foreach ($categorys as $category)
-                                                    <option value="{{$category -> categorycompany}}">{{$category -> categorycompany}}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $categorys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($category -> categorycompany); ?>"><?php echo e($category -> categorycompany); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -206,9 +155,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="usprice">Price in USD</label>
-                                            {{-- <input type="text" class="form-control dt-full-name" id="usprice"
-                                                placeholder="$" name="usprice" aria-label="Name"
-                                                aria-describedby="usprice2" /> --}}
+                                            
 
                                             <div class="input-group input-group-merge">
                                                 <div class="input-group-prepend">
@@ -220,9 +167,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="lbpprice">Price in LBP</label>
-                                            {{-- <input type="text" class="form-control dt-full-name" id="lbpprice"
-                                                placeholder="" name="lbpprice" aria-label="Name"
-                                                aria-describedby="lbpprice2" /> --}}
+                                            
                                             <div class="input-group input-group-merge">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">LBP</span>
@@ -263,7 +208,8 @@
                         <div class="modal modal-slide-in update_user_modal fade" id="modals-slide-in">
                             <div class="modal-dialog">
                                 <form class="update-new-user modal-content pt-0">
-                                    {{csrf_field()}}
+                                    <?php echo e(csrf_field()); ?>
+
                                     <button type="button" class="close" data-dismiss="modal"
                                         aria-label="Close">×</button>
                                     <div class="modal-header mb-1">
@@ -274,9 +220,9 @@
                                             <label class="form-label" for="ucategoryname">Category Name</label>
                                             <select id="ucategoryname" aria-describedby="ucategoryname2" name="ucategoryname"
                                             class="form-control">
-                                                @foreach ($categorys as $category)
-                                                    <option value="{{$category -> categorycompany}}">{{$category -> categorycompany}}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $categorys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($category -> categorycompany); ?>"><?php echo e($category -> categorycompany); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -306,9 +252,7 @@
                                             </div>
                                         <!--/ header media -->
 
-                                            {{-- <input type="text" class="form-control dt-full-name" id="uphoto"
-                                                placeholder="uphoto" name="uphoto" aria-label="Name"
-                                                aria-describedby="uphoto2" /> --}}
+                                            
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="uusprice">Price in USD</label>
@@ -379,7 +323,7 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('layouts/footer')
+    <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
@@ -392,7 +336,7 @@
 
     <script>
     $(function() {
-        $(".dt-buttons").last().addClass("{{Auth::user()->role}}");
+        $(".dt-buttons").last().addClass("<?php echo e(Auth::user()->role); ?>");
         $(".userupdate_new").on("click", function() {
             var $id = $(this).data('id');
             var $userid = 'itemsupdate/' + ($(this).data('id'));
@@ -481,4 +425,4 @@
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?php /**PATH D:\Lebanon\phpframe\data\resources\views//items.blade.php ENDPATH**/ ?>

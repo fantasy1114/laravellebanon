@@ -20,7 +20,7 @@
                 </ul>
             @endif
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="@if(Request::path() == 'companymanagement') active @endif nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companymanagement</span></a>
+                <li class="@if(Request::path() == 'companymanagement') active @endif nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companines</span></a>
                 </li>
             </ul>
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">

@@ -2,7 +2,7 @@
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
-@include('layouts/header')
+<?php echo $__env->make('layouts/header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <!-- END: Head-->
 <!-- BEGIN: Body-->
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
@@ -12,11 +12,11 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: navbar-->
-    @include('layouts/navbar')
+    <?php echo $__env->make('layouts/navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END navbar -->
 
     <!-- BEGIN LAYOUT -->
-    @include('layouts/layout')
+    <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
@@ -28,8 +28,8 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <section class="app-user-list {{Auth::user()->role}} @if(Auth::user()->role == 'editor') subscriber @endif">
-                    @foreach ($siteinfos as $siteinfo)
+                <section class="app-user-list <?php echo e(Auth::user()->role); ?> <?php if(Auth::user()->role == 'editor'): ?> subscriber <?php endif; ?>">
+                    <?php $__currentLoopData = $siteinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $siteinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         
                         <!-- list section start -->
                             <div class="row mt-4">
@@ -39,7 +39,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
 
-                                        <input type="text" class="form-control" id="title" value={{$siteinfo -> title}} placeholder="Enter Title" disabled/>
+                                        <input type="text" class="form-control" id="title" value=<?php echo e($siteinfo -> title); ?> placeholder="Enter Title" disabled/>
                             
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
 
-                                        <input type="text" class="form-control" id="phone" value={{$siteinfo -> phone}} placeholder="Enter Phone Number" disabled/>
+                                        <input type="text" class="form-control" id="phone" value=<?php echo e($siteinfo -> phone); ?> placeholder="Enter Phone Number" disabled/>
                             
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
 
-                                        <input type="email" class="form-control" id="email" value={{$siteinfo -> email}} placeholder="Enter Email Address" disabled/>
+                                        <input type="email" class="form-control" id="email" value=<?php echo e($siteinfo -> email); ?> placeholder="Enter Email Address" disabled/>
                             
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
 
-                                        <input type="text" class="form-control" id="office" value="{{$siteinfo -> office}}" placeholder="Enter Office Address" disabled/>
+                                        <input type="text" class="form-control" id="office" value="<?php echo e($siteinfo -> office); ?>" placeholder="Enter Office Address" disabled/>
                             
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
 
-                                        <input type="text" class="form-control" id="whatapp" value={{$siteinfo -> whatapp}} placeholder="Enter Whatapp Number" disabled/>
+                                        <input type="text" class="form-control" id="whatapp" value=<?php echo e($siteinfo -> whatapp); ?> placeholder="Enter Whatapp Number" disabled/>
                             
                                     </div>
                                 </div>
@@ -102,15 +102,12 @@
                                     <div class="media">
                                     
                                             <a href="javascript:void(0);" class="mr-25">
-                                                <img src="{{$siteinfo -> logo}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                <img src="<?php echo e($siteinfo -> logo); ?>" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
                                             </a>
                         
                                         
                                         <!-- upload and reset button -->
-                                        {{-- <div class="media-body mt-75 ml-1">
-                                            <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                            <input type="file" id="account-upload" hidden accept="image/*" />
-                                        </div> --}}
+                                        
                                         <!--/ upload and reset button -->
                                     </div>
                                     <!--/ header media -->
@@ -122,7 +119,7 @@
                                 </div>
                                 <div class="col-md-8">
                     
-                                    <input type="text" class="form-control" id="title" value={{$siteinfo -> contacts}} placeholder="Enter Contacts" disabled/>
+                                    <input type="text" class="form-control" id="title" value=<?php echo e($siteinfo -> contacts); ?> placeholder="Enter Contacts" disabled/>
                         
                                 </div>
                             </div>
@@ -131,9 +128,7 @@
                                     <h3>Location</h3>
                                 </div>
                                 <div class="col-md-8" style="height:300px; display:flex">
-                                    {{-- @foreach ($siteinfos as $siteinfo)
-                                    <td>{{$siteinfo -> location}}</td>
-                                    @endforeach --}}
+                                    
                                     <div id="map" style="">
                                     
                                     </div>
@@ -144,11 +139,11 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new" data-id="{{$siteinfo -> id}}" data-title="{{$siteinfo -> title}}" data-logo="{{$siteinfo -> logo}}" data-contacts="{{$siteinfo -> contacts}}" data-lat="{{$siteinfo -> lat}}" data-lng="{{$siteinfo -> lng}}" data-phone="{{$siteinfo -> phone}}" data-email="{{$siteinfo -> email}}" data-office="{{$siteinfo -> office}}" data-whatapp="{{$siteinfo -> whatapp}}">Edit</button>
+                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new" data-id="<?php echo e($siteinfo -> id); ?>" data-title="<?php echo e($siteinfo -> title); ?>" data-logo="<?php echo e($siteinfo -> logo); ?>" data-contacts="<?php echo e($siteinfo -> contacts); ?>" data-lat="<?php echo e($siteinfo -> lat); ?>" data-lng="<?php echo e($siteinfo -> lng); ?>" data-phone="<?php echo e($siteinfo -> phone); ?>" data-email="<?php echo e($siteinfo -> email); ?>" data-office="<?php echo e($siteinfo -> office); ?>" data-whatapp="<?php echo e($siteinfo -> whatapp); ?>">Edit</button>
                             </div>
                             
                         </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <!-- Modal to update new user starts-->
                     <div class="modal modal-slide-in update_user_modal fade" id="updateModal">
                         <div class="modal-dialog">
@@ -225,18 +220,18 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('layouts/footer')
+    <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
-    @foreach ($siteinfos as $siteinfo)
+    <?php $__currentLoopData = $siteinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $siteinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <script>
-            var maplat = JSON.parse("{{$siteinfo -> lat}}");
-            var maplng = JSON.parse("{{$siteinfo -> lng}}");
+            var maplat = JSON.parse("<?php echo e($siteinfo -> lat); ?>");
+            var maplng = JSON.parse("<?php echo e($siteinfo -> lng); ?>");
         </script>
-    @endforeach
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0ddhKTA8ilSdtLJQcBMXoGe73aU3Hcro&callback=initMap&libraries=&v=weekly" async></script>
-    <script src="{{('js/map.js')}}"></script>
+    <script src="<?php echo e(('js/map.js')); ?>"></script>
 
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <!-- END: Page JS-->
@@ -318,4 +313,4 @@
 </body>
 <!-- END: Body-->
 
-</html>
+</html><?php /**PATH D:\Lebanon\phpframe\data\resources\views//siteinfo.blade.php ENDPATH**/ ?>

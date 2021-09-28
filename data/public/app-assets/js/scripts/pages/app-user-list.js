@@ -58,10 +58,6 @@ $(function() {
                     responsivePriority: 4,
                 },
                 {
-                    targets: 9,
-                    responsivePriority: 4,
-                },
-                {
                     // User full name and username
                     targets: 0,
                     responsivePriority: 4,

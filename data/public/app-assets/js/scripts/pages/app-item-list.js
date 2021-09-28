@@ -42,10 +42,6 @@ $(function() {
                 {
                     targets: 10,
                     responsivePriority: 4,
-                },
-                {
-                    targets: 11,
-                    responsivePriority: 4,
                 }
             ],
             order: [

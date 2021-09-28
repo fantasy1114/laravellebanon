@@ -66,5 +66,10 @@
     .avatar{
         background-color:#7367f0;
     }
+    .dropdown-item {
+        display: inline;
+        width: 25px;
+        padding: 0px;
+    }
     
 </style>
