@@ -63,35 +63,19 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <a class="dropdown-item" href="userdelete/{{$userlist->id}}/{{Auth::user()->name}}" >
+                                                <button type="button" data-id="{{$userlist -> id}}" class="dropdown-item userlist-delete" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span></span>
-                                                </a>
+                                                </button>
                                             </td>
-                                            {{-- <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                        <!-- <i data-feather="more-vertical"></i> -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <button class="dropdown-item userupdate_new" data-id="{{$userlist -> id}}" data-name="{{$userlist -> name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
-                                                            <span>Edit</span>
-                                                        </button>
-                                                        <a class="dropdown-item" href="userdelete/{{$userlist->id}}/{{Auth::user()->name}}" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                                            <span>Delete</span>
-                                                        </a>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        
+                        {{-- <button type="button" class="btn btn-outline-primary" id="confirm-text">Confirm Text</button> --}}
+                        
                         <!-- Modal to add new user starts-->
                         <div class="modal modal-slide-in new-user-modal fade" id="modals-slide-in">
                             <div class="modal-dialog">
@@ -277,46 +261,27 @@
                 $(".update_user_modal").modal('show');
 
                 $('.update-new-user').submit(function(e){
-                var formData = new FormData(this);
-                e.preventDefault();
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'post',
-                    url: $userid,
-                    cache:false,
-                    data: formData,
-                    contentType: false,
-                    processData: false,
-                    success: function(data) {
-                        if(data['success']){
-                            window.location.reload();
+                    var formData = new FormData(this);
+                    e.preventDefault();
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'post',
+                        url: $userid,
+                        cache:false,
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
+                            if(data['success']){
+                                window.location.reload();
+                            }
                         }
-                    }
+                    });
                 });
             });
-                // $('.update_data_user').on("click", function(){
-                //     console.log($userid);
-                //     $.ajax({
-                //         headers: {
-                //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                //         },
-                //         type: 'post',
-                //         url: $userid,
-                //         data: { id: $id, name: $("#uUsername").val(), email: $("#uUseremail").val(), role: $("#uUserrole").val(), status: $('#uUserstatus').val(), startdata: $('#uUserstartdata').val(), enddata: $('#uUserstartdata').val()},
-                //         success: function(data) {
-                //             if(data['success']){
-                //                 window.location.reload();
-                //             }
-                //         }
-                //     });
-               
-                //     // window.location.reload();
-                // });
-            });
-            
-        })
+        });
         $(window).on('load', function() {
             if (feather) {
                 feather.replace({

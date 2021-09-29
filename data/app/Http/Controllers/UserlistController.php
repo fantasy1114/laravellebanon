@@ -57,7 +57,7 @@ class UserlistController extends Controller
     
     return response()->json(['success'=>false]);
   }
-  public function userdelete($id, $name)
+  public function userdelete($id)
   {
     $description = DB::table('users')->where('id', $id)->value('name');
     // var_dump($description);
@@ -68,8 +68,7 @@ class UserlistController extends Controller
     // $Logs->description = $description;
     // $Logs->save();
     DB::table('users')->where('id', $id)->delete();
-
-    return redirect('/userlist');
+    return response()->json(['success'=>true]);
   }
   public function userupdate(Request $request, $id)
   {

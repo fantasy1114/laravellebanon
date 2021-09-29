@@ -21,8 +21,15 @@
  <script src="../../../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
  <script src="../../../app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js"></script>
  <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+ <script src="../../../app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+ <script src="../../../app-assets/vendors/js/extensions/polyfill.min.js"></script>
  <!-- END: Page Vendor JS-->
 
+
+ <script src="../../../app-assets/vendors/js/extensions/toastr.min.js"></script>
+ <script src="../../../app-assets/js/scripts/extensions/ext-component-toastr.js"></script>
+ <script src="../../../app-assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script>
+ 
  <!-- BEGIN: Theme JS-->
  <script src="../../../app-assets/js/core/app-menu.js"></script>
  <script src="../../../app-assets/js/core/app.js"></script>

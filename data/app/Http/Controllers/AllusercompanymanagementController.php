@@ -16,8 +16,9 @@ class AllusercompanymanagementController extends Controller
     return view('/companymanagement', ['companys' => $companys]);
   }
 
-  public function companymanagementcreate()
+  public function companymanagementcreate(Request $request)
   {
+
     $companys = DB::table('companies')->get();
     // $logs = DB::table('logs')->get();
     $ischecking = 0;
@@ -27,6 +28,12 @@ class AllusercompanymanagementController extends Controller
         $ischecking = 1;
       }
     }
+    $imageName = "default.png";
+    if ($request->file('account-upload')) {
+      $imagePath = $request->file('account-upload');
+      $imageName = $imagePath->getClientOriginalName();
+      $imagePath->move(public_path('uploads/company/'), $imageName);
+    }
     if($ischecking == 0){
       $Companies = new Companies;
       $Companies->companyname = request('companyname');
@@ -34,27 +41,15 @@ class AllusercompanymanagementController extends Controller
       $Companies->sellmethod = request('sellmethod');
       $Companies->exchange = request('exchange');
       $Companies->delivery = request('delivery');
+      $Companies->logo = './uploads/company/'.$imageName;
+      $Companies->can = request('can');
       $Companies->save();
-      // $Logs = new Logs;
-      // $Logs->username = request('usernamesave');
-      // $Logs->tablename = 'Buddy';
-      // $Logs->crudevent = 'add';
-      // $Logs->description = request('buddy_name');
-      // $Logs->save();
-    
       return response()->json(['success'=>true]);
     }
     return response()->json(['success'=>false]);
   }
   public function companymanagementdelete($id, $company)
   {
-    // $description = DB::table('companies')->where('id', $id)->value('companyname');
-    // $Logs = new Logs;
-    // $Logs->username = $name;
-    // $Logs->tablename = 'Buddy';
-    // $Logs->crudevent = 'delete';
-    // $Logs->description = $description;
-    // $Logs->save();
     $categorys = DB::table('categories')->get();
     $ischecking = 0;
     foreach($categorys as $category){
@@ -69,14 +64,11 @@ class AllusercompanymanagementController extends Controller
     }
     else{
       return response()->json(['success'=>false]);
-    }
-    // return response()->json(['success'=>true]);
-    // $userlists = DB::table('users')->get();
-    // return view('/userlist', ['userlists' => $userlists]);
-    
+    }    
   }
   public function companymanagementupdate(Request $request, $id)
   {
+    
     $companys = DB::table('companies')->where('id', $id)->get();
     
     $statuschange = request('status');
@@ -88,39 +80,66 @@ class AllusercompanymanagementController extends Controller
         DB::table('companies')->where('id', $id)->update([
           'status' => 'Active'
         ]);
+        return response()->json(['success'=>true]);
       }
       else{
         DB::table('companies')->where('id', $id)->update([
           'status' => 'InActive'
         ]);
+        return response()->json(['success'=>true]);
       }
     }
     else{
+      $allcompanys = DB::table('companies')->where('id', 'not like', $id)->get();
+      $ischecking = 0;
+     
+      foreach ($allcompanys as $company) {
+        $companyname = $company->companyname;
+        // print_r($companyname);
+        if (request('ucompanyname') == $companyname){
+          $ischecking = 1;
+        }
+      }
+      // print_r($ischecking);
+      // exit;
       $validatedData = $request->validate([
-        'companyname' => 'required',
-        'status' => 'required',
-        'sellmethod' => 'required',
-        'exchange' => 'required',
-        'delivery' => 'required',
+        'ucompanyname' => 'required',
+        'ustatus' => 'required',
+        'usellmethod' => 'required',
+        'uexchange' => 'required',
+        'udelivery' => 'required',
       ]);
-      
-      DB::table('companies')->where('id', $id)->update([
-          'companyname' => $validatedData['companyname'],
-          'status' => $validatedData['status'],
-          'sellmethod' => $validatedData['sellmethod'],
-          'exchange' => $validatedData['exchange'],
-          'delivery' => $validatedData['delivery'],
-      ]);
+      if($ischecking == 0){
+        if ($request->file('uaccount-upload')) {
+          $imagePath = $request->file('uaccount-upload');
+          $imageName = $imagePath->getClientOriginalName();
+          $imagePath->move(public_path('uploads/company/'), $imageName);
+  
+          DB::table('companies')->where('id', $id)->update([
+              'companyname' => $validatedData['ucompanyname'],
+              'status' => $validatedData['ustatus'],
+              'sellmethod' => $validatedData['usellmethod'],
+              'exchange' => $validatedData['uexchange'],
+              'delivery' => $validatedData['udelivery'],
+              'logo' => './uploads/company/'.$imageName,
+              'can' => request('ucan')
+          ]);
+          return response()->json(['success'=>true]);
+        }
+        else{
+          DB::table('companies')->where('id', $id)->update([
+            'companyname' => $validatedData['ucompanyname'],
+            'status' => $validatedData['ustatus'],
+            'sellmethod' => $validatedData['usellmethod'],
+            'exchange' => $validatedData['uexchange'],
+            'delivery' => $validatedData['udelivery'],
+            'can' => request('ucan')
+          ]);
+          return response()->json(['success'=>true]);
+        }
+      }
+      return response()->json(['success'=>false]);
     }
     
-
-    // $Logs = new Logs;
-    // $Logs->username = request('usernamesave');
-    // $Logs->tablename = 'Buddy';
-    // $Logs->crudevent = 'update';
-    // $Logs->description = request('buddyname');
-    // $Logs->save();
-
-    return response()->json(['success'=>true]);
   }
 }

@@ -28,12 +28,14 @@ $(function() {
                 // columns according to JSON
                 { data: 'responsive_id' },
                 { data: 'categoryname' },
+                { data: 'logo' },
                 { data: 'companyname' },
+                { data: 'status' },
             ],
             columnDefs: [{
                 },
                 {
-                    targets: 3,
+                    targets: 5,
                     responsivePriority: 4,
                 },
             ],
@@ -151,18 +153,22 @@ $(function() {
 
         newUserForm.on('submit', function(e) {
             var isValid = newUserForm.valid();
+            var formData = new FormData(this);
             e.preventDefault();
             if (isValid) {
                 $.ajax({
                     type: 'post',
                     url: 'category',
-                    data: $('form').serialize(),
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     success: function(data) {
                         if(data['success']){
                             window.location.reload();
                         }
                         else{
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-category-already-message').click();
                         }
                     }
                 });

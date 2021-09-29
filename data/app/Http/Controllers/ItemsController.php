@@ -81,76 +81,96 @@ class ItemsController extends Controller
     // unlink($deleteimage);
     // end Image unlink
     DB::table('items')->where('id', $id)->delete();
-    return redirect('/items');
+    return response()->json(['success'=>true]);
   }
   public function itemsupdate(Request $request, $id)
   {
     
     $categorys = DB::table('categories')->get();
+    $itemes = DB::table('items')->where('id', $id)->get();
 
-    $categorychecking = '';
-    foreach ($categorys as $category) {
-      $categoryname = $category->categorycompany;
-      if (request('ucategoryname') == $categoryname){
-        $categorychecking = $category->id;
+    $statuschange = request('status');
+    if($statuschange == 'change'){
+      foreach($itemes as $item){
+        $status = $item -> status;
       }
-    }
-    $validatedData = $request->validate([
-        'ucategoryname' => 'required',
-        'utitle' => 'required',
-        'udescription' => 'required',
-        // 'uaccount-upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
-        'uusprice' => 'required',
-        'ustatus' => 'required',
-    ]);
-    $items = DB::table('items')->get();
-    $itemschecking = 0;
-    foreach ($items as $item) {
-      $itemname = $item->title;
-      $cate = $item->categoryname;
-      if (request('utitle') == $itemname){
-        if (request('ucategoryname') == $cate){
-          $itemschecking = 1;
-        }
-      }
-    }
-    if($itemschecking == 0){
-      if ($request->file('uaccount-upload')) {
-        $imagePath = $request->file('uaccount-upload');
-        $imageName = $imagePath->getClientOriginalName();
-        $imagePath->move(public_path('uploads'), $imageName);
+      if($status == 'InActive'){
         DB::table('items')->where('id', $id)->update([
-          'category_id' => $categorychecking,
-          'categoryname' => $validatedData['ucategoryname'],
-          'title' => $validatedData['utitle'],
-          'description' => $validatedData['udescription'],
-          'photo' => './uploads/'.$imageName,
-          'usprice' => $validatedData['uusprice'],
-          'lbpprice' => request('ulbpprice'),
-          'marker' => request('umarker'),
-          'quantity' => request('uquantity'),
-          'status' => $validatedData['ustatus'],
+          'status' => 'Active'
         ]);
         return response()->json(['success'=>true]);
       }
       else{
         DB::table('items')->where('id', $id)->update([
-          'category_id' => $categorychecking,
-          'categoryname' => $validatedData['ucategoryname'],
-          'title' => $validatedData['utitle'],
-          'description' => $validatedData['udescription'],
-          'usprice' => $validatedData['uusprice'],
-          'lbpprice' => request('ulbpprice'),
-          'marker' => request('umarker'),
-          'quantity' => request('uquantity'),
-          'status' => $validatedData['ustatus'],
+          'status' => 'InActive'
         ]);
         return response()->json(['success'=>true]);
       }
     }
     else{
-      return response()->json(['success'=>false]);
+      $categorychecking = '';
+      foreach ($categorys as $category) {
+        $categoryname = $category->categorycompany;
+        if (request('ucategoryname') == $categoryname){
+          $categorychecking = $category->id;
+        }
+      }
+      $validatedData = $request->validate([
+          'ucategoryname' => 'required',
+          'utitle' => 'required',
+          'udescription' => 'required',
+          // 'uaccount-upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+          'uusprice' => 'required',
+          'ustatus' => 'required',
+      ]);
+      $items = DB::table('items')->where('id', 'not like', $id)->get();
+      $itemschecking = 0;
+      foreach ($items as $item) {
+        $itemname = $item->title;
+        $cate = $item->categoryname;
+        if (request('utitle') == $itemname){
+          if (request('ucategoryname') == $cate){
+            $itemschecking = 1;
+          }
+        }
+      }
+      if($itemschecking == 0){
+        if ($request->file('uaccount-upload')) {
+          $imagePath = $request->file('uaccount-upload');
+          $imageName = $imagePath->getClientOriginalName();
+          $imagePath->move(public_path('uploads'), $imageName);
+          DB::table('items')->where('id', $id)->update([
+            'category_id' => $categorychecking,
+            'categoryname' => $validatedData['ucategoryname'],
+            'title' => $validatedData['utitle'],
+            'description' => $validatedData['udescription'],
+            'photo' => './uploads/'.$imageName,
+            'usprice' => $validatedData['uusprice'],
+            'lbpprice' => request('ulbpprice'),
+            'marker' => request('umarker'),
+            'quantity' => request('uquantity'),
+            'status' => $validatedData['ustatus'],
+          ]);
+          return response()->json(['success'=>true]);
+        }
+        else{
+          DB::table('items')->where('id', $id)->update([
+            'category_id' => $categorychecking,
+            'categoryname' => $validatedData['ucategoryname'],
+            'title' => $validatedData['utitle'],
+            'description' => $validatedData['udescription'],
+            'usprice' => $validatedData['uusprice'],
+            'lbpprice' => request('ulbpprice'),
+            'marker' => request('umarker'),
+            'quantity' => request('uquantity'),
+            'status' => $validatedData['ustatus'],
+          ]);
+          return response()->json(['success'=>true]);
+        }
+      }
+      else{
+        return response()->json(['success'=>false]);
+      }
     }
-    
   }
 }

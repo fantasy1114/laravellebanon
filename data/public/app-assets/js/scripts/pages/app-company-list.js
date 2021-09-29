@@ -40,6 +40,7 @@ $(function() {
                 { data: 'sellmethod' },
                 { data: 'exchange' },
                
+                { data: 'can' },
                 { data: 'delivery' },
                 { data: '' }
             ],
@@ -51,7 +52,7 @@ $(function() {
 
                 },
                 {
-                    targets: 6,
+                    targets: 8,
                     responsivePriority: 4,
                 },
                 {
@@ -153,6 +154,14 @@ $(function() {
                             {
                                 targets: 6,
                                 visible: false
+                            },
+                            {
+                                targets: 7,
+                                visible: true
+                            },
+                            {
+                                targets: 8,
+                                visible: true
                             }
                         ]
                     })
@@ -229,15 +238,22 @@ $(function() {
         newUserForm.on('submit', function(e) {
             
             var isValid = newUserForm.valid();
+            var formData = new FormData(this);
             e.preventDefault();
             if (isValid) {
                 $.ajax({
                     type: 'post',
                     url: 'companymanagement',
-                    data: $('form').serialize(),
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     success: function(data) {
                         if(data['success']){
                             window.location.reload();
+                        }
+                        else{
+                            $('.toast-company-update-message').click();
                         }
                     }
                 });

@@ -37,11 +37,12 @@
                                         <th>Item Name</th>
                                         <th>Description</th>
                                         <th>Photo</th>
+                                        <th>Status</th>   
                                         <th>USD Price</th>
                                         <th>LBP Price</th>
                                         <th>Maker</th>
                                         <th>Quantity</th>
-                                        <th>Status</th>                                    
+                                                                         
                                         <th class="{{Auth::user()->role}}">Action</th>
                                     </tr>
                                 </thead>
@@ -54,11 +55,17 @@
                                         <td>{{$item -> title}}</td>
                                         <td>{{$item -> description}}</td>
                                         <td><img src="{{$item -> photo}}" style="width:48px; height:34px;"></td>
-                                        <td>${{$item -> usprice}}</td>
-                                        <td>${{$item -> lbpprice}}</td>
+                                        <td>
+                                            <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="{{$item -> id}}" data-status="{{$item -> status}}">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item -> id}}" @if ($item -> status == 'Active') checked @endif class="status-checked" >
+                                            <label class="custom-control-label" for="customSwitch{{$item -> id}}"></label>
+                                            </div>
+                                        </td>
+                                        <td>{{$item -> usprice}}</td>
+                                        <td>{{$item -> lbpprice}}</td>
                                         <td>{{$item -> marker}}</td>
                                         <td>{{$item -> quantity}}</td>
-                                        <td>{{$item -> status}}</td>
+                                        
                                         <td>
                                             <button class="dropdown-item userupdate_new"
                                                 data-id="{{$item -> id}}" data-categoryname="{{$item -> categoryname}}"
@@ -83,7 +90,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <a class="dropdown-item" href="itemsdelete/{{$item->id}}">
+                                            <button class="dropdown-item delete_data_item" data-id="{{$item->id}}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -93,62 +100,9 @@
                                                         d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                     </path>
                                                 </svg>
-                                                <span></span>
-                                            </a>
+                                            </button>
                                         </td>
-                                        {{-- <td class="{{Auth::user()->role}}">
-                                            <div class="dropdown">
-                                                <button type="button" class="btn btn-sm dropdown-toggle hide-arrow"
-                                                    data-toggle="dropdown">
-                                                    <!-- <i data-feather="more-vertical"></i> -->
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="feather feather-more-vertical">
-                                                        <circle cx="12" cy="12" r="1"></circle>
-                                                        <circle cx="12" cy="5" r="1"></circle>
-                                                        <circle cx="12" cy="19" r="1"></circle>
-                                                    </svg>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <button class="dropdown-item userupdate_new"
-                                                        data-id="{{$item -> id}}" data-categoryname="{{$item -> categoryname}}"
-                                                        data-title="{{$item -> title}}"
-                                                        data-description="{{$item -> description}}"
-                                                        data-photo="{{$item -> photo}}"
-                                                        data-usprice="{{$item -> usprice}}"
-                                                        data-lbpprice="{{$item -> lbpprice}}"
-                                                        data-marker="{{$item -> marker}}"
-                                                        data-quantity="{{$item -> quantity}}"
-                                                        data-status="{{$item -> status}}"
-                                                        >
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="feather feather-edit-2 mr-50">
-                                                            <path
-                                                                d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                            </path>
-                                                        </svg>
-                                                        <span>Edit</span>
-                                                    </button>
-                                                    <a class="dropdown-item" href="itemsdelete/{{$item->id}}">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" class="feather feather-trash mr-50">
-                                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                                            <path
-                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                            </path>
-                                                        </svg>
-                                                        <span>Delete</span>
-                                                    </a>
-
-                                                </div>
-                                            </div>
-                                        </td> --}}
+                                       
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -304,11 +258,7 @@
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
-                                        <!--/ header media -->
-
-                                            {{-- <input type="text" class="form-control dt-full-name" id="uphoto"
-                                                placeholder="uphoto" name="uphoto" aria-label="Name"
-                                                aria-describedby="uphoto2" /> --}}
+                                     
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="uusprice">Price in USD</label>
@@ -354,22 +304,9 @@
                     <!-- list section end -->
                 </section>
                 <!-- users list ends -->
-                <!-- list Repeat end -->
-                <div aria-live="polite" aria-atomic="true" style="position: relative">
-                        
-                    <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                        <div class="toast toast-stacked-toggler-repeat hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                            <div class="toast-header">
-                                <i data-feather='alert-circle' class="text-danger"></i><strong class="mr-auto text-danger ml-1">Error</strong>
-                                <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="toast-body h5">The item already exists.</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Stacked Toast End -->
+                <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                <button type="button" class="btn btn-outline-danger toast-item-already-message" id="type-item-already-error" hidden>Error</button>
+               
             </div>
         </div>
     </div>
@@ -383,6 +320,7 @@
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
+    {{-- <script src="../../../app-assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script> --}}
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <script src="../../../app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
@@ -428,44 +366,30 @@
                         }
                         else{
                             $('.btn-outline-secondary').click();
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-item-already-message').click();
                         }
                     }
                 });
             });
             
-
-            // $('.update_data_user').on("click", function() {
-  
-            //     $.ajax({
-            //         headers: {
-            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //         },
-            //         type: 'post',
-            //         url: $userid,
-                    
-            //         data: {
-            //             id: $id,
-            //             categoryname: $("#ucategoryname").val(),
-            //             title: $("#utitle").val(),
-            //             description: $("#udescription").val(),
-            //             // photo: $("#uphoto").val(),
-            //             usprice: $("#uusprice").val(),
-            //             lbpprice: $("#ulbpprice").val(),
-            //             marker: $("#umarker").val(),
-            //             quantity: $("#uquantity").val()
-            //         },
-            //         cache:false,
-            //         data: formData,
-            //         contentType: false,
-            //         processData: false,
-            //         success: function(data) {
-            //             if(data['success']){
-            //                 window.location.reload();
-            //             }
-            //         }
-            //     })
-            // });
+        });
+        $('.status-items-update').on('change', function () {
+            var $id = $(this).data('id');
+            var $userid = 'itemsupdate/' + ($(this).data('id'));
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: $userid,
+                data: {status: 'change'},
+                success: function(data) {
+                    if(data['success']){
+                        $('.toast-sucess-message').click();
+                    }
+                }
+            });
         });
 
     })

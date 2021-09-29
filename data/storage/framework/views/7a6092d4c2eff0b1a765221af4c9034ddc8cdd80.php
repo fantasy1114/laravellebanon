@@ -58,7 +58,7 @@
                                             <label class="form-label" for="uexchange">Exchange rate</label>
                                             <input type="text" class="form-control dt-full-name" id="uexchange"  name="uexchange" aria-label="uexchange" aria-describedby="uexchange" required/>
                                         </div>
-                                        <button type="button" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                         <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>

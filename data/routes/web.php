@@ -31,7 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
           // Begin ----- USERLIST -----------
       Route::get('/userlist', [App\Http\Controllers\UserlistController::class, 'userlist'])->name('userlist');
       Route::post('/userlist', [App\Http\Controllers\UserlistController::class, 'usercreate'])->name('usercreate');
-      Route::get('/userdelete/{id}/{name}', [App\Http\Controllers\UserlistController::class, 'userdelete'])->name('userdelete');
+      Route::get('/userdelete/{id}', [App\Http\Controllers\UserlistController::class, 'userdelete'])->name('userdelete');
       Route::post('/userupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userupdate'])->name('userupdate');
       // END -------- USERLIST ----------
       //-------------- BEGIN companymanagement-------------

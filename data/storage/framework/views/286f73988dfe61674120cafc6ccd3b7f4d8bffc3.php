@@ -37,11 +37,12 @@
                                         <th>Item Name</th>
                                         <th>Description</th>
                                         <th>Photo</th>
+                                        <th>Status</th>   
                                         <th>USD Price</th>
                                         <th>LBP Price</th>
                                         <th>Maker</th>
                                         <th>Quantity</th>
-                                        <th>Status</th>                                    
+                                                                         
                                         <th class="<?php echo e(Auth::user()->role); ?>">Action</th>
                                     </tr>
                                 </thead>
@@ -54,11 +55,17 @@
                                         <td><?php echo e($item -> title); ?></td>
                                         <td><?php echo e($item -> description); ?></td>
                                         <td><img src="<?php echo e($item -> photo); ?>" style="width:48px; height:34px;"></td>
-                                        <td>$<?php echo e($item -> usprice); ?></td>
-                                        <td>$<?php echo e($item -> lbpprice); ?></td>
+                                        <td>
+                                            <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="<?php echo e($item -> id); ?>" data-status="<?php echo e($item -> status); ?>">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($item -> id); ?>" <?php if($item -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                            <label class="custom-control-label" for="customSwitch<?php echo e($item -> id); ?>"></label>
+                                            </div>
+                                        </td>
+                                        <td><?php echo e($item -> usprice); ?></td>
+                                        <td><?php echo e($item -> lbpprice); ?></td>
                                         <td><?php echo e($item -> marker); ?></td>
                                         <td><?php echo e($item -> quantity); ?></td>
-                                        <td><?php echo e($item -> status); ?></td>
+                                        
                                         <td>
                                             <button class="dropdown-item userupdate_new"
                                                 data-id="<?php echo e($item -> id); ?>" data-categoryname="<?php echo e($item -> categoryname); ?>"
@@ -83,7 +90,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <a class="dropdown-item" href="itemsdelete/<?php echo e($item->id); ?>">
+                                            <button class="dropdown-item delete_data_item" data-id="<?php echo e($item->id); ?>" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -93,10 +100,9 @@
                                                         d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                                     </path>
                                                 </svg>
-                                                <span></span>
-                                            </a>
+                                            </button>
                                         </td>
-                                        
+                                       
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
@@ -250,9 +256,7 @@
                                                 </div>
                                                 <!--/ upload and reset button -->
                                             </div>
-                                        <!--/ header media -->
-
-                                            
+                                     
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="uusprice">Price in USD</label>
@@ -298,22 +302,9 @@
                     <!-- list section end -->
                 </section>
                 <!-- users list ends -->
-                <!-- list Repeat end -->
-                <div aria-live="polite" aria-atomic="true" style="position: relative">
-                        
-                    <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                        <div class="toast toast-stacked-toggler-repeat hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                            <div class="toast-header">
-                                <i data-feather='alert-circle' class="text-danger"></i><strong class="mr-auto text-danger ml-1">Error</strong>
-                                <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="toast-body h5">The item already exists.</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Stacked Toast End -->
+                <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                <button type="button" class="btn btn-outline-danger toast-item-already-message" id="type-item-already-error" hidden>Error</button>
+               
             </div>
         </div>
     </div>
@@ -327,6 +318,7 @@
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
+    
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <script src="../../../app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
@@ -372,44 +364,30 @@
                         }
                         else{
                             $('.btn-outline-secondary').click();
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-item-already-message').click();
                         }
                     }
                 });
             });
             
-
-            // $('.update_data_user').on("click", function() {
-  
-            //     $.ajax({
-            //         headers: {
-            //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //         },
-            //         type: 'post',
-            //         url: $userid,
-                    
-            //         data: {
-            //             id: $id,
-            //             categoryname: $("#ucategoryname").val(),
-            //             title: $("#utitle").val(),
-            //             description: $("#udescription").val(),
-            //             // photo: $("#uphoto").val(),
-            //             usprice: $("#uusprice").val(),
-            //             lbpprice: $("#ulbpprice").val(),
-            //             marker: $("#umarker").val(),
-            //             quantity: $("#uquantity").val()
-            //         },
-            //         cache:false,
-            //         data: formData,
-            //         contentType: false,
-            //         processData: false,
-            //         success: function(data) {
-            //             if(data['success']){
-            //                 window.location.reload();
-            //             }
-            //         }
-            //     })
-            // });
+        });
+        $('.status-items-update').on('change', function () {
+            var $id = $(this).data('id');
+            var $userid = 'itemsupdate/' + ($(this).data('id'));
+            
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: $userid,
+                data: {status: 'change'},
+                success: function(data) {
+                    if(data['success']){
+                        $('.toast-sucess-message').click();
+                    }
+                }
+            });
         });
 
     })

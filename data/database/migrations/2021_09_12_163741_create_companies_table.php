@@ -19,6 +19,8 @@ class CreateCompaniesTable extends Migration
             $table->string('sellmethod');
             $table->string('exchange');
             $table->string('delivery');
+            $table->string('logo');
+            $table->string('can')->nullable();
             $table->string('status');
             $table->timestamps();
         });

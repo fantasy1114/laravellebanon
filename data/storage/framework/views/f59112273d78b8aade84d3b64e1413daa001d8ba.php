@@ -126,6 +126,10 @@
                             <div class="row mt-4">
                                 <div class="col-md-4 ">
                                     <h3>Location</h3>
+                                    <h3 class="mt-2">Lat</h3>
+                                    <input type="text" class="form-control" id="title" value=<?php echo e($siteinfo -> lat); ?> disabled/>
+                                    <h3 class="mt-2">Lng</h3>
+                                    <input type="text" class="form-control" id="title" value=<?php echo e($siteinfo -> lng); ?> disabled/>
                                 </div>
                                 <div class="col-md-8" style="height:300px; display:flex">
                                     

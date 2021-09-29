@@ -35,7 +35,9 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Category Name</th>
+                                        <th>Photo</th>
                                         <th>Company Name</th>
+                                        <th>Status</th>
                                         <th class="<?php echo e(Auth::user()->role); ?>">Action</th>
                                     </tr>
                                 </thead>
@@ -45,11 +47,18 @@
                                     <tr>
                                         <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
                                         <td><?php echo e($category -> categoryname); ?><small style="font-size: 10px;">(<?php echo e($category -> companyname); ?>)</small></td>
+                                        <td><img src="<?php echo e($category -> logo); ?>" style="width:48px; height:34px;"></td>
                                         <td><?php echo e($category -> companyname); ?></td>
+                                        <td>
+                                            <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="<?php echo e($category -> id); ?>" data-status="<?php echo e($category -> status); ?>">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                            <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
+                                            </div>
+                                        </td>
                                         <td class="<?php echo e(Auth::user()->role); ?>">
                                             <button class="dropdown-item userupdate_new"
                                                 data-id="<?php echo e($category -> id); ?>" data-categoryname="<?php echo e($category -> categoryname); ?>"
-                                                data-companyname="<?php echo e($category -> companyname); ?>"
+                                                data-companyname="<?php echo e($category -> companyname); ?>" data-logo="<?php echo e($category -> logo); ?>" data-status="<?php echo e($category -> status); ?>"
                                                 >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -63,7 +72,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <button class="dropdown-item delete_data" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categoryname); ?>">
+                                            <button class="dropdown-item delete_category_data" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -76,7 +85,7 @@
                                                 <span></span>
                                             </button>
                                         </td>
-                                        
+                                       
                                     </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
@@ -100,7 +109,23 @@
                                                 placeholder="Category" name="categoryname" aria-label="Name"
                                                 aria-describedby="categoryname2" />
                                         </div>
-                                       
+                                        <div class="form-group">
+                                            <label class="form-label" for="photo">Photo</label>
+                                            <!-- header media -->
+                                                <div class="media">
+                                                    <a href="javascript:void(0);" class="mr-25">
+                                                        <img src="./uploads/default.png" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                    </a>
+                                                    <!-- upload and reset button -->
+                                                    <div class="media-body mt-75 ml-1">
+                                                        <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                        <input type="file" id="account-upload" name="account-upload" hidden accept="image/*" />
+                                                    </div>
+                                                    <!--/ upload and reset button -->
+                                                </div>
+                                            <!--/ header media -->
+                                            
+                                        </div>
                                         <div class="form-group">
                                             <label class="form-label" for="companyname">Comapny Name</label>
                                             <select id="companyname" aria-describedby="companyname2" name="companyname"
@@ -108,6 +133,13 @@
                                                 <?php $__currentLoopData = $companys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($company -> companyname); ?>"><?php echo e($company -> companyname); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="status">Status</label>
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="InActive">InActive</option>
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
@@ -122,7 +154,7 @@
                         <!-- Modal to update new user starts-->
                         <div class="modal modal-slide-in update_user_modal fade" id="modals-slide-in">
                             <div class="modal-dialog">
-                                <form class="add-new-user modal-content pt-0">
+                                <form class="update-new-user modal-content pt-0">
                                     <?php echo e(csrf_field()); ?>
 
                                     <button type="button" class="close" data-dismiss="modal"
@@ -135,7 +167,23 @@
                                             <label class="form-label" for="ucategoryname">Category Name</label>
                                             <input type="text" class="form-control dt-full-name" id="ucategoryname"
                                                 placeholder="Name" name="ucategoryname" aria-label="Name"
-                                                aria-describedby="ucategoryname2" disabled/>
+                                                aria-describedby="ucategoryname2"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="uphoto">Photo</label>
+                                            <!-- header media -->
+                                            <div class="media">
+                                                <a href="javascript:void(0);" class="mr-25">
+                                                    <img id="uaccount-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                </a>
+                                                <!-- upload and reset button -->
+                                                <div class="media-body mt-75 ml-1">
+                                                    <label for="uaccount-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                    <input type="file" id="uaccount-upload" name="uaccount-upload" hidden accept="image/*" />
+                                                </div>
+                                                <!--/ upload and reset button -->
+                                            </div>
+                                     
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="ucompanyname">Company Name</label>
@@ -146,7 +194,14 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <button type="button" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
+                                            <label class="form-label" for="status">Status</label>
+                                            <select id="ustatus" name="ustatus" class="form-control">
+                                                <option value="Active">Active</option>
+                                                <option value="InActive">InActive</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                         </div>
                                     </div>
@@ -155,38 +210,9 @@
                         </div>
                         <!-- Modal to update new user Ends-->
                     </div>
-                    <!-- list section end -->
-                    <div aria-live="polite" aria-atomic="true" style="position: relative">
-                        
-                        <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                            <div class="toast toast-stacked hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                                <div class="toast-header">
-                                    <i data-feather='alert-circle' class="text-danger"></i><strong class="mr-auto text-danger ml-1">Error</strong>
-                                    <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="toast-body h5">You need to delete that item.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Stacked Toast End -->
-                    <!-- list Repeat end -->
-                    <div aria-live="polite" aria-atomic="true" style="position: relative">
-                        
-                        <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                            <div class="toast toast-stacked-toggler-repeat hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                                <div class="toast-header">
-                                    <i data-feather='alert-circle' class="text-danger"></i><strong class="mr-auto text-danger ml-1">Error</strong>
-                                    <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="toast-body h5">The category already exists.</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Stacked Toast End -->
+                    <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                    <button type="button" class="btn btn-outline-danger toast-category-error-message" id="type-category-error" hidden>Error</button>
+                    <button type="button" class="btn btn-outline-danger toast-category-already-message" id="type-category-already-error" hidden>Error</button>
                 </section>
                 <!-- users list ends -->
 
@@ -205,6 +231,7 @@
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/app-category-list.js"></script>
     <script src="../../../app-assets/js/scripts/components/components-bs-toast.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <!-- END: Page JS-->
 
     <script>
@@ -216,56 +243,53 @@
             // $("#uUserid").val($(this).data('id'));
             $("#ucategoryname").val($(this).data('categoryname'));
             $("#ucompanyname").val($(this).data('companyname'));
+            $("#ustatus").val($(this).data('status'));
+            $("#uaccount-upload-img").attr('src',($(this).data('logo')));
             $(".update_user_modal").modal('show');
 
-            $('.update_data_user').on("click", function() {
-                console.log($userid);
+            $('.update-new-user').on("submit", function(e) {
+                var formData = new FormData(this);
+                e.preventDefault();
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type: 'post',
                     url: $userid,
-                    data: {
-                        id: $id,
-                        categoryname: $("#ucategoryname").val(),
-                        companyname: $("#ucompanyname").val()
-                    },
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
                     success: function(data) {
                         if(data['success']){
                             window.location.reload();
                         }
                         else{
                             $('.btn-outline-secondary').click();
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-category-already-message').click();
                         }
                     }
                 })
             });
         });
-        $(".delete_data").on("click", function(){
-                var $id = $(this).data('id');
-                var $category = $(this).data('categoryname')
-                
-                var $userid = 'categorydelete/' + $id + '/' + $category;
-                
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'get',
-                    url: $userid,
-                    success: function(data) {
-                        if(data['success']){
-                            window.location.reload();
-                        }
-                        else{
-                            $(".toast-stacked-toggler").click();
-                        }
+        $('.status-category-update').on('change', function () {
+            var $id = $(this).data('id');
+            var $userid = 'categoryupdate/' + ($(this).data('id'));
+            console.log($id);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: $userid,
+                data: {status: 'change'},
+                success: function(data) {
+                    if(data['success']){
+                        $('.toast-sucess-message').click();
                     }
-                });
+                }
             });
-
+        });
     })
     $(window).on('load', function() {
         if (feather) {

@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-pickadate.css">
 
+
+
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: navbar-->
@@ -39,9 +41,11 @@
                                         <!-- <th></th> -->
                                         <th>Company</th>
                                         <th>Company Name</th>
+                                        <th>Logo</th>
                                         <th>Status</th>
                                         <th>Sell Method</th>
                                         <th>Exchange Rate</th>
+                                        <th>Can Deliver</th>
                                         <th>Delivery Time</th>
                                         <th class="{{Auth::user()->role}} ">Action</th>
                                     </tr>
@@ -51,7 +55,7 @@
                                         <tr>
                                             <td>{{$company -> companyname}}</td>
                                             <td>{{$company -> companyname}}</td>
-                                            {{-- <td>{{$company -> status}}</td> --}}
+                                            <td><img src="{{$company -> logo}}" style="width:48px; height:34px;"></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-update" data-id="{{$company -> id}}" data-status="{{$company -> status}}">
                                                     <input type="checkbox" class="custom-control-input" id="customSwitch{{$company -> id}}" @if ($company -> status == 'Active') checked @endif class="status-checked" >
@@ -60,37 +64,20 @@
                                             </td>
                                             <td>{{$company -> sellmethod}}</td>
                                             <td>{{$company -> exchange}}</td>
+                                            <td> <input type="checkbox" class="" @if ($company -> can == 'on') checked @endif disabled>
+                                                </td>
                                             <td>{{$company -> delivery}}</td>
                                             <td class="{{Auth::user()->role}}">
-                                                <button class="dropdown-item userupdate_new" data-id="{{$company -> id}}" data-companyname="{{$company -> companyname}}" data-status="{{$company -> status}}" data-sellmethod="{{$company -> sellmethod}}" data-exchange="{{$company -> exchange}}" data-delivery="{{$company -> delivery}}">
+                                                <button class="dropdown-item userupdate_new" data-id="{{$company -> id}}" data-companyname="{{$company -> companyname}}" data-status="{{$company -> status}}" data-sellmethod="{{$company -> sellmethod}}" data-exchange="{{$company -> exchange}}" data-delivery="{{$company -> delivery}}" data-can="{{$company -> can}}" data-logo="{{$company -> logo}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button class="dropdown-item delete_data" data-id="{{$company->id}}" data-companyname="{{$company->companyname}}" >
+                                                <button data-id="{{$company->id}}" data-companyname="{{$company->companyname}}"  class="dropdown-item delete_company_data" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                                    <span></span>
                                                 </button>
+
                                             </td>
-                                            {{-- <td class="{{Auth::user()->role}} ">
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                        <!-- <i data-feather="more-vertical"></i> -->
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <button class="dropdown-item userupdate_new" data-id="{{$company -> id}}" data-companyname="{{$company -> companyname}}" data-status="{{$company -> status}}" data-sellmethod="{{$company -> sellmethod}}"
-                                                            data-exchange="{{$company -> exchange}}" data-delivery="{{$company -> delivery}}">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
-                                                            <span>Edit</span>
-                                                        </button>
-                                                        <button class="dropdown-item delete_data" data-id="{{$company->id}}" data-companyname="{{$company->companyname}}" >
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                                                            <span>Delete</span>
-                                                        </button>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </td> --}}
+                                          
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -111,6 +98,23 @@
                                             <input type="text" class="form-control dt-full-name" id="basic-icon-default-companyname" placeholder="Google" name="companyname" aria-label="Google" aria-describedby="basic-icon-default-companyname2" />
                                         </div>
                                         <div class="form-group">
+                                            <label class="form-label" for="photo">Logo</label>
+                                            <!-- header media -->
+                                                <div class="media">
+                                                    <a href="javascript:void(0);" class="mr-25">
+                                                        <img src="./uploads/default.png" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                    </a>
+                                                    <!-- upload and reset button -->
+                                                    <div class="media-body mt-75 ml-1">
+                                                        <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                        <input type="file" id="account-upload" name="account-upload" hidden accept="image/*" />
+                                                    </div>
+                                                    <!--/ upload and reset button -->
+                                                </div>
+                                            <!--/ header media -->
+                                            
+                                        </div>
+                                        <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
                                             <select id="status" name="status" class="form-control">
                                                 <option value="Active">Active</option>
@@ -127,14 +131,12 @@
 
                                         <div class="form-group">
                                             <label class="form-label" for="exchange">Exchange Rate</label>
-                                            <input type="number" class="form-control dt-full-name" id="exchange"
-                                                placeholder="Exchange" name="exchange" aria-label="Name"
-                                                aria-describedby="exchange" />
+                                            <input type="number" max="1" min="0" class="form-control dt-full-name" id="exchange" placeholder="Exchange" name="exchange" aria-label="Name" aria-describedby="exchange" />
                                         </div>
-                                        <div class="custom-control custom-checkbox" checked="yes">
+                                        <div class="custom-control custom-checkbox">
                                             <label class="form-label" for="exchange">Can Deliver</label>
-                                            <input type="checkbox" class="custom-control-input" id="customCheck1" mame="customCheck1" />
-                                            <label class="custom-control-label" for="customCheck1"></label>
+                                            <input type="checkbox" class="custom-control-input" id="can" name="can" />
+                                            <label class="custom-control-label" name='can' for="can"></label>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="delivery">Delivery Time</label>
@@ -162,7 +164,23 @@
                                     <div class="modal-body flex-grow-1">
                                         <div class="form-group">
                                             <label class="form-label" for="ucompanyname">Company Name</label>
-                                            <input type="text" class="form-control dt-full-name" id="ucompanyname" placeholder="Google" name="ucompanyname" aria-label="Google" aria-describedby="ucompanyname" disabled/>
+                                            <input type="text" class="form-control dt-full-name" id="ucompanyname" placeholder="Google" name="ucompanyname" aria-label="Google" aria-describedby="ucompanyname" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="uphoto">Logo</label>
+                                            <!-- header media -->
+                                            <div class="media">
+                                                <a href="javascript:void(0);" class="mr-25">
+                                                    <img id="uaccount-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                </a>
+                                                <!-- upload and reset button -->
+                                                <div class="media-body mt-75 ml-1">
+                                                    <label for="uaccount-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
+                                                    <input type="file" id="uaccount-upload" name="uaccount-upload" hidden accept="image/*" />
+                                                </div>
+                                                <!--/ upload and reset button -->
+                                            </div>
+                                     
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
@@ -181,11 +199,13 @@
 
                                         <div class="form-group">
                                             <label class="form-label" for="exchange">Exchange Rate</label>
-                                            <input type="number" class="form-control dt-full-name" id="uexchange"
-                                                placeholder="Exchange" name="uexchange" aria-label="Name"
-                                                aria-describedby="uexchange" />
+                                            <input type="number" max="1" min="0" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="Name" aria-describedby="uexchange" />
                                         </div>
-
+                                        <div class="custom-control custom-checkbox">
+                                            <label class="form-label" for="exchange">Can Deliver</label>
+                                            <input type="checkbox" class="custom-control-input" id="ucan" name="ucan" />
+                                            <label class="custom-control-label" for="ucan"></label>
+                                        </div>
                                         <div class="form-group">
                                             <label class="form-label" for="delivery">Delivery Time</label>
                                             <input type="text" class="form-control dt-full-name" id="udelivery"
@@ -193,7 +213,7 @@
                                                 aria-describedby="udelivery" />
                                         </div>
 
-                                        <button type="button" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
                                         <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
@@ -201,38 +221,9 @@
                         </div>
                         <!-- Modal to update new user Ends-->
 
-                         <!-- Stacked Toast -->
-                        <div aria-live="polite" aria-atomic="true" style="position: relative">
-                        
-                            <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                                <div class="toast toast-stacked hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
-                                    <div class="toast-header">
-                                        <i data-feather='alert-circle' class="text-danger"></i><strong class="mr-auto text-danger ml-1">Error</strong>
-                                        <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="toast-body h5">You need to delete that category.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Stacked Toast End -->
-                        <!-- list Repeat end -->
-                        <div aria-live="polite" aria-atomic="true" style="position: relative">
-                            
-                            <div style="position: fixed; top: 1rem; right: 1rem; margin-left: 1rem; z-index: 1030">
-                                <div class="toast toast-stacked-toggler-repeat hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                                    <div class="toast-header">
-                                        <i data-feather='alert-circle' class="text-success"></i><strong class="mr-auto text-success ml-1">Success</strong>
-                                        <button type="button" class="ml-1 close" data-dismiss="toast" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="toast-body h5">Changed successfully.</div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Stacked Toast End -->
+                        <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                        <button type="button" class="btn btn-outline-danger toast-company-error-message" id="type-error" hidden>Error</button>
+                        <button type="button" class="btn btn-outline-danger toast-company-update-message" id="type-company-update-error" hidden>Error</button>
                     </div>
                     <!-- list section end -->
                 </section>
@@ -251,12 +242,10 @@
     <!-- END: Footer-->
 
     <!-- BEGIN: Page JS-->
-    
-
 
     <script src="../../../app-assets/js/scripts/pages/app-company-list.js"></script>
-    <script src="../../../app-assets/js/scripts/components/components-bs-toast.js"></script>
-    
+    <script src="../../../app-assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <!-- END: Page JS-->
 
     <script>
@@ -270,26 +259,39 @@
                 $("#ustatus").val($(this).data('status'));
                 $("#usellmethod").val($(this).data('sellmethod'));
                 $("#uexchange").val($(this).data('exchange'));
+                $("#uaccount-upload-img").attr('src',($(this).data('logo')));
+                if($(this).data('can') == 'on'){
+                    $("#ucan").prop('checked', true);
+                }
+                else{
+                    $("#ucan").prop('checked', false);
+                }
                 $("#udelivery").val($(this).data('delivery'));
                 $(".update_user_modal").modal('show');
-                console.log('test');
-                $('.update_data_user').on("click", function(){
-                    console.log($userid);
+              
+                $('.update-new-user').on("submit", function(e){
+                    var formData = new FormData(this);
+                    e.preventDefault();
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'post',
                         url: $userid,
-                        data: { id: $id, companyname: $("#ucompanyname").val(), status: $("#ustatus").val(), sellmethod: $("#usellmethod").val(), exchange: $("#uexchange").val(), delivery: $("#udelivery").val()},
+                        cache:false,
+                        data: formData,
+                        contentType: false,
+                        processData: false,
                         success: function(data) {
                             if(data['success']){
                                 window.location.reload();
                             }
+                            else{
+                                $('.btn-outline-secondary').click();
+                                $('.toast-company-update-message').click();
+                            }
                         }
                     });
-               
-                    // window.location.reload();
                 });
             });
            
@@ -306,32 +308,12 @@
                     data: {status: 'change'},
                     success: function(data) {
                         if(data['success']){
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-sucess-message').click();
                         }
                     }
                 });
             });
-                
-            $(".delete_data").on("click", function(){
-                var $id = $(this).data('id');
-                var $company = $(this).data('companyname')
-                var $userid = 'companymanagementdelete/' + $id + '/' + $company;
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'get',
-                    url: $userid,
-                    success: function(data) {
-                        if(data['success']){
-                            window.location.reload();
-                        }
-                        else{
-                            $(".toast-stacked-toggler").click();
-                        }
-                    }
-                });
-            });
+            
             
         })
         $(window).on('load', function() {

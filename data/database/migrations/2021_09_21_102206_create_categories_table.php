@@ -19,7 +19,9 @@ class CreateCategoriesTable extends Migration
             $table->foreign('companies_id')->nullable()->references('id')->on('companies');
             $table->string('categoryname');
             $table->string('companyname');
+            $table->string('logo');
             $table->string('categorycompany');
+            $table->string('status');
             $table->timestamps();
         });
     }

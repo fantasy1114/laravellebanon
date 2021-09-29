@@ -210,7 +210,7 @@ $(function() {
                             window.location.reload();
                         }
                         else{
-                            $('.toast-stacked-toggler-repeat').toast('show');
+                            $('.toast-item-already-message').click();
                         }
                     }
                 });
