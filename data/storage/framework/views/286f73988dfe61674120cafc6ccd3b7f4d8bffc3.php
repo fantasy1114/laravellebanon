@@ -16,7 +16,7 @@
     <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->items_view != 'on'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -65,7 +65,7 @@
                                         <td><?php echo e($item -> marker); ?></td>
                                         <td><?php echo e($item -> quantity); ?></td>
                                         <td>
-                                            <button class="dropdown-item userupdate_new"
+                                            <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->items_write != 'on'): ?> data-page-close <?php endif; ?>"
                                                 data-id="<?php echo e($item -> id); ?>" data-categoryname="<?php echo e($item->categories->categoryname); ?>(<?php echo e($item->categories->companies->companyname); ?>)"
                                                 data-title="<?php echo e($item -> title); ?>"
                                                 data-description="<?php echo e($item -> description); ?>"
@@ -88,7 +88,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <button class="dropdown-item delete_data_item" data-id="<?php echo e($item->id); ?>" >
+                                            <button class="dropdown-item delete_data_item <?php if(Auth::user()->rolefunction->items_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($item->id); ?>" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -192,8 +192,8 @@
                                                 <option value="InActive">InActive</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary"
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->items_create != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->items_create != 'on'): ?> data-page-close <?php endif; ?>"
                                             data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>

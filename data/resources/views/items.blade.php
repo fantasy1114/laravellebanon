@@ -16,7 +16,7 @@
     @include('layouts/layout')
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content @if(Auth::user()->rolefunction->items_view != 'on') data-page-close @endif">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -65,7 +65,7 @@
                                         <td>{{$item -> marker}}</td>
                                         <td>{{$item -> quantity}}</td>
                                         <td>
-                                            <button class="dropdown-item userupdate_new"
+                                            <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->items_write != 'on') data-page-close @endif"
                                                 data-id="{{$item -> id}}" data-categoryname="{{$item->categories->categoryname}}({{$item->categories->companies->companyname}})"
                                                 data-title="{{$item -> title}}"
                                                 data-description="{{$item -> description}}"
@@ -88,7 +88,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <button class="dropdown-item delete_data_item" data-id="{{$item->id}}" >
+                                            <button class="dropdown-item delete_data_item @if(Auth::user()->rolefunction->items_delete != 'on') data-page-close @endif" data-id="{{$item->id}}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -193,8 +193,8 @@
                                                 <option value="InActive">InActive</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary"
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit @if(Auth::user()->rolefunction->items_create != 'on') data-page-close @endif">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary @if(Auth::user()->rolefunction->items_create != 'on') data-page-close @endif"
                                             data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>

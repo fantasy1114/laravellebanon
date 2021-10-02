@@ -20,7 +20,7 @@
     <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content @if(Auth::user()->rolefunction->siteinfo_view != 'on') data-page-close @endif">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -145,10 +145,10 @@
                             </div>
                         
                         <!-- list section end -->
-                        <div class="row">
+                        <div class="row @if(Auth::user()->rolefunction->siteinfo_write != 'on') data-page-close @endif">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new" data-id="{{$siteinfo -> id}}" data-title="{{$siteinfo -> title}}" data-logo="{{$siteinfo -> logo}}" data-contacts="{{$siteinfo -> contacts}}" data-lat="{{$siteinfo -> lat}}" data-lng="{{$siteinfo -> lng}}" data-phone="{{$siteinfo -> phone}}" data-email="{{$siteinfo -> email}}" data-office="{{$siteinfo -> office}}" data-whatapp="{{$siteinfo -> whatapp}}">Edit</button>
+                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new " data-id="{{$siteinfo -> id}}" data-title="{{$siteinfo -> title}}" data-logo="{{$siteinfo -> logo}}" data-contacts="{{$siteinfo -> contacts}}" data-lat="{{$siteinfo -> lat}}" data-lng="{{$siteinfo -> lng}}" data-phone="{{$siteinfo -> phone}}" data-email="{{$siteinfo -> email}}" data-office="{{$siteinfo -> office}}" data-whatapp="{{$siteinfo -> whatapp}}">Edit</button>
                             </div>
                             
                         </div>
@@ -210,8 +210,8 @@
                                         <input type="text" class="form-control dt-full-name" id="ulng"  name="ulng" aria-label="ulng" aria-describedby="ulng" required/>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
-                                    <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user @if(Auth::user()->rolefunction->siteinfo_write != 'on') data-page-close @endif">Submit</button>
+                                    <button class="btn btn-outline-secondary @if(Auth::user()->rolefunction->siteinfo_write != 'on') data-page-close @endif" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>

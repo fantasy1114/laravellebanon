@@ -20,7 +20,7 @@
     <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->siteinfo_view != 'on'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -28,7 +28,7 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <section class="app-user-list <?php echo e(Auth::user()->role); ?> <?php if(Auth::user()->role == 'editor'): ?> subscriber <?php endif; ?>">
+                <section class="app-user-list">
                     <?php $__currentLoopData = $siteinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $siteinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         
                         <!-- list section start -->
@@ -140,10 +140,10 @@
                             </div>
                         
                         <!-- list section end -->
-                        <div class="row">
+                        <div class="row <?php if(Auth::user()->rolefunction->siteinfo_write != 'on'): ?> data-page-close <?php endif; ?>">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new" data-id="<?php echo e($siteinfo -> id); ?>" data-title="<?php echo e($siteinfo -> title); ?>" data-logo="<?php echo e($siteinfo -> logo); ?>" data-contacts="<?php echo e($siteinfo -> contacts); ?>" data-lat="<?php echo e($siteinfo -> lat); ?>" data-lng="<?php echo e($siteinfo -> lng); ?>" data-phone="<?php echo e($siteinfo -> phone); ?>" data-email="<?php echo e($siteinfo -> email); ?>" data-office="<?php echo e($siteinfo -> office); ?>" data-whatapp="<?php echo e($siteinfo -> whatapp); ?>">Edit</button>
+                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new " data-id="<?php echo e($siteinfo -> id); ?>" data-title="<?php echo e($siteinfo -> title); ?>" data-logo="<?php echo e($siteinfo -> logo); ?>" data-contacts="<?php echo e($siteinfo -> contacts); ?>" data-lat="<?php echo e($siteinfo -> lat); ?>" data-lng="<?php echo e($siteinfo -> lng); ?>" data-phone="<?php echo e($siteinfo -> phone); ?>" data-email="<?php echo e($siteinfo -> email); ?>" data-office="<?php echo e($siteinfo -> office); ?>" data-whatapp="<?php echo e($siteinfo -> whatapp); ?>">Edit</button>
                             </div>
                             
                         </div>
@@ -205,8 +205,8 @@
                                         <input type="text" class="form-control dt-full-name" id="ulng"  name="ulng" aria-label="ulng" aria-describedby="ulng" required/>
                                     </div>
                                     
-                                    <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
-                                    <button class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user <?php if(Auth::user()->rolefunction->siteinfo_write != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
+                                    <button class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->siteinfo_write != 'on'): ?> data-page-close <?php endif; ?>" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>

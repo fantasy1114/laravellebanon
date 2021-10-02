@@ -20,31 +20,31 @@
                 </ul>
             <?php endif; ?>
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class="nav-item <?php if(Request::path() == 'userlist'): ?> active <?php endif; ?>"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
-                    </li>
-                </ul>
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->users_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item <?php if(Request::path() == 'userlist'): ?> active <?php endif; ?>"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
+                </li>
+            </ul>
             
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->companies_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'companymanagement'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companines</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->categories_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'category'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="category"><i data-feather='box'></i><span class="menu-title text-truncate" data-i18n="User">Categories</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->items_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'items'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="items"><i data-feather='x-circle'></i><span class="menu-title text-truncate" data-i18n="User">Items</span></a>
                 </li>
             </ul>
 
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->siteinfo_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="<?php if(Request::path() == 'siteinfo'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="siteinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Site Info</span></a>
                     </li>
                 </ul>
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->currency_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="<?php if(Request::path() == 'exchange'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="exchange"><i data-feather='zap'></i><span class="menu-title text-truncate" data-i18n="User">Currency Exchange</span></a>
                     </li>
                 </ul>

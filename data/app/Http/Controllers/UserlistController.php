@@ -34,13 +34,24 @@ class UserlistController extends Controller
       $imagePath = $request->file('account-upload');
       $imageName = $imagePath->getClientOriginalName();
       $imagePath->move(public_path('uploads/users'), $imageName);
-    } 
+    }
+    $roles_data_id = 3;
+    if(request('user_role') == 'superadmin'){
+      $roles_data_id = 1;
+    }
+    else if(request('user_role') == 'admin'){
+      $roles_data_id = 2;
+    }
+    else{
+      $roles_data_id = 3;
+    }
     if($userchecking == 0){
       $User = new User;
       $User->name = request('user_fullname');
       $User->email = request('user_email');
       $User->profile_photo_path = './uploads/users/'.$imageName;
       $User->role = request('user_role');
+      $User->roles_id = $roles_data_id;
       $User->password = Hash::make(request('user_password'));
       $User->status = request('status');
       $User->startdata = request('startdata');
@@ -69,6 +80,16 @@ class UserlistController extends Controller
         'uUserstartdata' => 'required',
         'uUserenddata' => 'required'
     ]);
+    $roles_data_id = 3;
+    if(request('uUserrole') == 'superadmin'){
+      $roles_data_id = 1;
+    }
+    else if(request('uUserrole') == 'admin'){
+      $roles_data_id = 2;
+    }
+    else{
+      $roles_data_id = 3;
+    }
     if ($request->file('uaccount-upload')) {
       $imagePath = $request->file('uaccount-upload');
       $imageName = $imagePath->getClientOriginalName();
@@ -78,6 +99,7 @@ class UserlistController extends Controller
           'email' => $validatedData['uUseremail'],
           'profile_photo_path' => './uploads/users/'.$imageName,
           'role' => $validatedData['uUserrole'],
+          'roles_id' => $roles_data_id,
           'status' => $validatedData['uUserstatus'],
           'startdata' => $validatedData['uUserstartdata'],
           'enddata' => $validatedData['uUserenddata'],
@@ -89,6 +111,7 @@ class UserlistController extends Controller
         'name' => $validatedData['uUsername'],
         'email' => $validatedData['uUseremail'],
         'role' => $validatedData['uUserrole'],
+        'roles_id' => $roles_data_id,
         'status' => $validatedData['uUserstatus'],
         'startdata' => $validatedData['uUserstartdata'],
         'enddata' => $validatedData['uUserenddata'],

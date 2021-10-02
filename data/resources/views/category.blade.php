@@ -16,7 +16,7 @@
     @include('layouts/layout')
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content @if(Auth::user()->rolefunction->categories_view != 'on') data-page-close @endif">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -57,8 +57,8 @@
                                                 <label class="custom-control-label" for="customSwitch{{$category -> id}}"></label>
                                                 </div>
                                             </td>
-                                            <td class="{{Auth::user()->role}}">
-                                                <button class="dropdown-item userupdate_new"
+                                            <td>
+                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->categories_write != 'on') data-page-close @endif"
                                                     data-id="{{$category->id}}" data-categoryname="{{$category->categoryname}}"
                                                     data-companyname="{{$category->companies->companyname}}" data-logo="{{$category->logo}}" data-status="{{$category -> status}}"
                                                     >
@@ -74,7 +74,7 @@
                                                     <span></span>
                                                 </button>
                                             
-                                                <button class="dropdown-item delete_category_data" data-id="{{$category->id}}" data-categoryname="{{$category->categorycompany}}">
+                                                <button class="dropdown-item delete_category_data @if(Auth::user()->rolefunction->categories_delete != 'on') data-page-close @endif" data-id="{{$category->id}}" data-categoryname="{{$category->categorycompany}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round"
@@ -143,7 +143,7 @@
                                                 <option value="InActive">InActive</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit ">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary"
                                             data-dismiss="modal">Cancel</button>
                                     </div>

@@ -27,7 +27,7 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <section class="app-user-list {{Auth::user()->role}} @if(Auth::user()->role == 'editor') subscriber @endif">
+                <section class="app-user-list  @if(Auth::user()->role == 'editor') subscriber @endif">
 
                     <!-- list section start -->
                         <div class="row mt-4">

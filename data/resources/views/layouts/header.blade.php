@@ -71,5 +71,9 @@
         width: 25px;
         padding: 0px;
     }
+
+    .data-page-close{
+        display: none;
+    }
     
 </style>

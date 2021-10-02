@@ -20,31 +20,31 @@
                 </ul>
             @endif
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class="nav-item @if(Request::path() == 'userlist') active @endif"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
-                    </li>
-                </ul>
+            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->users_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item @if(Request::path() == 'userlist') active @endif"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
+                </li>
+            </ul>
             
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->companies_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'companymanagement') active @endif nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companines</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->categories_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'category') active @endif nav-item"><a class="d-flex align-items-center" href="category"><i data-feather='box'></i><span class="menu-title text-truncate" data-i18n="User">Categories</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->items_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'items') active @endif nav-item"><a class="d-flex align-items-center" href="items"><i data-feather='x-circle'></i><span class="menu-title text-truncate" data-i18n="User">Items</span></a>
                 </li>
             </ul>
 
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <ul class="navigation navigation-main @if(Auth::user()->rolefunction->siteinfo_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="@if(Request::path() == 'siteinfo') active @endif nav-item"><a class="d-flex align-items-center" href="siteinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Site Info</span></a>
                     </li>
                 </ul>
             
-                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <ul class="navigation navigation-main @if(Auth::user()->rolefunction->currency_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="@if(Request::path() == 'exchange') active @endif nav-item"><a class="d-flex align-items-center" href="exchange"><i data-feather='zap'></i><span class="menu-title text-truncate" data-i18n="User">Currency Exchange</span></a>
                     </li>
                 </ul>

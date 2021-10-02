@@ -12,7 +12,7 @@
      <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->userrole != 'superadmin'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -826,6 +826,7 @@
                     success: function(data) {
                         if(data['success']){
                             $('.toast-sucess-message').click();
+                            window.location.reload();
                         }
                     }
                 });
@@ -847,6 +848,7 @@
                     success: function(data) {
                         if(data['success']){
                             $('.toast-sucess-message').click();
+                            window.location.reload();
                         }
                     }
                 });
@@ -869,6 +871,7 @@
                 success: function(data) {
                     if(data['success']){
                         $('.toast-sucess-message').click();
+                        window.location.reload();
                     }
                 }
             });

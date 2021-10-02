@@ -19,7 +19,7 @@
     <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content @if(Auth::user()->rolefunction->users_view != 'on') data-page-close @endif">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -59,11 +59,11 @@
                                             <td>{{$userlist -> startdata}}</td>
                                             <td>{{$userlist -> enddata}}</td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new" data-id="{{$userlist -> id}}" data-name="{{$userlist -> name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}">
+                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->users_write != 'on') data-page-close @endif" data-id="{{$userlist -> id}}" data-name="{{$userlist -> name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button type="button" data-id="{{$userlist -> id}}" class="dropdown-item userlist-delete" >
+                                                <button type="button" data-id="{{$userlist -> id}}" class="dropdown-item userlist-delete @if(Auth::user()->rolefunction->users_delete != 'on') data-page-close @endif" >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span></span>
                                                 </button>
@@ -110,10 +110,7 @@
                                                     <!--/ upload and reset button -->
                                                 </div>
                                             <!--/ header media -->
-                                            
-                                            {{-- <input type="text" class="form-control dt-full-name" id="photo"
-                                                placeholder="photo" name="photo" aria-label="Name"
-                                                aria-describedby="photo2" /> --}}
+
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-email">Password</label>
@@ -124,8 +121,8 @@
                                             <label class="form-label" for="user-role">User Role</label>
                                             <select id="user-role" name="user_role" class="form-control">
                                                 <option value="subscriber">Subscriber</option>
-                                                <option value="editor">User</option>
                                                 <option value="admin">Admin</option>
+                                                <option value="superadmin">Superadmin</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -143,9 +140,9 @@
                                             <label class="form-label" for="basic-icon-default-date">EndData</label>
                                             <input type="text" name='enddata' id="enddata" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
                                         </div>
-                                        <input type="text" value="{{Auth::user()->name}}" name="usernamesave" hidden>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                                    
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit @if(Auth::user()->rolefunction->users_write != "on") data-page-close @endif">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary @if(Auth::user()->rolefunction->users_write != "on") data-page-close @endif" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -191,8 +188,8 @@
                                             <label class="form-label" for="uUserrole">User Role</label>
                                             <select id="uUserrole" name="uUserrole" class="form-control">
                                                 <option value="subscriber">Subscriber</option>
-                                                <option value="editor">Editor</option>
                                                 <option value="admin">Admin</option>
+                                                <option value="superadmin">Superadmin</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -247,6 +244,7 @@
 
     <script>
         $(function(){
+            
             $(".userupdate_new").on("click", function(){
                 var $id = $(this).data('id');
                 var $userid = 'userupdate/' + ($(this).data('id'));

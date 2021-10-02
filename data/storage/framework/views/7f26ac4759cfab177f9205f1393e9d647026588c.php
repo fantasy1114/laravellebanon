@@ -16,7 +16,7 @@
     <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->categories_view != 'on'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -38,7 +38,7 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th class="<?php echo e(Auth::user()->role); ?>">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,8 +58,8 @@
                                                 <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
                                                 </div>
                                             </td>
-                                            <td class="<?php echo e(Auth::user()->role); ?>">
-                                                <button class="dropdown-item userupdate_new"
+                                            <td>
+                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->categories_write != 'on'): ?> data-page-close <?php endif; ?>"
                                                     data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categoryname); ?>"
                                                     data-companyname="<?php echo e($category->companies->companyname); ?>" data-logo="<?php echo e($category->logo); ?>" data-status="<?php echo e($category -> status); ?>"
                                                     >
@@ -75,7 +75,7 @@
                                                     <span></span>
                                                 </button>
                                             
-                                                <button class="dropdown-item delete_category_data" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
+                                                <button class="dropdown-item delete_category_data <?php if(Auth::user()->rolefunction->categories_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round"
@@ -145,8 +145,8 @@
                                                 <option value="InActive">InActive</option>
                                             </select>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary"
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->categories_create != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->categories_create != 'on'): ?> data-page-close <?php endif; ?>"
                                             data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>

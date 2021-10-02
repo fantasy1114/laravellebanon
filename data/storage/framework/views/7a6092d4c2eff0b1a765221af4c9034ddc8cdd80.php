@@ -27,7 +27,7 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <section class="app-user-list <?php echo e(Auth::user()->role); ?> <?php if(Auth::user()->role == 'editor'): ?> subscriber <?php endif; ?>">
+                <section class="app-user-list  <?php if(Auth::user()->role == 'editor'): ?> subscriber <?php endif; ?>">
 
                     <!-- list section start -->
                         <div class="row mt-4">
