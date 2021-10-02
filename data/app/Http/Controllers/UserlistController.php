@@ -46,12 +46,6 @@ class UserlistController extends Controller
       $User->startdata = request('startdata');
       $User->enddata = request('enddata');
       $User->save();
-      // $Logs = new Logs;
-      // $Logs->username = request('usernamesave');
-      // $Logs->tablename = 'Userlist';
-      // $Logs->crudevent = 'add';
-      // $Logs->description = request('user_fullname');
-      // $Logs->save();
       return response()->json(['success'=>true]);
     }
     
@@ -59,25 +53,13 @@ class UserlistController extends Controller
   }
   public function userdelete($id)
   {
-    $description = DB::table('users')->where('id', $id)->value('name');
-    // var_dump($description);
-    // $Logs = new Logs;
-    // $Logs->username = $name;
-    // $Logs->tablename = 'userlist';
-    // $Logs->crudevent = 'delete';
-    // $Logs->description = $description;
-    // $Logs->save();
+    // $description = DB::table('users')->where('id', $id)->value('name');
+    
     DB::table('users')->where('id', $id)->delete();
     return response()->json(['success'=>true]);
   }
   public function userupdate(Request $request, $id)
   {
-    // $Logs = new Logs;
-    // $Logs->username = request('usernamesave');
-    // $Logs->tablename = 'userlist';
-    // $Logs->crudevent = 'update';
-    // $Logs->description = request('name');
-    // $Logs->save();
     
     $validatedData = $request->validate([
         'uUsername' => 'required',

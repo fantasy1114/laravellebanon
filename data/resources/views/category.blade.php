@@ -38,55 +38,57 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th class="{{Auth::user()->role}}">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $index = 1; ?>
                                     @foreach ($categorys as $category)
-                                    <tr>
-                                        <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
-                                        <td>{{$category -> categoryname}}<small style="font-size: 10px;">({{$category -> companyname}})</small></td>
-                                        <td><img src="{{$category -> logo}}" style="width:48px; height:34px;"></td>
-                                        <td>{{$category -> companyname}}</td>
-                                        <td>
-                                            <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="{{$category -> id}}" data-status="{{$category -> status}}">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$category -> id}}" @if ($category -> status == 'Active') checked @endif class="status-checked" >
-                                            <label class="custom-control-label" for="customSwitch{{$category -> id}}"></label>
-                                            </div>
-                                        </td>
-                                        <td class="{{Auth::user()->role}}">
-                                            <button class="dropdown-item userupdate_new"
-                                                data-id="{{$category -> id}}" data-categoryname="{{$category -> categoryname}}"
-                                                data-companyname="{{$category -> companyname}}" data-logo="{{$category -> logo}}" data-status="{{$category -> status}}"
-                                                >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="feather feather-edit-2 mr-50">
-                                                    <path
-                                                        d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                    </path>
-                                                </svg>
-                                                <span></span>
-                                            </button>
+                                        <tr>
+                                            <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
+                                            <td>{{$category->categoryname}}<small style="font-size: 10px;">({{$category->companies->companyname}})</small></td>
+                                            <td><img src="{{$category->logo}}" style="width:48px; height:34px;"></td>
+                                            <td>
+                                                {{$category->companies->companyname}}
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="{{$category -> id}}" data-status="{{$category -> status}}">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$category -> id}}" @if ($category -> status == 'Active') checked @endif class="status-checked" >
+                                                <label class="custom-control-label" for="customSwitch{{$category -> id}}"></label>
+                                                </div>
+                                            </td>
+                                            <td class="{{Auth::user()->role}}">
+                                                <button class="dropdown-item userupdate_new"
+                                                    data-id="{{$category->id}}" data-categoryname="{{$category->categoryname}}"
+                                                    data-companyname="{{$category->companies->companyname}}" data-logo="{{$category->logo}}" data-status="{{$category -> status}}"
+                                                    >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="feather feather-edit-2 mr-50">
+                                                        <path
+                                                            d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg>
+                                                    <span></span>
+                                                </button>
+                                            
+                                                <button class="dropdown-item delete_category_data" data-id="{{$category->id}}" data-categoryname="{{$category->categorycompany}}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-trash mr-50">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                    </svg>
+                                                    <span></span>
+                                                </button>
+                                            </td>
                                         
-                                            <button class="dropdown-item delete_category_data" data-id="{{$category->id}}" data-categoryname="{{$category->categorycompany}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-trash mr-50">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                </svg>
-                                                <span></span>
-                                            </button>
-                                        </td>
-                                       
-                                    </tr>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

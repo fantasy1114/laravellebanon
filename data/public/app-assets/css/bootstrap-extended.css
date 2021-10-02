@@ -1011,8 +1011,10 @@ input[type='number']::-webkit-outer-spin-button {
   line-height: 1 !important; }
 
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-user .dropdown-menu {
-  width: 12rem;
-  margin-top: 10px; }
+  /* width: 12rem;
+  margin-top: 10px;  */
+  padding: 15px;
+}
 
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-user .dropdown-menu i,
 .header-navbar .navbar-container ul.navbar-nav li.dropdown-user .dropdown-menu svg {
@@ -1198,7 +1200,8 @@ input[type='number']::-webkit-outer-spin-button {
 
 @media (max-width: 575.98px) {
   .header-navbar.floating-nav {
-    width: calc( 100vw - (100vw - 100%) - calc(2rem + 0.4rem)) !important;
+    width: calc(
+ 100vw - (100vw - 100%) - calc(2rem + 0.4rem)) !important;
     margin-left: 1rem;
     margin-right: 1.2rem; }
   .header-navbar .navbar-container ul.navbar-nav li .selected-language {

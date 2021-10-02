@@ -27,7 +27,7 @@
             </div>
             <div class="content-body">
                 <!-- users list start -->
-                <section class="app-user-list <?php echo e(Auth::user()->role); ?> <?php if(Auth::user()->role == 'editor'): ?> subscriber <?php endif; ?>">
+                <section class="app-user-list">
               
                     <!-- list section start -->
                     <div class="card">

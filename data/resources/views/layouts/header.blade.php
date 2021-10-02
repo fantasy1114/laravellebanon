@@ -63,9 +63,6 @@
         border-spacing: 2px;
         padding:10px;
     }
-    .subscriber{
-        display: none;
-    }
     .avatar{
         background-color:#7367f0;
     }

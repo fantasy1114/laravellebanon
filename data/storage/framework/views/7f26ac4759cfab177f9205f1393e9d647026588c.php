@@ -44,49 +44,52 @@
                                 <tbody>
                                     <?php $index = 1; ?>
                                     <?php $__currentLoopData = $categorys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <tr>
-                                        <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
-                                        <td><?php echo e($category -> categoryname); ?><small style="font-size: 10px;">(<?php echo e($category -> companyname); ?>)</small></td>
-                                        <td><img src="<?php echo e($category -> logo); ?>" style="width:48px; height:34px;"></td>
-                                        <td><?php echo e($category -> companyname); ?></td>
-                                        <td>
-                                            <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="<?php echo e($category -> id); ?>" data-status="<?php echo e($category -> status); ?>">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
-                                            <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
-                                            </div>
-                                        </td>
-                                        <td class="<?php echo e(Auth::user()->role); ?>">
-                                            <button class="dropdown-item userupdate_new"
-                                                data-id="<?php echo e($category -> id); ?>" data-categoryname="<?php echo e($category -> categoryname); ?>"
-                                                data-companyname="<?php echo e($category -> companyname); ?>" data-logo="<?php echo e($category -> logo); ?>" data-status="<?php echo e($category -> status); ?>"
-                                                >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    class="feather feather-edit-2 mr-50">
-                                                    <path
-                                                        d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
-                                                    </path>
-                                                </svg>
-                                                <span></span>
-                                            </button>
+                                        <tr>
+                                            <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
+                                            <td><?php echo e($category->categoryname); ?><small style="font-size: 10px;">(<?php echo e($category->companies->companyname); ?>)</small></td>
+                                            <td><img src="<?php echo e($category->logo); ?>" style="width:48px; height:34px;"></td>
+                                            <td>
+                                                <?php echo e($category->companies->companyname); ?>
+
+                                            </td>
+                                            <td>
+                                                <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="<?php echo e($category -> id); ?>" data-status="<?php echo e($category -> status); ?>">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                                <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
+                                                </div>
+                                            </td>
+                                            <td class="<?php echo e(Auth::user()->role); ?>">
+                                                <button class="dropdown-item userupdate_new"
+                                                    data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categoryname); ?>"
+                                                    data-companyname="<?php echo e($category->companies->companyname); ?>" data-logo="<?php echo e($category->logo); ?>" data-status="<?php echo e($category -> status); ?>"
+                                                    >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        class="feather feather-edit-2 mr-50">
+                                                        <path
+                                                            d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z">
+                                                        </path>
+                                                    </svg>
+                                                    <span></span>
+                                                </button>
+                                            
+                                                <button class="dropdown-item delete_category_data" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" class="feather feather-trash mr-50">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path
+                                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                    </svg>
+                                                    <span></span>
+                                                </button>
+                                            </td>
                                         
-                                            <button class="dropdown-item delete_category_data" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round" class="feather feather-trash mr-50">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                </svg>
-                                                <span></span>
-                                            </button>
-                                        </td>
-                                       
-                                    </tr>
+                                        </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                             </table>

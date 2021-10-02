@@ -19,6 +19,7 @@ $(function () {
     typecategoryError = $('#type-category-error'),
     typecategoryalreadyerror = $('#type-category-already-error'),
     typeitemalreadyerror = $('#type-item-already-error'),
+    typeuserpassalreadyerror = $('#type-userpass-already-error'),
 
     positionTopLeft = $('#position-top-left'),
     positionTopCenter = $('#position-top-center'),
@@ -96,6 +97,13 @@ $(function () {
   });
   typeitemalreadyerror.on('click', function () {
     toastr['error']('👋 The item already exists.', 'Error!', {
+      closeButton: true,
+      tapToDismiss: false,
+      rtl: isRtl
+    });
+  });
+  typeuserpassalreadyerror.on('click', function () {
+    toastr['error']('👋 Wrong Password.', 'Error!', {
       closeButton: true,
       tapToDismiss: false,
       rtl: isRtl

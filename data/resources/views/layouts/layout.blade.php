@@ -13,12 +13,18 @@
   
         <div class="main-menu-content">
             
-            @if (Auth::user()->role == 'admin')
+            @if (Auth::user()->role == 'superadmin')
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="nav-item @if(Request::path() == 'userrole') active @endif"><a class="d-flex align-items-center" href="userrole"><i data-feather='tool'></i><span class="menu-title text-truncate" data-i18n="User">User Role</span></a>
+                    </li>
+                </ul>
+            @endif
+            
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="nav-item @if(Request::path() == 'userlist') active @endif"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
                     </li>
                 </ul>
-            @endif
+            
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'companymanagement') active @endif nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companines</span></a>
                 </li>
@@ -32,16 +38,7 @@
                 </li>
             </ul>
 
-            {{-- <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="@if(Request::path() == 'itemstatus') active @endif nav-item"><a class="d-flex align-items-center" href="itemstatus"><i data-feather='smile'></i><span class="menu-title text-truncate" data-i18n="User">Item Status</span></a>
-                </li>
-            </ul> --}}
-
-            {{-- <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="@if(Request::path() == 'companysetting') active @endif nav-item"><a class="d-flex align-items-center" href="companysetting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Company Setting</span></a>
-                </li>
-            </ul> --}}
-            @if (Auth::user()->role == 'admin')
+            
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="@if(Request::path() == 'siteinfo') active @endif nav-item"><a class="d-flex align-items-center" href="siteinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Site Info</span></a>
                     </li>
@@ -51,7 +48,11 @@
                     <li class="@if(Request::path() == 'exchange') active @endif nav-item"><a class="d-flex align-items-center" href="exchange"><i data-feather='zap'></i><span class="menu-title text-truncate" data-i18n="User">Currency Exchange</span></a>
                     </li>
                 </ul>
-            @endif
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="@if(Request::path() == 'setting') active @endif nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
+                    </li>
+                </ul>
+            
 
         </div>
     </div>

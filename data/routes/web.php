@@ -56,12 +56,12 @@ Route::group(['middleware' => 'auth'], function() {
 
       // // ---------BEGIN Item Status-------------
       Route::get('/itemstatus', [App\Http\Controllers\ItemstatusController::class, 'index'])->name('index');
-      Route::post('/itemstatusupdate/{id}', [App\Http\Controllers\ItemstatusController::class, 'itemstatusupdate'])->name('itemstatusupdate');
+      // Route::post('/itemstatusupdate/{id}', [App\Http\Controllers\ItemstatusController::class, 'itemstatusupdate'])->name('itemstatusupdate');
       // // -------END Item Status -----------------
 
       // // ---------BEGIN CompanySetting-------------
       Route::get('/companysetting', [App\Http\Controllers\CompanysettingController::class, 'index'])->name('index');
-      Route::post('/companysettingupdate/{id}', [App\Http\Controllers\CompanysettingController::class, 'companysettingupdate'])->name('companysettingupdate');
+      // Route::post('/companysettingupdate/{id}', [App\Http\Controllers\CompanysettingController::class, 'companysettingupdate'])->name('companysettingupdate');
       // // -------END CompanySetting -----------------
 
       // // ---------BEGIN SiteInfo-------------
@@ -77,12 +77,20 @@ Route::group(['middleware' => 'auth'], function() {
       // // ---------BEGIN REPORT-------------
     //   Route::get('/report', [App\Http\Controllers\ReportController::class, 'index'])->name('index');
     //   Route::post('/report', [App\Http\Controllers\ReportController::class, 'report'])->name('report');
-      Route::get('export/{name}', [App\Http\Controllers\MyController::class, 'export'])->name('export');
-      Route::get('report', [App\Http\Controllers\MyController::class, 'importExportView']);
-      Route::post('import', [App\Http\Controllers\MyController::class, 'import'])->name('import');
+      // Route::get('export/{name}', [App\Http\Controllers\MyController::class, 'export'])->name('export');
+      // Route::get('report', [App\Http\Controllers\MyController::class, 'importExportView']);
+      // Route::post('import', [App\Http\Controllers\MyController::class, 'import'])->name('import');
       // // -------END REPORT -----------------
 
       // Route::resource('issuereporting', [App\Http\Controllers\Issuereporting::class])->name('voterupdate');
-      Route::get('logs', [App\Http\Controllers\LogsController::class, 'index'])->name('index');
+      // Route::get('logs', [App\Http\Controllers\LogsController::class, 'index'])->name('index');
+      Route::post('/settingupdate/{id}', [App\Http\Controllers\SettingController::class, 'settingupdate'])->name('settingupdate');
+      Route::post('/settingpasswordupdate/{id}', [App\Http\Controllers\SettingController::class, 'settingpasswordupdate'])->name('settingpasswordupdate');
+      Route::get('/setting', [App\Http\Controllers\SettingController::class, 'index'])->name('index');
+
+      Route::post('/roleupdateone/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdateone'])->name('roleupdateone');
+      Route::post('/roleupdatetwo/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdatetwo'])->name('roleupdatetwo');
+      Route::post('/roleupdatethree/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdatethree'])->name('roleupdatethree');
+      Route::get('/userrole', [App\Http\Controllers\UserroleController::class, 'index'])->name('index');
     });
   

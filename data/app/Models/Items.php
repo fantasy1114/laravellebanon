@@ -27,4 +27,8 @@ class Items extends Model
         'quantity',
         'status'
     ];
+    public function categories()
+    {
+        return $this->belongsTo(\App\Models\Categories::class, "category_id");
+    }
 }

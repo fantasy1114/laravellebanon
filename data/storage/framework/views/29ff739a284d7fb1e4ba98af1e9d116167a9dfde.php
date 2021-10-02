@@ -13,12 +13,18 @@
   
         <div class="main-menu-content">
             
-            <?php if(Auth::user()->role == 'admin'): ?>
+            <?php if(Auth::user()->role == 'superadmin'): ?>
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="nav-item <?php if(Request::path() == 'userrole'): ?> active <?php endif; ?>"><a class="d-flex align-items-center" href="userrole"><i data-feather='tool'></i><span class="menu-title text-truncate" data-i18n="User">User Role</span></a>
+                    </li>
+                </ul>
+            <?php endif; ?>
+            
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="nav-item <?php if(Request::path() == 'userlist'): ?> active <?php endif; ?>"><a class="d-flex align-items-center" href="userlist"><i data-feather='users'></i><span class="menu-title text-truncate" data-i18n="User">Users</span></a>
                     </li>
                 </ul>
-            <?php endif; ?>
+            
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'companymanagement'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="companymanagement"><i data-feather='home'></i><span class="menu-title text-truncate" data-i18n="User">Companines</span></a>
                 </li>
@@ -33,9 +39,6 @@
             </ul>
 
             
-
-            
-            <?php if(Auth::user()->role == 'admin'): ?>
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class="<?php if(Request::path() == 'siteinfo'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="siteinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Site Info</span></a>
                     </li>
@@ -45,7 +48,11 @@
                     <li class="<?php if(Request::path() == 'exchange'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="exchange"><i data-feather='zap'></i><span class="menu-title text-truncate" data-i18n="User">Currency Exchange</span></a>
                     </li>
                 </ul>
-            <?php endif; ?>
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="<?php if(Request::path() == 'setting'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
+                    </li>
+                </ul>
+            
 
         </div>
     </div><?php /**PATH D:\Lebanon\phpframe\data\resources\views/layouts/layout.blade.php ENDPATH**/ ?>

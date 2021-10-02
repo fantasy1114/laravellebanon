@@ -5,31 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
-use App\Models\Logs;
 
 class CategoryController extends Controller
 {
   // User List Page
   public function index()
-  {
-    $categorys = DB::table('categories')->get();
-    $companys = DB::table('companies')->get();
-    // foreach ($categorys as $category){
-    //   $companyid = $category -> companies_id;
-    //   $companynames = DB::table('companies')->where('id', $companyid)->get();
-    //   foreach($companynames as $companyname){
-    //     print_r($companyname -> companyname);
-    //   }
-      
-    // }
-    // exit;
-    
+  {  
+    $categorys = Categories::with('companies')->get();
+
+    $companys = DB::table('companies')->get();    
     return view('/category', ['categorys' => $categorys], ['companys' => $companys]);
   }
 
   public function categorycreate(Request $request)
   {
-    
     $categorys = DB::table('categories')->get();
     $companys = DB::table('companies')->get();
 

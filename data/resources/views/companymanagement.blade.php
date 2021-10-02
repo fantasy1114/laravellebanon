@@ -47,7 +47,7 @@
                                         <th>Exchange Rate</th>
                                         <th>Can Deliver</th>
                                         <th>Delivery Time</th>
-                                        <th class="{{Auth::user()->role}} ">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +131,7 @@
 
                                         <div class="form-group">
                                             <label class="form-label" for="exchange">Exchange Rate</label>
-                                            <input type="number" max="1" min="0" class="form-control dt-full-name" id="exchange" placeholder="Exchange" name="exchange" aria-label="Name" aria-describedby="exchange" />
+                                            <input type="number" class="form-control dt-full-name" id="exchange" placeholder="Exchange" name="exchange" aria-label="Name" aria-describedby="exchange" />
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <label class="form-label" for="exchange">Can Deliver</label>
@@ -199,7 +199,7 @@
 
                                         <div class="form-group">
                                             <label class="form-label" for="exchange">Exchange Rate</label>
-                                            <input type="number" max="1" min="0" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="Name" aria-describedby="uexchange" />
+                                            <input type="number" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="Name" aria-describedby="uexchange" />
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <label class="form-label" for="exchange">Can Deliver</label>

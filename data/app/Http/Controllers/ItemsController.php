@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Items;
+use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
-use App\Models\Logs;
+
 
 class ItemsController extends Controller
 {
   // User List Page
   public function index()
   {
-    $categorys = DB::table('categories')->get();
-    $items = DB::table('items')->get();
+    $categorys = Categories::with('companies')->get();
+    $items = Items::with('categories')->get();
     return view('/items', ['items' => $items], ['categorys' => $categorys]);
   }
 
@@ -70,16 +71,6 @@ class ItemsController extends Controller
   }
   public function itemsdelete($id)
   {
-    // begin image unlink
-    // ini_set('memory_limit', '-1');
-    // $imagelinks = DB::table('items')->where('id', $id)->get();
-    // $deleteimage = '';
-    // foreach ($imagelinks as $imagelink){
-    //   $deleteimage = $imagelink->photo;
-    // }
-    
-    // unlink($deleteimage);
-    // end Image unlink
     DB::table('items')->where('id', $id)->delete();
     return response()->json(['success'=>true]);
   }

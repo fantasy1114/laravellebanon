@@ -41,9 +41,8 @@
                                         <th>USD Price</th>
                                         <th>LBP Price</th>
                                         <th>Maker</th>
-                                        <th>Quantity</th>
-                                                                         
-                                        <th class="{{Auth::user()->role}}">Action</th>
+                                        <th>Quantity</th>                        
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,9 +50,9 @@
                                     @foreach ($items as $item)
                                     <tr>
                                         <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
-                                        <td>{{$item -> categoryname}}</td>
-                                        <td>{{$item -> title}}</td>
-                                        <td>{{$item -> description}}</td>
+                                        <td>{{$item->categories->categoryname}}<small>({{$item->categories->companies->companyname}})</small></td>
+                                        <td>{{$item->title}}</td>
+                                        <td>{{$item->description}}</td>
                                         <td><img src="{{$item -> photo}}" style="width:48px; height:34px;"></td>
                                         <td>
                                             <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="{{$item -> id}}" data-status="{{$item -> status}}">
@@ -65,10 +64,9 @@
                                         <td>{{$item -> lbpprice}}</td>
                                         <td>{{$item -> marker}}</td>
                                         <td>{{$item -> quantity}}</td>
-                                        
                                         <td>
                                             <button class="dropdown-item userupdate_new"
-                                                data-id="{{$item -> id}}" data-categoryname="{{$item -> categoryname}}"
+                                                data-id="{{$item -> id}}" data-categoryname="{{$item->categories->categoryname}}({{$item->categories->companies->companyname}})"
                                                 data-title="{{$item -> title}}"
                                                 data-description="{{$item -> description}}"
                                                 data-photo="{{$item -> photo}}"
@@ -102,7 +100,6 @@
                                                 </svg>
                                             </button>
                                         </td>
-                                       
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -122,10 +119,10 @@
                                        
                                         <div class="form-group">
                                             <label class="form-label" for="categoryname">Category Name</label>
-                                            <select id="categoryname" aria-describedby="categoryname2" name="categoryname"
-                                            class="form-control">
+                                            <select id="categoryname" aria-describedby="categoryname2" name="categoryname" class="form-control categoryname-change" >
+                                                <option class="please-select">Please select</option>
                                                 @foreach ($categorys as $category)
-                                                    <option value="{{$category -> categorycompany}}">{{$category -> categorycompany}}</option>
+                                                    <option value="{{$category->categoryname}}({{$category->companies->companyname}})" data-exchange="{{$category->companies->exchange}}">{{$category->categoryname}}({{$category->companies->companyname}})</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -160,28 +157,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="usprice">Price in USD</label>
-                                            {{-- <input type="text" class="form-control dt-full-name" id="usprice"
-                                                placeholder="$" name="usprice" aria-label="Name"
-                                                aria-describedby="usprice2" /> --}}
 
                                             <div class="input-group input-group-merge">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">$</span>
-                                                </div>
-                                                <input type="text" class="form-control phone-number-mask" placeholder="10" name="usprice" aria-label="Name"
+                                                <input type="number" class="form-control usd_price" placeholder="10" name="usprice" aria-label="Name" data-price=""
                                                 aria-describedby="usprice2" id="usprice" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="lbpprice">Price in LBP</label>
-                                            {{-- <input type="text" class="form-control dt-full-name" id="lbpprice"
-                                                placeholder="" name="lbpprice" aria-label="Name"
-                                                aria-describedby="lbpprice2" /> --}}
+                                            <input type="text" class="lbp_price" name="lbp_price" disabled value="">
                                             <div class="input-group input-group-merge">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">LBP</span>
-                                                </div>
-                                                <input type="number" class="form-control phone-number-mask" placeholder="20" name="lbpprice" aria-label="Name"
+                                                {{-- <div class="input-group-prepend">
+                                                    <span class="input-group-text"></span>
+                                                </div> --}}
+                                                <input type="number" class="form-control lbpprice" placeholder="20" name="lbpprice" aria-label="Name"
                                                 aria-describedby="lbpprice2" id="lbpprice" />
                                             </div>
                                         </div>
@@ -227,10 +216,10 @@
                                         <div class="form-group">
                                             <label class="form-label" for="ucategoryname">Category Name</label>
                                             <select id="ucategoryname" aria-describedby="ucategoryname2" name="ucategoryname"
-                                            class="form-control">
-                                                @foreach ($categorys as $category)
-                                                    <option value="{{$category -> categorycompany}}">{{$category -> categorycompany}}</option>
-                                                @endforeach
+                                            class="form-control ucategoryname-change">
+                                            @foreach ($categorys as $category)
+                                                <option value="{{$category->categoryname}}({{$category->companies->companyname}})" data-exchange="{{$category->companies->exchange}}">{{$category->categoryname}}({{$category->companies->companyname}})</option>
+                                            @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -262,14 +251,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="uusprice">Price in USD</label>
-                                            <input type="text" class="form-control dt-full-name" id="uusprice"
-                                                placeholder="$" name="uusprice" aria-label="Name"
+                                            <input type="number" class="form-control dt-full-name " id="uusprice" placeholder="$" name="uusprice" aria-label="Name"
                                                 aria-describedby="uusprice2" />
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="ulbpprice">Price in LBP </label>
-                                            <input type="text" class="form-control dt-full-name" id="ulbpprice"
-                                                placeholder="" name="ulbpprice" aria-label="Name"
+                                            <input type="text" class="ulbp_price" name="ulbp_price" disabled value="">
+                                            <input type="number" class="form-control dt-full-name" id="ulbpprice" placeholder="" name="ulbpprice" aria-label="Name"
                                                 aria-describedby="ulbpprice2" />
                                         </div>
                                         <div class="form-group">
@@ -331,7 +319,24 @@
     <script>
     $(function() {
         $(".dt-buttons").last().addClass("{{Auth::user()->role}}");
+        $cateDatas = '';
+        $ucateDatas = '';
+        $(".categoryname-change").on("change", function(){
+            $('.please-select').hide();
+            $cateDatas = $(this).find(':selected').data('exchange');
+            console.log($cateDatas);
+        });
+       
+        $('.usd_price').on("change paste keyup", function(){
+            $usd = $('.usd_price').val();
+            $('.lbp_price').attr('value', $usd + '*' + $cateDatas + '=' + $usd * $cateDatas);
+            $('#lbpprice').attr('value', $usd * $cateDatas);
+        });
+
         $(".userupdate_new").on("click", function() {
+            var $uallprice = '';
+            $('.ulbp_price').attr('value', '');
+            $('#ulbpprice').attr('value', $(this).data('lbpprice'));
             var $id = $(this).data('id');
             var $userid = 'itemsupdate/' + ($(this).data('id'));
 
@@ -341,12 +346,22 @@
             $("#uaccount-upload-img").attr('src',($(this).data('photo')));
             
             $("#uusprice").val($(this).data('usprice'));
-            $("#ulbpprice").val($(this).data('lbpprice'));
+            // $("#ulbpprice").val($(this).data('lbpprice'));
             $("#umarker").val($(this).data('marker'));
             $("#uquantity").val($(this).data('quantity'));
             $("#ustatus").val($(this).data('status'));
             $(".update_user_modal").modal('show');
-
+            $('.ucategoryname-change').on("change", function(){
+                $ucateDatas = $(this).find(':selected').data('exchange');
+                console.log($ucateDatas);
+            })
+            $('#uusprice').on("change paste keyup", function(){
+                $uusd = $('#uusprice').val();
+                $uallprice = $uusd * $ucateDatas;
+                $('.ulbp_price').attr('value', $uusd + '*' + $ucateDatas + '=' + $uallprice);
+                
+                $('#ulbpprice').attr('value', $uallprice);
+            });
             $('.update-new-user').submit(function(e){
                 var formData = new FormData(this);
                 e.preventDefault();
@@ -391,7 +406,12 @@
                 }
             });
         });
+        $('.categoryname-change option:eq(0)').attr('selected', 'selected')
 
+
+        
+   
+        
     })
     $(window).on('load', function() {
         if (feather) {
