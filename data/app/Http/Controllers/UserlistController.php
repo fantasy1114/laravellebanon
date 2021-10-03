@@ -71,7 +71,6 @@ class UserlistController extends Controller
   }
   public function userupdate(Request $request, $id)
   {
-    
     $validatedData = $request->validate([
         'uUsername' => 'required',
         'uUseremail' => 'required',
@@ -117,6 +116,28 @@ class UserlistController extends Controller
         'enddata' => $validatedData['uUserenddata'],
       ]);
       return response()->json(['success'=>true]);
+    }
+  }
+  public function userliststatusupdate(Request $request, $id){
+    $itemes = DB::table('users')->where('id', $id)->get();
+
+    $statuschange = request('status');
+    if($statuschange == 'change'){
+      foreach($itemes as $item){
+        $status = $item -> status;
+      }
+      if($status == 'InActive'){
+        DB::table('users')->where('id', $id)->update([
+          'status' => 'Active'
+        ]);
+        return response()->json(['success'=>true]);
+      }
+      else{
+        DB::table('users')->where('id', $id)->update([
+          'status' => 'InActive'
+        ]);
+        return response()->json(['success'=>true]);
+      }
     }
   }
 }

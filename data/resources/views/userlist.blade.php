@@ -55,7 +55,12 @@
                                             <td>{{$userlist -> email}}</td>
                                             <td><img src="{{$userlist -> profile_photo_path}}" style="width: 48px;height:36px;"></td>
                                             <td>{{$userlist -> role}}</td>
-                                            <td>{{$userlist -> status}}</td>
+                                            <td>
+                                                <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="{{$userlist -> id}}" data-status="{{$userlist -> status}}">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$userlist -> id}}" @if ($userlist -> status == 'Active') checked @endif class="status-checked" >
+                                                <label class="custom-control-label" for="customSwitch{{$userlist -> id}}"></label>
+                                                </div>
+                                            </td>
                                             <td>{{$userlist -> startdata}}</td>
                                             <td>{{$userlist -> enddata}}</td>
                                             <td>
@@ -218,6 +223,7 @@
                     </div>
                     <!-- list section end -->
                 </section>
+                <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
                 <!-- users list ends -->
 
             </div>
@@ -279,6 +285,25 @@
                     });
                 });
             });
+
+            $('.status-userlist-update').on('change', function () {
+            var $id = $(this).data('id');
+            var $userid = 'userliststatusupdate/' + ($(this).data('id'));
+            console.log($id);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: $userid,
+                data: {status: 'change'},
+                success: function(data) {
+                    if(data['success']){
+                        $('.toast-sucess-message').click();
+                    }
+                }
+            });
+        });
         });
         $(window).on('load', function() {
             if (feather) {

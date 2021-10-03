@@ -73,7 +73,7 @@
     }
 
     .data-page-close{
-        display: none;
+        display: none!important;
     }
     
 </style>

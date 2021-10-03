@@ -140,10 +140,10 @@
                             </div>
                         
                         <!-- list section end -->
-                        <div class="row <?php if(Auth::user()->rolefunction->siteinfo_write != 'on'): ?> data-page-close <?php endif; ?>">
+                        <div class="row ">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new " data-id="<?php echo e($siteinfo -> id); ?>" data-title="<?php echo e($siteinfo -> title); ?>" data-logo="<?php echo e($siteinfo -> logo); ?>" data-contacts="<?php echo e($siteinfo -> contacts); ?>" data-lat="<?php echo e($siteinfo -> lat); ?>" data-lng="<?php echo e($siteinfo -> lng); ?>" data-phone="<?php echo e($siteinfo -> phone); ?>" data-email="<?php echo e($siteinfo -> email); ?>" data-office="<?php echo e($siteinfo -> office); ?>" data-whatapp="<?php echo e($siteinfo -> whatapp); ?>">Edit</button>
+                                    <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new <?php if(Auth::user()->rolefunction->siteinfo_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($siteinfo -> id); ?>" data-title="<?php echo e($siteinfo -> title); ?>" data-logo="<?php echo e($siteinfo -> logo); ?>" data-contacts="<?php echo e($siteinfo -> contacts); ?>" data-lat="<?php echo e($siteinfo -> lat); ?>" data-lng="<?php echo e($siteinfo -> lng); ?>" data-phone="<?php echo e($siteinfo -> phone); ?>" data-email="<?php echo e($siteinfo -> email); ?>" data-office="<?php echo e($siteinfo -> office); ?>" data-whatapp="<?php echo e($siteinfo -> whatapp); ?>">Edit</button>
                             </div>
                             
                         </div>

@@ -55,7 +55,12 @@
                                             <td><?php echo e($userlist -> email); ?></td>
                                             <td><img src="<?php echo e($userlist -> profile_photo_path); ?>" style="width: 48px;height:36px;"></td>
                                             <td><?php echo e($userlist -> role); ?></td>
-                                            <td><?php echo e($userlist -> status); ?></td>
+                                            <td>
+                                                <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="<?php echo e($userlist -> id); ?>" data-status="<?php echo e($userlist -> status); ?>">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                                <label class="custom-control-label" for="customSwitch<?php echo e($userlist -> id); ?>"></label>
+                                                </div>
+                                            </td>
                                             <td><?php echo e($userlist -> startdata); ?></td>
                                             <td><?php echo e($userlist -> enddata); ?></td>
                                             <td>
@@ -219,6 +224,7 @@
                     </div>
                     <!-- list section end -->
                 </section>
+                <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
                 <!-- users list ends -->
 
             </div>
@@ -280,6 +286,25 @@
                     });
                 });
             });
+
+            $('.status-userlist-update').on('change', function () {
+            var $id = $(this).data('id');
+            var $userid = 'userliststatusupdate/' + ($(this).data('id'));
+            console.log($id);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'post',
+                url: $userid,
+                data: {status: 'change'},
+                success: function(data) {
+                    if(data['success']){
+                        $('.toast-sucess-message').click();
+                    }
+                }
+            });
+        });
         });
         $(window).on('load', function() {
             if (feather) {

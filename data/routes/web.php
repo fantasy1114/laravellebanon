@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
       Route::post('/userlist', [App\Http\Controllers\UserlistController::class, 'usercreate'])->name('usercreate');
       Route::get('/userdelete/{id}', [App\Http\Controllers\UserlistController::class, 'userdelete'])->name('userdelete');
       Route::post('/userupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userupdate'])->name('userupdate');
+      Route::post('/userliststatusupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userliststatusupdate'])->name('userliststatusupdate');
       // END -------- USERLIST ----------
       //-------------- BEGIN companymanagement-------------
       Route::get('companymanagement', [App\Http\Controllers\AllusercompanymanagementController::class, 'index'])->name('index');
@@ -45,9 +46,9 @@ Route::group(['middleware' => 'auth'], function() {
       Route::post('/category', [App\Http\Controllers\CategoryController::class, 'categorycreate'])->name('categorycreate');
       Route::get('/categorydelete/{id}/{category}', [App\Http\Controllers\CategoryController::class, 'categorydelete'])->name('categorydelete');
       Route::post('/categoryupdate/{id}', [App\Http\Controllers\CategoryController::class, 'categoryupdate'])->name('categoryupdate');
-      // // -------END category -----------------
+      // // -------      END category       -----------------
 
-      // // ---------BEGIN Item-------------
+      // // ---------     BEGIN Item    -------------
       Route::get('/items', [App\Http\Controllers\ItemsController::class, 'index'])->name('index');
       Route::post('/items', [App\Http\Controllers\ItemsController::class, 'itemscreate'])->name('itemscreate');
       Route::get('/itemsdelete/{id}', [App\Http\Controllers\ItemsController::class, 'itemsdelete'])->name('itemsdelete');

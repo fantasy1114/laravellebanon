@@ -27,7 +27,7 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <section class="app-user-list  @if(Auth::user()->role == 'editor') subscriber @endif">
+                <section class="app-user-list @if(Auth::user()->rolefunction->currency_view != 'on') data-page-close @endif">
 
                     <!-- list section start -->
                         <div class="row mt-4">
@@ -39,7 +39,7 @@
                                     @foreach ($exchanges as $exchange)
                                         <input type="text" class="form-control" id="exchange" value="{{$exchange -> exchange}}" placeholder="Enter Exchange Rate" disabled/>
                                         
-                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new" data-id="{{$exchange -> id}}" data-exchange="{{$exchange -> exchange}}">Edit</button>
+                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new @if(Auth::user()->rolefunction->currency_write != 'on') data-page-close @endif" data-id="{{$exchange -> id}}" data-exchange="{{$exchange -> exchange}}">Edit</button>
                                     @endforeach
                                 </div>
                             </div>                            
