@@ -56,7 +56,7 @@
                                         <td><img src="<?php echo e($item -> photo); ?>" style="width:48px; height:34px;"></td>
                                         <td>
                                             <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="<?php echo e($item -> id); ?>" data-status="<?php echo e($item -> status); ?>">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($item -> id); ?>" <?php if($item -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($item -> id); ?>" <?php if($item -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
                                             <label class="custom-control-label" for="customSwitch<?php echo e($item -> id); ?>"></label>
                                             </div>
                                         </td>
@@ -187,10 +187,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->items_create != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->items_create != 'on'): ?> data-page-close <?php endif; ?>"
@@ -272,13 +272,7 @@
                                                 placeholder="" name="uquantity" aria-label="uquantity"
                                                 aria-describedby="uquantity2" />
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="ustatus">Status</label>
-                                            <select id="ustatus" name="ustatus" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <button class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

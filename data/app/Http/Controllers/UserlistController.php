@@ -6,17 +6,28 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Hash;
-use Session;
-use App\Models\Logs;
+use Auth;
 
 class UserlistController extends Controller
 {
   // User List Page
   public function userlist()
   {
-    $userlists = DB::table('users')->get();
-    // dd($userlists);exit();
-    return view('/userlist', ['userlists' => $userlists]);
+    $diff = strtotime(date('Y-m-d')) - strtotime('2009-10-05 18:07:13');
+   
+    if(Auth::user()->rolefunction->users_list == 'Only his'){
+      $userlists = DB::table('users')->where('id', Auth::user()->id)->get();
+      return view('/userlist', ['userlists' => $userlists]);
+    }
+    else if(Auth::user()->rolefunction->users_list == 'All'){
+      $userlists = DB::table('users')->get();
+      return view('/userlist', ['userlists' => $userlists]);
+    }
+    else{
+      $userlists = DB::table('users')->where('id', 99999999)->get();
+      return view('/userlist', ['userlists' => $userlists]);
+    }
+    
   }
   
   public function usercreate(Request $request){
@@ -75,7 +86,7 @@ class UserlistController extends Controller
         'uUsername' => 'required',
         'uUseremail' => 'required',
         'uUserrole' => 'required',
-        'uUserstatus' => 'required',
+        // 'uUserstatus' => 'required',
         'uUserstartdata' => 'required',
         'uUserenddata' => 'required'
     ]);
@@ -99,7 +110,7 @@ class UserlistController extends Controller
           'profile_photo_path' => './uploads/users/'.$imageName,
           'role' => $validatedData['uUserrole'],
           'roles_id' => $roles_data_id,
-          'status' => $validatedData['uUserstatus'],
+          // 'status' => $validatedData['uUserstatus'],
           'startdata' => $validatedData['uUserstartdata'],
           'enddata' => $validatedData['uUserenddata'],
       ]);
@@ -111,7 +122,7 @@ class UserlistController extends Controller
         'email' => $validatedData['uUseremail'],
         'role' => $validatedData['uUserrole'],
         'roles_id' => $roles_data_id,
-        'status' => $validatedData['uUserstatus'],
+        // 'status' => $validatedData['uUserstatus'],
         'startdata' => $validatedData['uUserstartdata'],
         'enddata' => $validatedData['uUserenddata'],
       ]);
@@ -126,15 +137,15 @@ class UserlistController extends Controller
       foreach($itemes as $item){
         $status = $item -> status;
       }
-      if($status == 'InActive'){
+      if($status == ''){
         DB::table('users')->where('id', $id)->update([
-          'status' => 'Active'
+          'status' => 'on'
         ]);
         return response()->json(['success'=>true]);
       }
       else{
         DB::table('users')->where('id', $id)->update([
-          'status' => 'InActive'
+          'status' => ''
         ]);
         return response()->json(['success'=>true]);
       }

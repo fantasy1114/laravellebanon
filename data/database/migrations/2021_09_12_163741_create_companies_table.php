@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('delivery');
             $table->string('logo');
             $table->string('can')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

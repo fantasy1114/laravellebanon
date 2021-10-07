@@ -44,7 +44,7 @@
                                         <th>Status</th>
                                         <th>StartData</th>
                                         <th>EndData</th>
-                                        <th>Action</th>
+                                        <th class="@if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on') data-page-close @endif">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,12 +57,12 @@
                                             <td>{{$userlist -> role}}</td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="{{$userlist -> id}}" data-status="{{$userlist -> status}}">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$userlist -> id}}" @if ($userlist -> status == 'Active') checked @endif class="status-checked" >
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$userlist -> id}}" @if ($userlist -> status == 'on') checked @endif class="status-checked" >
                                                 <label class="custom-control-label" for="customSwitch{{$userlist -> id}}"></label>
                                                 </div>
                                             </td>
-                                            <td>{{$userlist -> startdata}}</td>
-                                            <td>{{$userlist -> enddata}}</td>
+                                            <td>{{$userlist->startdata}}</td>
+                                            <td>{{$userlist->enddata}}</td>
                                             <td>
                                                 <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->users_write != 'on') data-page-close @endif" data-id="{{$userlist -> id}}" data-name="{{$userlist -> name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
@@ -132,10 +132,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="user-role">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-date">StartDate</label>
@@ -197,13 +197,13 @@
                                                 <option value="superadmin">Superadmin</option>
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="form-label" for="user-role">Status</label>
                                             <select id="uUserstatus" name="uUserstatus" class="form-control">
                                                 <option value="Active">Active</option>
                                                 <option value="InActive">InActive</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-date">StartDate</label>
                                             <input type="text" name='uUserstartdata' id="uUserstartdata" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />

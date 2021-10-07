@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('3');
             $table->unsignedBigInteger('roles_id');
             $table->foreign('roles_id')->nullable()->references('id')->on('roles');
-            $table->string('status')->default('InActive');
+            $table->string('status')->nullable();
             $table->timestamp('startdata')->nullable();
             $table->timestamp('enddata')->nullable();
             $table->rememberToken();

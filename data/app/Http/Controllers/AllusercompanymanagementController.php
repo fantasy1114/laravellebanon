@@ -18,7 +18,6 @@ class AllusercompanymanagementController extends Controller
 
   public function companymanagementcreate(Request $request)
   {
-
     $companys = DB::table('companies')->get();
     // $logs = DB::table('logs')->get();
     $ischecking = 0;
@@ -76,15 +75,15 @@ class AllusercompanymanagementController extends Controller
       foreach($companys as $company){
         $status = $company -> status;
       }
-      if($status == 'InActive'){
+      if($status == ''){
         DB::table('companies')->where('id', $id)->update([
-          'status' => 'Active'
+          'status' => 'on'
         ]);
         return response()->json(['success'=>true]);
       }
       else{
         DB::table('companies')->where('id', $id)->update([
-          'status' => 'InActive'
+          'status' => ''
         ]);
         return response()->json(['success'=>true]);
       }
@@ -104,7 +103,7 @@ class AllusercompanymanagementController extends Controller
       // exit;
       $validatedData = $request->validate([
         'ucompanyname' => 'required',
-        'ustatus' => 'required',
+       
         'usellmethod' => 'required',
         'uexchange' => 'required',
         'udelivery' => 'required',
@@ -117,7 +116,7 @@ class AllusercompanymanagementController extends Controller
   
           DB::table('companies')->where('id', $id)->update([
               'companyname' => $validatedData['ucompanyname'],
-              'status' => $validatedData['ustatus'],
+              // 'status' => request('ustatus'),
               'sellmethod' => $validatedData['usellmethod'],
               'exchange' => $validatedData['uexchange'],
               'delivery' => $validatedData['udelivery'],
@@ -129,7 +128,7 @@ class AllusercompanymanagementController extends Controller
         else{
           DB::table('companies')->where('id', $id)->update([
             'companyname' => $validatedData['ucompanyname'],
-            'status' => $validatedData['ustatus'],
+            // 'status' => request('ustatus'),
             'sellmethod' => $validatedData['usellmethod'],
             'exchange' => $validatedData['uexchange'],
             'delivery' => $validatedData['udelivery'],

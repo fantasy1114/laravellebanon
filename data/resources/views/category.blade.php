@@ -38,7 +38,7 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="aaa @if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on') data-page-close @endif">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,7 +53,7 @@
                                             </td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="{{$category -> id}}" data-status="{{$category -> status}}">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$category -> id}}" @if ($category -> status == 'Active') checked @endif class="status-checked" >
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$category -> id}}" @if ($category -> status == 'on') checked @endif class="status-checked" >
                                                 <label class="custom-control-label" for="customSwitch{{$category -> id}}"></label>
                                                 </div>
                                             </td>
@@ -138,10 +138,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-1 data-submit ">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary"
@@ -193,13 +193,13 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
                                             <select id="ustatus" name="ustatus" class="form-control">
                                                 <option value="Active">Active</option>
                                                 <option value="InActive">InActive</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

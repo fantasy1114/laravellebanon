@@ -21,7 +21,7 @@ class CreateCategoriesTable extends Migration
             $table->string('companyname');
             $table->string('logo');
             $table->string('categorycompany');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

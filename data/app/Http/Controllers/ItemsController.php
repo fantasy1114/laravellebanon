@@ -85,15 +85,15 @@ class ItemsController extends Controller
       foreach($itemes as $item){
         $status = $item -> status;
       }
-      if($status == 'InActive'){
+      if($status == ''){
         DB::table('items')->where('id', $id)->update([
-          'status' => 'Active'
+          'status' => 'on'
         ]);
         return response()->json(['success'=>true]);
       }
       else{
         DB::table('items')->where('id', $id)->update([
-          'status' => 'InActive'
+          'status' => ''
         ]);
         return response()->json(['success'=>true]);
       }
@@ -112,7 +112,7 @@ class ItemsController extends Controller
           'udescription' => 'required',
           // 'uaccount-upload' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:4096',
           'uusprice' => 'required',
-          'ustatus' => 'required',
+          // 'ustatus' => 'required',/
       ]);
       $items = DB::table('items')->where('id', 'not like', $id)->get();
       $itemschecking = 0;
@@ -140,7 +140,7 @@ class ItemsController extends Controller
             'lbpprice' => request('ulbpprice'),
             'marker' => request('umarker'),
             'quantity' => request('uquantity'),
-            'status' => $validatedData['ustatus'],
+            // 'status' => $validatedData['ustatus'],
           ]);
           return response()->json(['success'=>true]);
         }
@@ -154,7 +154,7 @@ class ItemsController extends Controller
             'lbpprice' => request('ulbpprice'),
             'marker' => request('umarker'),
             'quantity' => request('uquantity'),
-            'status' => $validatedData['ustatus'],
+            // 'status' => $validatedData['ustatus'],
           ]);
           return response()->json(['success'=>true]);
         }

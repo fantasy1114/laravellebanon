@@ -47,7 +47,7 @@
                                         <th>Exchange Rate</th>
                                         <th>Can Deliver</th>
                                         <th>Delivery Time</th>
-                                        <th>Action</th>
+                                        <th class="<?php if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,7 +58,7 @@
                                             <td><img src="<?php echo e($company -> logo); ?>" style="width:48px; height:34px;"></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-update" data-id="<?php echo e($company -> id); ?>" data-status="<?php echo e($company -> status); ?>">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company -> id); ?>" <?php if($company -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company -> id); ?>" <?php if($company -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
                                                     <label class="custom-control-label" for="customSwitch<?php echo e($company -> id); ?>"></label>
                                                 </div>
                                             </td>
@@ -117,10 +117,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="sellmethod">Selling Method</label>
@@ -183,13 +184,7 @@
                                             </div>
                                      
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="status">Status</label>
-                                            <select id="ustatus" name="ustatus" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <label class="form-label" for="usellmethod">Selling Method</label>
                                             <select id="usellmethod" name="usellmethod" class="form-control">
@@ -253,11 +248,17 @@
         $(function(){
             $(".dt-buttons").last().addClass("<?php echo e(Auth::user()->role); ?>");
             $(".userupdate_new").on("click", function(){
+                var $checkstatus = ($(this).data('status'))
                 var $id = $(this).data('id');
                 var $userid = 'companymanagementupdate/' + ($(this).data('id'));
                 // $("#uUserid").val($(this).data('id'));
                 $("#ucompanyname").val($(this).data('companyname'));
-                $("#ustatus").val($(this).data('status'));
+                // if($checkstatus == 'on'){
+                //     $("#ustatus").prop('checked', true);
+                // }
+                // else{
+                //     $("#ustatus").prop('checked', false);
+                // }
                 $("#usellmethod").val($(this).data('sellmethod'));
                 $("#uexchange").val($(this).data('exchange'));
                 $("#uaccount-upload-img").attr('src',($(this).data('logo')));

@@ -218,9 +218,6 @@ $(function() {
                 'companyname': {
                     required: true
                 },
-                'status': {
-                    required: true
-                },
                 'sellmethod': {
                     required: true
                 },

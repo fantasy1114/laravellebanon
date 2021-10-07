@@ -113,15 +113,15 @@ class CategoryController extends Controller
       foreach($categoryes as $category){
         $status = $category -> status;
       }
-      if($status == 'InActive'){
+      if($status == ''){
         DB::table('categories')->where('id', $id)->update([
-          'status' => 'Active'
+          'status' => 'on'
         ]);
         return response()->json(['success'=>true]);
       }
       else{
         DB::table('categories')->where('id', $id)->update([
-          'status' => 'InActive'
+          'status' => ''
         ]);
         return response()->json(['success'=>true]);
       }
@@ -149,7 +149,6 @@ class CategoryController extends Controller
       $validatedData = $request->validate([
         'ucategoryname' => 'required',
         'ucompanyname' => 'required',
-        'ustatus' => 'required',
       ]);
       if($categoryschecking == 0){
         if ($request->file('uaccount-upload')) {
@@ -160,7 +159,7 @@ class CategoryController extends Controller
               'companies_id' => $companychecking,
               'categoryname' => $validatedData['ucategoryname'],
               'companyname' => $validatedData['ucompanyname'],
-              'status' => $validatedData['ustatus'],
+              // 'status' => request('ustatus'),
               'logo' => './uploads/category/'.$imageName,
               'categorycompany' => $validatedData['ucategoryname'].'('.$validatedData['ucompanyname'].')'
           ]);
@@ -171,7 +170,7 @@ class CategoryController extends Controller
             'companies_id' => $companychecking,
             'categoryname' => $validatedData['ucategoryname'],
             'companyname' => $validatedData['ucompanyname'],
-            'status' => $validatedData['ustatus'],
+            // 'status' => request('ustatus'),
             'categorycompany' => $validatedData['ucategoryname'].'('.$validatedData['ucompanyname'].')'
           ]);
           return response()->json(['success'=>true]);

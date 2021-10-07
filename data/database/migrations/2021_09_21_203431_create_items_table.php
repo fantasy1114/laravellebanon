@@ -25,7 +25,7 @@ class CreateItemsTable extends Migration
             $table->string('lbpprice')->nullable();
             $table->string('marker')->nullable();
             $table->string('quantity')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             
             $table->timestamps();
         });

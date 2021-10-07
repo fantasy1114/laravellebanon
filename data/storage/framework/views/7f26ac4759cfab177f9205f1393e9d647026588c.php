@@ -38,7 +38,7 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="aaa <?php if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +54,7 @@
                                             </td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="<?php echo e($category -> id); ?>" data-status="<?php echo e($category -> status); ?>">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'Active'): ?> checked <?php endif; ?> class="status-checked" >
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
                                                 <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
                                                 </div>
                                             </td>
@@ -140,13 +140,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->categories_create != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->categories_create != 'on'): ?> data-page-close <?php endif; ?>"
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit ">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary"
                                             data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
@@ -196,13 +196,7 @@
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label" for="status">Status</label>
-                                            <select id="ustatus" name="ustatus" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>

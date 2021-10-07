@@ -184,9 +184,6 @@ $(function() {
                 },
                 'usprice': {
                     required: true
-                },
-                'status': {
-                    required: true
                 }
 
             }

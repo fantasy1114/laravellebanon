@@ -23,6 +23,7 @@ $(function () {
     gridViewBtn = $('.grid-view-btn'),
     listViewBtn = $('.list-view-btn'),
     priceSlider = document.getElementById('price-slider'),
+    LBPprice = document.getElementById('price-lbp'),
     ecommerceProducts = $('#ecommerce-products'),
     sortingDropdown = $('.dropdown-sort .dropdown-item'),
     sortingText = $('.dropdown-toggle .active-sorting'),
@@ -64,6 +65,21 @@ $(function () {
   // Init Price slider
   if (typeof priceSlider !== undefined && priceSlider !== null) {
     noUiSlider.create(priceSlider, {
+      start: [1500, 3500],
+      direction: direction,
+      connect: true,
+      tooltips: [true, true],
+      format: wNumb({
+        decimals: 0
+      }),
+      range: {
+        min: 51,
+        max: 5000
+      }
+    });
+  }
+  if (typeof LBPprice !== undefined && LBPprice !== null) {
+    noUiSlider.create(LBPprice, {
       start: [1500, 3500],
       direction: direction,
       connect: true,

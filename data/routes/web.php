@@ -93,5 +93,7 @@ Route::group(['middleware' => 'auth'], function() {
       Route::post('/roleupdatetwo/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdatetwo'])->name('roleupdatetwo');
       Route::post('/roleupdatethree/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdatethree'])->name('roleupdatethree');
       Route::get('/userrole', [App\Http\Controllers\UserroleController::class, 'index'])->name('index');
+
+      Route::get('/frontend', [App\Http\Controllers\FrontendController::class, 'index'])->name('index');
     });
   

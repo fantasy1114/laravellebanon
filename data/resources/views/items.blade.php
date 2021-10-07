@@ -56,7 +56,7 @@
                                         <td><img src="{{$item -> photo}}" style="width:48px; height:34px;"></td>
                                         <td>
                                             <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="{{$item -> id}}" data-status="{{$item -> status}}">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item -> id}}" @if ($item -> status == 'Active') checked @endif class="status-checked" >
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item -> id}}" @if ($item -> status == 'on') checked @endif class="status-checked" >
                                             <label class="custom-control-label" for="customSwitch{{$item -> id}}"></label>
                                             </div>
                                         </td>
@@ -188,10 +188,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="status">Status</label>
-                                            <select id="status" name="status" class="form-control">
-                                                <option value="Active">Active</option>
-                                                <option value="InActive">InActive</option>
-                                            </select>
+                                            <div class="custom-control custom-switch custom-control-inline">
+                                                <input type="checkbox" class="custom-control-input" id="status" class="status-checked" name="status">
+                                                <label class="custom-control-label" for="status"></label>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary mr-1 data-submit @if(Auth::user()->rolefunction->items_create != 'on') data-page-close @endif">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary @if(Auth::user()->rolefunction->items_create != 'on') data-page-close @endif"
@@ -272,13 +272,13 @@
                                                 placeholder="" name="uquantity" aria-label="uquantity"
                                                 aria-describedby="uquantity2" />
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="form-label" for="ustatus">Status</label>
                                             <select id="ustatus" name="ustatus" class="form-control">
                                                 <option value="Active">Active</option>
                                                 <option value="InActive">InActive</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group">
                                             <button class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                             <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
