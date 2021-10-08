@@ -50,25 +50,25 @@
                                 <tbody>
                                     <?php $__currentLoopData = $userlists; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $userlist): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td><?php echo e($userlist -> name); ?></td>
-                                            <td><?php echo e($userlist -> name); ?></td>
-                                            <td><?php echo e($userlist -> email); ?></td>
+                                            <td><?php echo e($userlist->name); ?></td>
+                                            <td><?php echo e($userlist->name); ?></td>
+                                            <td><?php echo e($userlist->email); ?></td>
                                             <td><img src="<?php echo e($userlist -> profile_photo_path); ?>" style="width: 48px;height:36px;"></td>
                                             <td><?php echo e($userlist -> role); ?></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="<?php echo e($userlist -> id); ?>" data-status="<?php echo e($userlist -> status); ?>">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'on'): ?> checked <?php endif; ?> class="status-checked"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
                                                 <label class="custom-control-label" for="customSwitch<?php echo e($userlist -> id); ?>"></label>
                                                 </div>
                                             </td>
                                             <td><?php echo e($userlist->startdata); ?></td>
                                             <td><?php echo e($userlist->enddata); ?></td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($userlist -> id); ?>" data-name="<?php echo e($userlist -> name); ?>" data-email="<?php echo e($userlist -> email); ?>" data-photo="<?php echo e($userlist -> profile_photo_path); ?>" data-role="<?php echo e($userlist -> role); ?>" data-status="<?php echo e($userlist -> status); ?>" data-startdata="<?php echo e($userlist -> startdata); ?>" data-enddata="<?php echo e($userlist -> enddata); ?>">
+                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($userlist -> id); ?>" data-name="<?php echo e($userlist->name); ?>" data-email="<?php echo e($userlist -> email); ?>" data-photo="<?php echo e($userlist -> profile_photo_path); ?>" data-role="<?php echo e($userlist -> role); ?>" data-status="<?php echo e($userlist -> status); ?>" data-startdata="<?php echo e($userlist -> startdata); ?>" data-enddata="<?php echo e($userlist -> enddata); ?>"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button type="button" data-id="<?php echo e($userlist -> id); ?>" class="dropdown-item userlist-delete <?php if(Auth::user()->rolefunction->users_delete != 'on'): ?> data-page-close <?php endif; ?>" >
+                                                <button type="button" data-id="<?php echo e($userlist -> id); ?>" class="dropdown-item userlist-delete <?php if(Auth::user()->rolefunction->users_delete != 'on'): ?> data-page-close <?php endif; ?>"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span></span>
                                                 </button>
@@ -120,7 +120,16 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="basic-icon-default-email">Password</label>
-                                            <input type="password" id="basic-icon-default-password" class="form-control dt-password" aria-describedby="basic-icon-default-password" name="user_password" />
+                                            
+                                            
+                                            <div class="input-group form-password-toggle input-group-merge">
+                                                <input type="password" class="form-control" id="account-old-password" name="user_password" placeholder="Password" required/>
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text cursor-pointer">
+                                                        <i data-feather="eye"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <small class="form-text text-muted"> password </small>
                                         </div>
                                         <div class="form-group">
@@ -173,6 +182,7 @@
                                             <input type="email" id="uUseremail" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" aria-describedby="uUseremail2" name="uUseremail" required/>
                                             <small class="form-text text-muted"> You can use letters, numbers & periods </small>
                                         </div>
+                                       
                                         <div class="form-group">
                                             <label class="form-label" for="uphoto">Photo</label>
                                             <!-- header media -->
@@ -189,6 +199,20 @@
                                             </div>
                                         <!--/ header media -->
 
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="basic-icon-default-email">Password</label>
+                                            
+                                            
+                                            <div class="input-group form-password-toggle input-group-merge">
+                                                <input type="password" class="form-control" id="account-new-password" name="uuser_password" placeholder="Password" required/>
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text cursor-pointer">
+                                                        <i data-feather="eye"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <small class="form-text text-muted"> password </small>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="uUserrole">User Role</label>

@@ -38,7 +38,7 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th class="aaa @if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on') data-page-close @endif">Action</th>
+                                        <th class="@if(Auth::user()->rolefunction->categories_delete != 'on' && Auth::user()->rolefunction->categories_write != 'on') data-page-close @endif">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -227,7 +227,9 @@
     <!-- BEGIN: Footer-->
     @include('layouts/footer')
     <!-- END: Footer-->
-
+    <script>
+        var $userinfo = {{Auth::user()->id}}
+    </script>
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/app-category-list.js"></script>
     <script src="../../../app-assets/js/scripts/components/components-bs-toast.js"></script>

@@ -102,7 +102,7 @@
                                     <div class="media">
                                     
                                             <a href="javascript:void(0);" class="mr-25">
-                                                <img src="{{$siteinfo -> logo}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
+                                                <img src="{{$siteinfo -> logo}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="200" />
                                             </a>
                         
                                         

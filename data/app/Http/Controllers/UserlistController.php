@@ -5,16 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Hash;
-use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserlistController extends Controller
 {
   // User List Page
   public function userlist()
-  {
-    $diff = strtotime(date('Y-m-d')) - strtotime('2009-10-05 18:07:13');
-   
+  {   
     if(Auth::user()->rolefunction->users_list == 'Only his'){
       $userlists = DB::table('users')->where('id', Auth::user()->id)->get();
       return view('/userlist', ['userlists' => $userlists]);
@@ -86,7 +84,7 @@ class UserlistController extends Controller
         'uUsername' => 'required',
         'uUseremail' => 'required',
         'uUserrole' => 'required',
-        // 'uUserstatus' => 'required',
+        'uuser_password' => 'required',
         'uUserstartdata' => 'required',
         'uUserenddata' => 'required'
     ]);
@@ -110,7 +108,7 @@ class UserlistController extends Controller
           'profile_photo_path' => './uploads/users/'.$imageName,
           'role' => $validatedData['uUserrole'],
           'roles_id' => $roles_data_id,
-          // 'status' => $validatedData['uUserstatus'],
+          'password' => Hash::make($validatedData['uuser_password']),
           'startdata' => $validatedData['uUserstartdata'],
           'enddata' => $validatedData['uUserenddata'],
       ]);
@@ -122,7 +120,7 @@ class UserlistController extends Controller
         'email' => $validatedData['uUseremail'],
         'role' => $validatedData['uUserrole'],
         'roles_id' => $roles_data_id,
-        // 'status' => $validatedData['uUserstatus'],
+        'password' => Hash::make($validatedData['uuser_password']),
         'startdata' => $validatedData['uUserstartdata'],
         'enddata' => $validatedData['uUserenddata'],
       ]);

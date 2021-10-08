@@ -379,9 +379,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-compaines-list" class="form-control" name="admin-compaines-list">
-                                                                            <option value="All" {{$admin->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$admin->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$admin->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$admin->companies_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$admin->companies_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$admin->companies_list== "No" ? "selected" : ""}}>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -413,9 +413,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-categories-list" class="form-control" name="admin-categories-list">
-                                                                            <option value="All" {{$admin->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$admin->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$admin->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$admin->categories_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$admin->categories_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$admin->categories_list== "No" ? "selected" : ""}}>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -483,9 +483,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-siteinfo-list" class="form-control" name="admin-siteinfo-list">
-                                                                            <option value="All" {{$admin->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$admin->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$admin->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$admin->siteinfo_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$admin->siteinfo_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$admin->siteinfo_list== "No" ? "selected" : ""}}>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -518,9 +518,9 @@
                                                                     <td>
                                                                         <div class="form-group">
                                                                             <select id="admin-currency-list" class="form-control" name="admin-currency-list">
-                                                                                <option value="All" {{$admin->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                                <option value="Only his" {{$admin->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                                <option value="No" {{$admin->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                                <option value="All" {{$admin->currency_list== "All" ? "selected" : ""}}>All</option>
+                                                                                <option value="Only his" {{$admin->currency_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                                <option value="No" {{$admin->currency_list== "No" ? "selected" : ""}}>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>
@@ -592,9 +592,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-users-list" class="form-control" name="subscriber-users-list">
-                                                                            <option value="All" {{$subscriber->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$subscriber->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$subscriber->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$subscriber->users_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$subscriber->users_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$subscriber->users_list== "No" ? "selected" : ""}}>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -626,9 +626,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-compaines-list" class="form-control" name="subscriber-compaines-list">
-                                                                            <option value="All" {{$subscriber->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$subscriber->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$subscriber->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$subscriber->companies_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$subscriber->companies_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$subscriber->companies_list== "No" ? "selected" : ""}}>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -661,9 +661,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-categories-list" class="form-control" name="subscriber-categories-list">
-                                                                            <option value="All" {{$subscriber->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$subscriber->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$subscriber->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$subscriber->categories_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$subscriber->categories_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$subscriber->categories_list== "No" ? "selected" : ""}}>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -731,9 +731,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-siteinfo-list" class="form-control" name="subscriber-siteinfo-list">
-                                                                            <option value="All" {{$subscriber->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                            <option value="Only his" {{$subscriber->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                            <option value="No" {{$subscriber->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                            <option value="All" {{$subscriber->siteinfo_list== "All" ? "selected" : ""}}>All</option>
+                                                                            <option value="Only his" {{$subscriber->siteinfo_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                            <option value="No" {{$subscriber->siteinfo_list== "No" ? "selected" : ""}}>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -767,9 +767,9 @@
                                                                     <td>
                                                                         <div class="form-group">
                                                                             <select id="subscribe-currency-list" class="form-control" name="subscriber-currency-list">
-                                                                                <option value="All" {{$subscriber->items_list== "All" ? "selected" : ""}}>All</option>
-                                                                                <option value="Only his" {{$subscriber->items_list== "Only his" ? "selected" : ""}}>Only his</option>
-                                                                                <option value="No" {{$subscriber->items_list== "No" ? "selected" : ""}}>No</option>
+                                                                                <option value="All" {{$subscriber->currency_list== "All" ? "selected" : ""}}>All</option>
+                                                                                <option value="Only his" {{$subscriber->currency_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                                <option value="No" {{$subscriber->currency_list== "No" ? "selected" : ""}}>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>

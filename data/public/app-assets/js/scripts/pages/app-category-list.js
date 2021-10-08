@@ -158,7 +158,7 @@ $(function() {
             if (isValid) {
                 $.ajax({
                     type: 'post',
-                    url: 'category',
+                    url: 'category/' + $userinfo,
                     cache:false,
                     data: formData,
                     contentType: false,

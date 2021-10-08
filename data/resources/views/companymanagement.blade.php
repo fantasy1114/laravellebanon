@@ -19,9 +19,9 @@
     <!-- BEGIN LAYOUT -->
     @include('layouts/layout')
     <!-- END LAYOUT -->
-
+    
     <!-- BEGIN: Content-->
-    <div class="app-content content @if(Auth::user()->rolefunction->companies_view != 'on') data-page-close @endif">
+    <div class="app-content content @if(Auth::user()->rolefunction->companies_view != 'on') data-page-close @endif" >
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -47,7 +47,7 @@
                                         <th>Exchange Rate</th>
                                         <th>Can Deliver</th>
                                         <th>Delivery Time</th>
-                                        <th class="@if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on') data-page-close @endif">Action</th>
+                                        <th class="@if(Auth::user()->rolefunction->companies_write != 'on' && Auth::user()->rolefunction->companies_delete != 'on') data-page-close @endif">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -131,7 +131,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="form-label" for="exchange">Exchange Rate</label>
+                                            <label class="form-label" for="exchange">Company Rate</label>
+                                            <div class="custom-control custom-switch custom-control-inline ml-1">
+                                                <input type="checkbox" class="custom-control-input" id="exchange_status" class="status-checked">
+                                                <label class="custom-control-label" for="exchange_status"></label>
+                                            </div>
+                                            <label class="form-label" for="exchange">Site Rate</label>
                                             <input type="number" class="form-control dt-full-name" id="exchange" placeholder="Exchange" name="exchange" aria-label="Name" aria-describedby="exchange" />
                                         </div>
                                         <div class="custom-control custom-checkbox">
@@ -241,6 +246,23 @@
     <!-- BEGIN: Footer-->
     @include('layouts/footer')
     <!-- END: Footer-->
+    <script>
+         var $userinfo = {{Auth::user()->id}}
+    </script>
+
+    <script>
+        $(function(){
+            $("#exchange_status").on("change", function(){
+                if($("#exchange_status").prop( "checked" )){
+                    $('#exchange').val({{$exchange_value}});
+                }
+                else {
+
+                    $('#exchange').val('');
+                }
+            });
+        });
+    </script>
 
     <!-- BEGIN: Page JS-->
 
@@ -251,7 +273,7 @@
 
     <script>
         $(function(){
-            $(".dt-buttons").last().addClass("{{Auth::user()->role}}");
+            // $(".dt-buttons").last().addClass("{{Auth::user()->role}}");
             $(".userupdate_new").on("click", function(){
                 var $checkstatus = ($(this).data('status'))
                 var $id = $(this).data('id');

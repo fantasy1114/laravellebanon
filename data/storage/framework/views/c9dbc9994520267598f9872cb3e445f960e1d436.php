@@ -379,9 +379,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-compaines-list" class="form-control" name="admin-compaines-list">
-                                                                            <option value="All" <?php echo e($admin->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($admin->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($admin->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($admin->companies_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($admin->companies_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($admin->companies_list== "No" ? "selected" : ""); ?>>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -413,9 +413,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-categories-list" class="form-control" name="admin-categories-list">
-                                                                            <option value="All" <?php echo e($admin->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($admin->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($admin->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($admin->categories_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($admin->categories_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($admin->categories_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -483,9 +483,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="admin-siteinfo-list" class="form-control" name="admin-siteinfo-list">
-                                                                            <option value="All" <?php echo e($admin->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($admin->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($admin->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($admin->siteinfo_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($admin->siteinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($admin->siteinfo_list== "No" ? "selected" : ""); ?>>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -518,9 +518,9 @@
                                                                     <td>
                                                                         <div class="form-group">
                                                                             <select id="admin-currency-list" class="form-control" name="admin-currency-list">
-                                                                                <option value="All" <?php echo e($admin->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                                <option value="Only his" <?php echo e($admin->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                                <option value="No" <?php echo e($admin->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                                <option value="All" <?php echo e($admin->currency_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                                <option value="Only his" <?php echo e($admin->currency_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                                <option value="No" <?php echo e($admin->currency_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>
@@ -592,9 +592,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-users-list" class="form-control" name="subscriber-users-list">
-                                                                            <option value="All" <?php echo e($subscriber->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($subscriber->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($subscriber->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($subscriber->users_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->users_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->users_list== "No" ? "selected" : ""); ?>>No</option>
                                                                         </select>
                                                                     </td>
                                                                 </tr>
@@ -626,9 +626,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-compaines-list" class="form-control" name="subscriber-compaines-list">
-                                                                            <option value="All" <?php echo e($subscriber->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($subscriber->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($subscriber->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($subscriber->companies_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->companies_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->companies_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -661,9 +661,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-categories-list" class="form-control" name="subscriber-categories-list">
-                                                                            <option value="All" <?php echo e($subscriber->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($subscriber->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($subscriber->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($subscriber->categories_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->categories_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->categories_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -731,9 +731,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <select id="subscribe-siteinfo-list" class="form-control" name="subscriber-siteinfo-list">
-                                                                            <option value="All" <?php echo e($subscriber->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                            <option value="Only his" <?php echo e($subscriber->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                            <option value="No" <?php echo e($subscriber->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            <option value="All" <?php echo e($subscriber->siteinfo_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->siteinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->siteinfo_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             
                                                                         </select>
                                                                     </td>
@@ -767,9 +767,9 @@
                                                                     <td>
                                                                         <div class="form-group">
                                                                             <select id="subscribe-currency-list" class="form-control" name="subscriber-currency-list">
-                                                                                <option value="All" <?php echo e($subscriber->items_list== "All" ? "selected" : ""); ?>>All</option>
-                                                                                <option value="Only his" <?php echo e($subscriber->items_list== "Only his" ? "selected" : ""); ?>>Only his</option>
-                                                                                <option value="No" <?php echo e($subscriber->items_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                                <option value="All" <?php echo e($subscriber->currency_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                                <option value="Only his" <?php echo e($subscriber->currency_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                                <option value="No" <?php echo e($subscriber->currency_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>

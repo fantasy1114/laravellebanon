@@ -26,6 +26,8 @@ class CreateItemsTable extends Migration
             $table->string('marker')->nullable();
             $table->string('quantity')->nullable();
             $table->string('status')->nullable();
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->nullable()->references('id')->on('users');
             
             $table->timestamps();
         });

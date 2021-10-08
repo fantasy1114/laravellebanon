@@ -37,31 +37,31 @@ Route::group(['middleware' => 'auth'], function() {
       // END -------- USERLIST ----------
       //-------------- BEGIN companymanagement-------------
       Route::get('companymanagement', [App\Http\Controllers\AllusercompanymanagementController::class, 'index'])->name('index');
-      Route::post('companymanagement', [App\Http\Controllers\AllusercompanymanagementController::class, 'companymanagementcreate'])->name('companymanagementcreate');
+      Route::post('companymanagement/{id}', [App\Http\Controllers\AllusercompanymanagementController::class, 'companymanagementcreate'])->name('companymanagementcreate');
       Route::get('/companymanagementdelete/{id}/{company}', [App\Http\Controllers\AllusercompanymanagementController::class, 'companymanagementdelete'])->name('companymanagementdelete');
       Route::post('/companymanagementupdate/{id}', [App\Http\Controllers\AllusercompanymanagementController::class, 'companymanagementupdate'])->name('companymanagementupdate');
       // END ----------------- companymanagement ------------
       // // ---------BEGIN category-------------
       Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('index');
-      Route::post('/category', [App\Http\Controllers\CategoryController::class, 'categorycreate'])->name('categorycreate');
+      Route::post('/category/{id}', [App\Http\Controllers\CategoryController::class, 'categorycreate'])->name('categorycreate');
       Route::get('/categorydelete/{id}/{category}', [App\Http\Controllers\CategoryController::class, 'categorydelete'])->name('categorydelete');
       Route::post('/categoryupdate/{id}', [App\Http\Controllers\CategoryController::class, 'categoryupdate'])->name('categoryupdate');
       // // -------      END category       -----------------
 
       // // ---------     BEGIN Item    -------------
       Route::get('/items', [App\Http\Controllers\ItemsController::class, 'index'])->name('index');
-      Route::post('/items', [App\Http\Controllers\ItemsController::class, 'itemscreate'])->name('itemscreate');
+      Route::post('/items/{id}', [App\Http\Controllers\ItemsController::class, 'itemscreate'])->name('itemscreate');
       Route::get('/itemsdelete/{id}', [App\Http\Controllers\ItemsController::class, 'itemsdelete'])->name('itemsdelete');
       Route::post('/itemsupdate/{id}', [App\Http\Controllers\ItemsController::class, 'itemsupdate'])->name('itemsupdate');
       // // -------END Item -----------------
 
       // // ---------BEGIN Item Status-------------
-      Route::get('/itemstatus', [App\Http\Controllers\ItemstatusController::class, 'index'])->name('index');
+      // Route::get('/itemstatus', [App\Http\Controllers\ItemstatusController::class, 'index'])->name('index');
       // Route::post('/itemstatusupdate/{id}', [App\Http\Controllers\ItemstatusController::class, 'itemstatusupdate'])->name('itemstatusupdate');
       // // -------END Item Status -----------------
 
       // // ---------BEGIN CompanySetting-------------
-      Route::get('/companysetting', [App\Http\Controllers\CompanysettingController::class, 'index'])->name('index');
+      // Route::get('/companysetting', [App\Http\Controllers\CompanysettingController::class, 'index'])->name('index');
       // Route::post('/companysettingupdate/{id}', [App\Http\Controllers\CompanysettingController::class, 'companysettingupdate'])->name('companysettingupdate');
       // // -------END CompanySetting -----------------
 

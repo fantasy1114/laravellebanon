@@ -22,6 +22,8 @@ class CreateCategoriesTable extends Migration
             $table->string('logo');
             $table->string('categorycompany');
             $table->string('status')->nullable();
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->nullable()->references('id')->on('users');
             $table->timestamps();
         });
     }

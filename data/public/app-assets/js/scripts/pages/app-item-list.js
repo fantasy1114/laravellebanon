@@ -197,7 +197,7 @@ $(function() {
             if (isValid) {
                 $.ajax({
                     type: 'post',
-                    url: 'items',
+                    url: 'items/' + $userinfo,
                     cache:false,
                     data: formData,
                     contentType: false,

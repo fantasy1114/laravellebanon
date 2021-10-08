@@ -42,7 +42,7 @@
                                         <th>LBP Price</th>
                                         <th>Maker</th>
                                         <th>Quantity</th>                        
-                                        <th>Action</th>
+                                        <th class="<?php if(Auth::user()->rolefunction->items_write !='on' && Auth::user()->rolefunction->items_delete != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -300,7 +300,10 @@
     <!-- BEGIN: Footer-->
     <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
+    <script>
+        var $userinfo = <?php echo e(Auth::user()->id); ?>
 
+    </script>
     <!-- BEGIN: Page JS-->
     
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>

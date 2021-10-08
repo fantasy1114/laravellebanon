@@ -6,19 +6,31 @@ use Illuminate\Http\Request;
 use App\Models\Items;
 use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class ItemsController extends Controller
 {
   // User List Page
   public function index()
   {
-    $categorys = Categories::with('companies')->get();
-    $items = Items::with('categories')->get();
-    return view('/items', ['items' => $items], ['categorys' => $categorys]);
+    if(Auth::user()->rolefunction->items_list == 'All'){
+      $categorys = Categories::with('companies')->get();
+      $items = Items::with('categories')->get();
+      return view('/items', ['items' => $items], ['categorys' => $categorys]);
+    }
+    else if(Auth::user()->rolefunction->items_list == 'Only his'){
+      $categorys = Categories::with('companies')->where('users_id', Auth::user()->id)->get();
+      $items = Items::with('categories')->where('users_id', Auth::user()->id)->get();
+      return view('/items', ['items' => $items], ['categorys' => $categorys]);
+    }
+    else{
+      $categorys = Categories::with('companies')->where('users_id', 999999)->get();
+      $items = Items::with('categories')->where('users_id', 999999)->get();
+      return view('/items', ['items' => $items], ['categorys' => $categorys]);
+    }
   }
 
-  public function itemscreate(Request $request)
+  public function itemscreate(Request $request, $id)
   {
     // print_r(request('title'));exit;
     $categorys = DB::table('categories')->get();
@@ -63,6 +75,7 @@ class ItemsController extends Controller
       $Items->marker = request('marker');
       $Items->quantity = request('quantity');
       $Items->status = request('status');
+      $Items->users_id = $id;
       $Items->save();
      
       return response()->json(['success'=>true]);

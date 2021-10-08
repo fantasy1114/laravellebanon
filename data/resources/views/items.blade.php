@@ -42,7 +42,7 @@
                                         <th>LBP Price</th>
                                         <th>Maker</th>
                                         <th>Quantity</th>                        
-                                        <th>Action</th>
+                                        <th class="@if(Auth::user()->rolefunction->items_write !='on' && Auth::user()->rolefunction->items_delete != 'on') data-page-close @endif">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -306,7 +306,9 @@
     <!-- BEGIN: Footer-->
     @include('layouts/footer')
     <!-- END: Footer-->
-
+    <script>
+        var $userinfo = {{Auth::user()->id}}
+    </script>
     <!-- BEGIN: Page JS-->
     {{-- <script src="../../../app-assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script> --}}
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>

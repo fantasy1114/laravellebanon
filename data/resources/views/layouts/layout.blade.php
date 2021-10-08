@@ -52,11 +52,11 @@
                 <li class="@if(Request::path() == 'setting') active @endif nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            {{-- <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'frontend') active @endif nav-item"><a class="d-flex align-items-center" href="frontend"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Frontend</span></a>
                 </li>
             </ul>
-            
+             --}}
 
         </div>
     </div>

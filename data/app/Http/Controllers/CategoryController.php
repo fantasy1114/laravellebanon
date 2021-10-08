@@ -5,19 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
   // User List Page
   public function index()
-  {  
-    $categorys = Categories::with('companies')->get();
-
-    $companys = DB::table('companies')->get();    
-    return view('/category', ['categorys' => $categorys], ['companys' => $companys]);
+  { 
+    if(Auth::user()->rolefunction->categories_list == 'All'){
+      $categorys = Categories::with('companies')->get();
+      $companys = DB::table('companies')->get();    
+      return view('/category', ['categorys' => $categorys], ['companys' => $companys]);
+    }
+    else if(Auth::user()->rolefunction->categories_list == 'Only his'){
+      $categorys = Categories::with('companies')->where('users_id', Auth::user()->id)->get();
+      $companys = DB::table('companies')->where('users_id', Auth::user()->id)->get();    
+      return view('/category', ['categorys' => $categorys], ['companys' => $companys]);
+    }
+    else{
+      $categorys = Categories::with('companies')->where('users_id', 999999)->get();
+      $companys = DB::table('companies')->where('users_id', 999999)->get();    
+      return view('/category', ['categorys' => $categorys], ['companys' => $companys]);
+    }
   }
 
-  public function categorycreate(Request $request)
+  public function categorycreate(Request $request, $id)
   {
     $categorys = DB::table('categories')->get();
     $companys = DB::table('companies')->get();
@@ -57,6 +69,7 @@ class CategoryController extends Controller
       $Categories->status = request('status');
       $Categories->logo = './uploads/category/'.$imageName;
       $Categories->companyname = request('companyname');
+      $Categories->users_id = $id;
       $Categories->categorycompany = request('categoryname').'('.request('companyname').')';
       $Categories->save();
      

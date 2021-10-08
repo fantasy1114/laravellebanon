@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Companies;
 use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AllusercompanymanagementController extends Controller
@@ -12,11 +13,26 @@ class AllusercompanymanagementController extends Controller
   // User List Page
   public function index()
   {
-    $companys = DB::table('companies')->get();
-    return view('/companymanagement', ['companys' => $companys]);
+    if(Auth::user()->rolefunction->companies_list == 'All'){
+      $companys = DB::table('companies')->get();
+      $exchanges = DB::table('exchange')->get();
+      foreach ($exchanges as $exchange){
+        $exchange_value = $exchange->exchange;
+      }
+      return view('/companymanagement', ['companys' => $companys], ['exchange_value' => $exchange_value]);
+    }
+    else if(Auth::user()->rolefunction->companies_list == 'Only his'){
+      $companys = DB::table('companies')->where('users_id', Auth::user()->id)->get();
+      $exchanges = DB::table('exchange')->get();
+      return view('/companymanagement', ['companys' => $companys]);
+    }
+    else{
+      $companys = DB::table('companies')->where('users_id', 99999999)->get();
+      return view('/companymanagement', ['companys' => $companys]);
+    }
   }
 
-  public function companymanagementcreate(Request $request)
+  public function companymanagementcreate(Request $request, $id)
   {
     $companys = DB::table('companies')->get();
     // $logs = DB::table('logs')->get();
@@ -42,6 +58,7 @@ class AllusercompanymanagementController extends Controller
       $Companies->delivery = request('delivery');
       $Companies->logo = './uploads/company/'.$imageName;
       $Companies->can = request('can');
+      $Companies->users_id = $id;
       $Companies->save();
       return response()->json(['success'=>true]);
     }

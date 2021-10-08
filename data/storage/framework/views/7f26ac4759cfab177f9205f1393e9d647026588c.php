@@ -38,7 +38,7 @@
                                         <th>Photo</th>
                                         <th>Company Name</th>
                                         <th>Status</th>
-                                        <th class="aaa <?php if(Auth::user()->rolefunction->users_delete != 'on' && Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
+                                        <th class="<?php if(Auth::user()->rolefunction->categories_delete != 'on' && Auth::user()->rolefunction->categories_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -224,7 +224,10 @@
     <!-- BEGIN: Footer-->
     <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
+    <script>
+        var $userinfo = <?php echo e(Auth::user()->id); ?>
 
+    </script>
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/app-category-list.js"></script>
     <script src="../../../app-assets/js/scripts/components/components-bs-toast.js"></script>

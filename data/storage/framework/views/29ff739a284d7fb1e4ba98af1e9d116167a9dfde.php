@@ -52,10 +52,6 @@
                 <li class="<?php if(Request::path() == 'setting'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="<?php if(Request::path() == 'frontend'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="frontend"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Frontend</span></a>
-                </li>
-            </ul>
             
 
         </div>

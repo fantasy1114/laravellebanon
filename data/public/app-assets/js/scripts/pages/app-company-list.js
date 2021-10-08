@@ -233,14 +233,13 @@ $(function() {
         });
 
         newUserForm.on('submit', function(e) {
-            
             var isValid = newUserForm.valid();
             var formData = new FormData(this);
             e.preventDefault();
             if (isValid) {
                 $.ajax({
                     type: 'post',
-                    url: 'companymanagement',
+                    url: 'companymanagement/' + $userinfo,
                     cache:false,
                     data: formData,
                     contentType: false,
