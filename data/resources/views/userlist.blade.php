@@ -57,18 +57,18 @@
                                             <td>{{$userlist -> role}}</td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="{{$userlist -> id}}" data-status="{{$userlist -> status}}">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$userlist -> id}}" @if ($userlist -> status == 'on') checked @endif class="status-checked"  @if($userlist->id == 1) disabled @endif>
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch{{$userlist -> id}}" @if ($userlist -> status == 'on') checked @endif class="status-checked"  @if($userlist->id == 1 || Auth::user()->rolefunction->users_write != 'on' || Auth::user()->status == '') disabled @endif>
                                                 <label class="custom-control-label" for="customSwitch{{$userlist -> id}}"></label>
                                                 </div>
                                             </td>
                                             <td>{{$userlist->startdata}}</td>
                                             <td>{{$userlist->enddata}}</td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->users_write != 'on') data-page-close @endif" data-id="{{$userlist -> id}}" data-name="{{$userlist->name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}"  @if($userlist->id == 1) disabled @endif>
+                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->users_write != 'on') data-page-close @endif" data-id="{{$userlist -> id}}" data-name="{{$userlist->name}}" data-email="{{$userlist -> email}}" data-photo="{{$userlist -> profile_photo_path}}" data-role="{{$userlist -> role}}" data-status="{{$userlist -> status}}" data-startdata="{{$userlist -> startdata}}" data-enddata="{{$userlist -> enddata}}"  @if($userlist->id == 1 || Auth::user()->status == '') disabled @endif>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button type="button" data-id="{{$userlist -> id}}" class="dropdown-item userlist-delete @if(Auth::user()->rolefunction->users_delete != 'on') data-page-close @endif"  @if($userlist->id == 1) disabled @endif>
+                                                <button type="button" data-id="{{$userlist -> id}}" class="dropdown-item userlist-delete @if(Auth::user()->rolefunction->users_delete != 'on') data-page-close @endif"  @if($userlist->id == 1 || Auth::user()->status == '') disabled @endif>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span></span>
                                                 </button>
@@ -155,8 +155,8 @@
                                             <input type="text" name='enddata' id="enddata" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
                                         </div>
                                     
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit @if(Auth::user()->rolefunction->users_write != "on") data-page-close @endif">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary @if(Auth::user()->rolefunction->users_write != "on") data-page-close @endif" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -248,6 +248,7 @@
                     <!-- list section end -->
                 </section>
                 <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                <button type="button" class="btn btn-outline-success toast-userlist-error-message" id="type-already-data-success" hidden>error</button>
                 <!-- users list ends -->
 
             </div>
@@ -258,14 +259,23 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
+    @if(Auth::user()->rolefunction->users_create != "on")
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    @elseif(Auth::user()->status == '')
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    @else
+        <script>
+            var $createdata = "123";
+        </script>
+    @endif
     <!-- BEGIN: Footer-->
     @include('layouts/footer')
     <!-- END: Footer-->
-
-    <!-- BEGIN: Page JS-->
     
-
-
     <script src="../../../app-assets/js/scripts/pages/app-user-list.js"></script>
     <script src="../../../app-assets/js/scripts/forms/pickers/form-pickers.js"></script>
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>

@@ -502,6 +502,9 @@ $(function () {
                 if(data['success']){
                     window.location.reload();
                 }
+                else{
+                  $(".toast-userlist-error-message").click();
+                }
             }
         });
         }

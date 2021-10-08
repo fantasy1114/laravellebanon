@@ -39,7 +39,7 @@
                                     @foreach ($exchanges as $exchange)
                                         <input type="text" class="form-control" id="exchange" value="{{$exchange -> exchange}}" placeholder="Enter Exchange Rate" disabled/>
                                         
-                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new @if(Auth::user()->rolefunction->currency_write != 'on') data-page-close @endif" data-id="{{$exchange -> id}}" data-exchange="{{$exchange -> exchange}}">Edit</button>
+                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new @if(Auth::user()->rolefunction->currency_write != 'on') data-page-close @endif" data-id="{{$exchange -> id}}" data-exchange="{{$exchange -> exchange}}" @if(Auth::user()->status == '') disabled @endif>Edit</button>
                                     @endforeach
                                 </div>
                             </div>                            

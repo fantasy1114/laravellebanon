@@ -39,7 +39,7 @@
                                     <?php $__currentLoopData = $exchanges; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $exchange): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <input type="text" class="form-control" id="exchange" value="<?php echo e($exchange -> exchange); ?>" placeholder="Enter Exchange Rate" disabled/>
                                         
-                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new <?php if(Auth::user()->rolefunction->currency_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($exchange -> id); ?>" data-exchange="<?php echo e($exchange -> exchange); ?>">Edit</button>
+                                        <button type="button" class="btn btn-primary justofy-content-center d-flex mt-5 data-submit userupdate_new <?php if(Auth::user()->rolefunction->currency_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($exchange -> id); ?>" data-exchange="<?php echo e($exchange -> exchange); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>Edit</button>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>                            

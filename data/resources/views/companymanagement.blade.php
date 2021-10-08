@@ -58,7 +58,9 @@
                                             <td><img src="{{$company -> logo}}" style="width:48px; height:34px;"></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-update" data-id="{{$company -> id}}" data-status="{{$company -> status}}">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch{{$company -> id}}" @if ($company -> status == 'on') checked @endif class="status-checked" >
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch{{$company -> id}}" @if ($company -> status == 'on') checked @endif 
+                                                    @if(Auth::user()->rolefunction->companies_write != 'on' || Auth::user()->status == '') disabled @endif
+                                                    class="status-checked" >
                                                     <label class="custom-control-label" for="customSwitch{{$company -> id}}"></label>
                                                 </div>
                                             </td>
@@ -68,11 +70,11 @@
                                                 </td>
                                             <td>{{$company -> delivery}}</td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->companies_write != 'on') data-page-close @endif" data-id="{{$company -> id}}" data-companyname="{{$company -> companyname}}" data-status="{{$company -> status}}" data-sellmethod="{{$company -> sellmethod}}" data-exchange="{{$company -> exchange}}" data-delivery="{{$company -> delivery}}" data-can="{{$company -> can}}" data-logo="{{$company -> logo}}" class="@if(Auth::user()->rolefunction->companies_write != 'on') data-page-close @endif">
+                                                <button class="dropdown-item userupdate_new @if(Auth::user()->rolefunction->companies_write != 'on') data-page-close @endif" data-id="{{$company -> id}}" data-companyname="{{$company -> companyname}}" data-status="{{$company -> status}}" data-sellmethod="{{$company -> sellmethod}}" data-exchange="{{$company -> exchange}}" data-delivery="{{$company -> delivery}}" data-can="{{$company -> can}}" data-logo="{{$company -> logo}}" @if(Auth::user()->status == '') disabled @endif>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button data-id="{{$company->id}}" data-companyname="{{$company->companyname}}"  class="dropdown-item delete_company_data @if(Auth::user()->rolefunction->companies_delete != 'on') data-page-close @endif" >
+                                                <button data-id="{{$company->id}}" data-companyname="{{$company->companyname}}"  class="dropdown-item delete_company_data @if(Auth::user()->rolefunction->companies_delete != 'on') data-page-close @endif" @if(Auth::user()->status == '') disabled @endif>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                 </button>
 
@@ -151,8 +153,8 @@
                                                 aria-describedby="delivery" />
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit @if(Auth::user()->rolefunction->companies_delete != 'on') data-page-close @endif">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary @if(Auth::user()->rolefunction->companies_delete != 'on') data-page-close @endif" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -203,9 +205,18 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="form-label" for="exchange">Exchange Rate</label>
                                             <input type="number" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="Name" aria-describedby="uexchange" />
+                                        </div> --}}
+                                        <div class="form-group">
+                                            <label class="form-label" for="exchange">Company Rate</label>
+                                            <div class="custom-control custom-switch custom-control-inline ml-1">
+                                                <input type="checkbox" class="custom-control-input" id="uexchange_status" class="status-checked">
+                                                <label class="custom-control-label" for="uexchange_status"></label>
+                                            </div>
+                                            <label class="form-label" for="exchange">Site Rate</label>
+                                            <input type="number" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="uexchange" aria-describedby="uexchange" />
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <label class="form-label" for="exchange">Can Deliver</label>
@@ -261,9 +272,32 @@
                     $('#exchange').val('');
                 }
             });
+            $("#uexchange_status").on("change", function(){
+                if($("#uexchange_status").prop( "checked" )){
+                    $('#uexchange').val({{$exchange_value}});
+                }
+                else {
+
+                    $('#uexchange').val('');
+                }
+            });
         });
     </script>
 
+    @if(Auth::user()->rolefunction->companies_create != "on")
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+   
+    @elseif( Auth::user()->status == '')
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    @else
+        <script>
+            var $createdata = "123";
+        </script>
+    @endif
     <!-- BEGIN: Page JS-->
 
     <script src="../../../app-assets/js/scripts/pages/app-company-list.js"></script>
@@ -273,7 +307,6 @@
 
     <script>
         $(function(){
-            // $(".dt-buttons").last().addClass("{{Auth::user()->role}}");
             $(".userupdate_new").on("click", function(){
                 var $checkstatus = ($(this).data('status'))
                 var $id = $(this).data('id');

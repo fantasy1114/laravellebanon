@@ -58,7 +58,9 @@
                                             <td><img src="<?php echo e($company -> logo); ?>" style="width:48px; height:34px;"></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-update" data-id="<?php echo e($company -> id); ?>" data-status="<?php echo e($company -> status); ?>">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company -> id); ?>" <?php if($company -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company -> id); ?>" <?php if($company -> status == 'on'): ?> checked <?php endif; ?> 
+                                                    <?php if(Auth::user()->rolefunction->companies_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>
+                                                    class="status-checked" >
                                                     <label class="custom-control-label" for="customSwitch<?php echo e($company -> id); ?>"></label>
                                                 </div>
                                             </td>
@@ -68,11 +70,11 @@
                                                 </td>
                                             <td><?php echo e($company -> delivery); ?></td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->companies_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($company -> id); ?>" data-companyname="<?php echo e($company -> companyname); ?>" data-status="<?php echo e($company -> status); ?>" data-sellmethod="<?php echo e($company -> sellmethod); ?>" data-exchange="<?php echo e($company -> exchange); ?>" data-delivery="<?php echo e($company -> delivery); ?>" data-can="<?php echo e($company -> can); ?>" data-logo="<?php echo e($company -> logo); ?>" class="<?php if(Auth::user()->rolefunction->companies_write != 'on'): ?> data-page-close <?php endif; ?>">
+                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->companies_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($company -> id); ?>" data-companyname="<?php echo e($company -> companyname); ?>" data-status="<?php echo e($company -> status); ?>" data-sellmethod="<?php echo e($company -> sellmethod); ?>" data-exchange="<?php echo e($company -> exchange); ?>" data-delivery="<?php echo e($company -> delivery); ?>" data-can="<?php echo e($company -> can); ?>" data-logo="<?php echo e($company -> logo); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button data-id="<?php echo e($company->id); ?>" data-companyname="<?php echo e($company->companyname); ?>"  class="dropdown-item delete_company_data <?php if(Auth::user()->rolefunction->companies_delete != 'on'): ?> data-page-close <?php endif; ?>" >
+                                                <button data-id="<?php echo e($company->id); ?>" data-companyname="<?php echo e($company->companyname); ?>"  class="dropdown-item delete_company_data <?php if(Auth::user()->rolefunction->companies_delete != 'on'): ?> data-page-close <?php endif; ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                 </button>
 
@@ -152,8 +154,8 @@
                                                 aria-describedby="delivery" />
                                         </div>
                                         
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->companies_delete != 'on'): ?> data-page-close <?php endif; ?>">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->companies_delete != 'on'): ?> data-page-close <?php endif; ?>" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -198,9 +200,15 @@
                                             </select>
                                         </div>
 
+                                        
                                         <div class="form-group">
-                                            <label class="form-label" for="exchange">Exchange Rate</label>
-                                            <input type="number" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="Name" aria-describedby="uexchange" />
+                                            <label class="form-label" for="exchange">Company Rate</label>
+                                            <div class="custom-control custom-switch custom-control-inline ml-1">
+                                                <input type="checkbox" class="custom-control-input" id="uexchange_status" class="status-checked">
+                                                <label class="custom-control-label" for="uexchange_status"></label>
+                                            </div>
+                                            <label class="form-label" for="exchange">Site Rate</label>
+                                            <input type="number" step="any" class="form-control dt-full-name" id="uexchange" placeholder="Exchange" name="uexchange" aria-label="uexchange" aria-describedby="uexchange" />
                                         </div>
                                         <div class="custom-control custom-checkbox">
                                             <label class="form-label" for="exchange">Can Deliver</label>
@@ -257,9 +265,32 @@
                     $('#exchange').val('');
                 }
             });
+            $("#uexchange_status").on("change", function(){
+                if($("#uexchange_status").prop( "checked" )){
+                    $('#uexchange').val(<?php echo e($exchange_value); ?>);
+                }
+                else {
+
+                    $('#uexchange').val('');
+                }
+            });
         });
     </script>
 
+    <?php if(Auth::user()->rolefunction->companies_create != "on"): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+   
+    <?php elseif( Auth::user()->status == ''): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    <?php else: ?>
+        <script>
+            var $createdata = "123";
+        </script>
+    <?php endif; ?>
     <!-- BEGIN: Page JS-->
 
     <script src="../../../app-assets/js/scripts/pages/app-company-list.js"></script>
@@ -269,7 +300,6 @@
 
     <script>
         $(function(){
-            // $(".dt-buttons").last().addClass("<?php echo e(Auth::user()->role); ?>");
             $(".userupdate_new").on("click", function(){
                 var $checkstatus = ($(this).data('status'))
                 var $id = $(this).data('id');

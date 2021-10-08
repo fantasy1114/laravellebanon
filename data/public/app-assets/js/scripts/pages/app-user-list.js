@@ -171,7 +171,7 @@ $(function() {
             // Buttons with Dropdown
             buttons: [{
                 text: 'Add New User',
-                className: 'add-new btn btn-primary mt-50',
+                className: 'add-new btn btn-primary mt-50 ' + $createdata,
                 attr: {
                     'data-toggle': 'modal',
                     'data-target': '#modals-slide-in'

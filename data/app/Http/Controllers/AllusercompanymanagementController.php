@@ -24,11 +24,18 @@ class AllusercompanymanagementController extends Controller
     else if(Auth::user()->rolefunction->companies_list == 'Only his'){
       $companys = DB::table('companies')->where('users_id', Auth::user()->id)->get();
       $exchanges = DB::table('exchange')->get();
-      return view('/companymanagement', ['companys' => $companys]);
+      foreach ($exchanges as $exchange){
+        $exchange_value = $exchange->exchange;
+      }
+      return view('/companymanagement', ['companys' => $companys], ['exchange_value' => $exchange_value]);
     }
     else{
+      $exchanges = DB::table('exchange')->get();
+      foreach ($exchanges as $exchange){
+        $exchange_value = $exchange->exchange;
+      }
       $companys = DB::table('companies')->where('users_id', 99999999)->get();
-      return view('/companymanagement', ['companys' => $companys]);
+      return view('/companymanagement', ['companys' => $companys], ['exchange_value' => $exchange_value]);
     }
   }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Error;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -74,9 +75,14 @@ class UserlistController extends Controller
   public function userdelete($id)
   {
     // $description = DB::table('users')->where('id', $id)->value('name');
-    
-    DB::table('users')->where('id', $id)->delete();
-    return response()->json(['success'=>true]);
+ 
+    try{
+      DB::table('users')->where('id', $id)->delete();
+      return response()->json(['success'=>true]);
+    }
+    catch (\Exception $e) {
+      return response()->json(['success'=>false]);
+    }    
   }
   public function userupdate(Request $request, $id)
   {

@@ -57,18 +57,18 @@
                                             <td><?php echo e($userlist -> role); ?></td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="<?php echo e($userlist -> id); ?>" data-status="<?php echo e($userlist -> status); ?>">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'on'): ?> checked <?php endif; ?> class="status-checked"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'on'): ?> checked <?php endif; ?> class="status-checked"  <?php if($userlist->id == 1 || Auth::user()->rolefunction->users_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                 <label class="custom-control-label" for="customSwitch<?php echo e($userlist -> id); ?>"></label>
                                                 </div>
                                             </td>
                                             <td><?php echo e($userlist->startdata); ?></td>
                                             <td><?php echo e($userlist->enddata); ?></td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($userlist -> id); ?>" data-name="<?php echo e($userlist->name); ?>" data-email="<?php echo e($userlist -> email); ?>" data-photo="<?php echo e($userlist -> profile_photo_path); ?>" data-role="<?php echo e($userlist -> role); ?>" data-status="<?php echo e($userlist -> status); ?>" data-startdata="<?php echo e($userlist -> startdata); ?>" data-enddata="<?php echo e($userlist -> enddata); ?>"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
+                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->users_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($userlist -> id); ?>" data-name="<?php echo e($userlist->name); ?>" data-email="<?php echo e($userlist -> email); ?>" data-photo="<?php echo e($userlist -> profile_photo_path); ?>" data-role="<?php echo e($userlist -> role); ?>" data-status="<?php echo e($userlist -> status); ?>" data-startdata="<?php echo e($userlist -> startdata); ?>" data-enddata="<?php echo e($userlist -> enddata); ?>"  <?php if($userlist->id == 1 || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                     <span></span>
                                                 </button>
-                                                <button type="button" data-id="<?php echo e($userlist -> id); ?>" class="dropdown-item userlist-delete <?php if(Auth::user()->rolefunction->users_delete != 'on'): ?> data-page-close <?php endif; ?>"  <?php if($userlist->id == 1): ?> disabled <?php endif; ?>>
+                                                <button type="button" data-id="<?php echo e($userlist -> id); ?>" class="dropdown-item userlist-delete <?php if(Auth::user()->rolefunction->users_delete != 'on'): ?> data-page-close <?php endif; ?>"  <?php if($userlist->id == 1 || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash mr-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
                                                     <span></span>
                                                 </button>
@@ -156,8 +156,8 @@
                                             <input type="text" name='enddata' id="enddata" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
                                         </div>
                                     
-                                        <button type="submit" class="btn btn-primary mr-1 data-submit <?php if(Auth::user()->rolefunction->users_write != "on"): ?> data-page-close <?php endif; ?>">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary <?php if(Auth::user()->rolefunction->users_write != "on"): ?> data-page-close <?php endif; ?>" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-1 data-submit">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                                     </div>
                                 </form>
                             </div>
@@ -243,6 +243,7 @@
                     <!-- list section end -->
                 </section>
                 <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
+                <button type="button" class="btn btn-outline-success toast-userlist-error-message" id="type-already-data-success" hidden>error</button>
                 <!-- users list ends -->
 
             </div>
@@ -253,14 +254,23 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
+    <?php if(Auth::user()->rolefunction->users_create != "on"): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    <?php elseif(Auth::user()->status == ''): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    <?php else: ?>
+        <script>
+            var $createdata = "123";
+        </script>
+    <?php endif; ?>
     <!-- BEGIN: Footer-->
     <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
-
-    <!-- BEGIN: Page JS-->
     
-
-
     <script src="../../../app-assets/js/scripts/pages/app-user-list.js"></script>
     <script src="../../../app-assets/js/scripts/forms/pickers/form-pickers.js"></script>
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>

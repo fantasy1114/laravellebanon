@@ -56,7 +56,7 @@
                                         <td><img src="<?php echo e($item -> photo); ?>" style="width:48px; height:34px;"></td>
                                         <td>
                                             <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="<?php echo e($item -> id); ?>" data-status="<?php echo e($item -> status); ?>">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($item -> id); ?>" <?php if($item -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($item -> id); ?>" <?php if($item -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" <?php if(Auth::user()->rolefunction->items_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                             <label class="custom-control-label" for="customSwitch<?php echo e($item -> id); ?>"></label>
                                             </div>
                                         </td>
@@ -75,6 +75,7 @@
                                                 data-marker="<?php echo e($item -> marker); ?>"
                                                 data-quantity="<?php echo e($item -> quantity); ?>"
                                                 data-status="<?php echo e($item -> status); ?>"
+                                                <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>
                                                 >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -88,7 +89,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <button class="dropdown-item delete_data_item <?php if(Auth::user()->rolefunction->items_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($item->id); ?>" >
+                                            <button class="dropdown-item delete_data_item <?php if(Auth::user()->rolefunction->items_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($item->id); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -304,6 +305,26 @@
         var $userinfo = <?php echo e(Auth::user()->id); ?>
 
     </script>
+
+        
+    
+    <?php if(Auth::user()->rolefunction->items_create != "on"): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+
+    <?php elseif(Auth::user()->status == ''): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+
+    <?php else: ?>
+        <script>
+            var $createdata = "123";
+        </script>
+    <?php endif; ?>
+
+
     <!-- BEGIN: Page JS-->
     
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>

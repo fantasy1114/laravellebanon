@@ -41,11 +41,11 @@
 
               <div class="form-group first">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="email" name="email" :value="old('email')" required autofocus>
+                <input type="text" class="form-control" placeholder="your-email@gmail.com" id="email" name="email" value="admin@gmail.com" required autofocus>
               </div>
               <div class="form-group last mb-3">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Your Password" id="password"  name="password" required autocomplete="current-password">
+                <input type="password" class="form-control" placeholder="Your Password" id="password"  name="password" value="Admin@123" required autocomplete="current-password">
               </div>
               
               <div class="d-flex mb-5 align-items-center">

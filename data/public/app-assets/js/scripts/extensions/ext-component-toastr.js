@@ -20,6 +20,7 @@ $(function () {
     typecategoryalreadyerror = $('#type-category-already-error'),
     typeitemalreadyerror = $('#type-item-already-error'),
     typeuserpassalreadyerror = $('#type-userpass-already-error'),
+    typealreadydatasuccess = $('#type-already-data-success'),
 
     positionTopLeft = $('#position-top-left'),
     positionTopCenter = $('#position-top-center'),
@@ -109,7 +110,13 @@ $(function () {
       rtl: isRtl
     });
   });
-
+  typealreadydatasuccess.on('click', function () {
+    toastr['error']('👋  Users are managing many companies..', 'Error!', {
+      closeButton: true,
+      tapToDismiss: false,
+      rtl: isRtl
+    });
+  });
   // Progress Bar
   progressBar.on('click', function () {
     toastr['success']('👋 Chocolate oat cake jelly oat cake candy jelly beans pastry.', 'Progress Bar', {

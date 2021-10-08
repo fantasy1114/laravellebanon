@@ -54,14 +54,14 @@
                                             </td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-category-update" data-id="<?php echo e($category -> id); ?>" data-status="<?php echo e($category -> status); ?>">
-                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" >
+                                                <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($category -> id); ?>" <?php if($category -> status == 'on'): ?> checked <?php endif; ?> class="status-checked" <?php if(Auth::user()->rolefunction->categories_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                 <label class="custom-control-label" for="customSwitch<?php echo e($category -> id); ?>"></label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->categories_write != 'on'): ?> data-page-close <?php endif; ?>"
                                                     data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categoryname); ?>"
-                                                    data-companyname="<?php echo e($category->companies->companyname); ?>" data-logo="<?php echo e($category->logo); ?>" data-status="<?php echo e($category -> status); ?>"
+                                                    data-companyname="<?php echo e($category->companies->companyname); ?>" data-logo="<?php echo e($category->logo); ?>" data-status="<?php echo e($category -> status); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>
                                                     >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -75,7 +75,7 @@
                                                     <span></span>
                                                 </button>
                                             
-                                                <button class="dropdown-item delete_category_data <?php if(Auth::user()->rolefunction->categories_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>">
+                                                <button class="dropdown-item delete_category_data <?php if(Auth::user()->rolefunction->categories_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($category->id); ?>" data-categoryname="<?php echo e($category->categorycompany); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round"
@@ -220,7 +220,21 @@
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
-
+    
+    <?php if(Auth::user()->rolefunction->categories_create != "on"): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+   
+    <?php elseif(Auth::user()->status == ""): ?>
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+    <?php else: ?>
+        <script>
+            var $createdata = "123";
+        </script>
+    <?php endif; ?>
     <!-- BEGIN: Footer-->
     <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END: Footer-->
@@ -228,6 +242,7 @@
         var $userinfo = <?php echo e(Auth::user()->id); ?>
 
     </script>
+
     <!-- BEGIN: Page JS-->
     <script src="../../../app-assets/js/scripts/pages/app-category-list.js"></script>
     <script src="../../../app-assets/js/scripts/components/components-bs-toast.js"></script>

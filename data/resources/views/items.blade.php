@@ -56,7 +56,7 @@
                                         <td><img src="{{$item -> photo}}" style="width:48px; height:34px;"></td>
                                         <td>
                                             <div class="custom-control custom-switch custom-control-inline status-items-update" data-id="{{$item -> id}}" data-status="{{$item -> status}}">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item -> id}}" @if ($item -> status == 'on') checked @endif class="status-checked" >
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item -> id}}" @if ($item -> status == 'on') checked @endif class="status-checked" @if(Auth::user()->rolefunction->items_write != 'on' || Auth::user()->status == '') disabled @endif>
                                             <label class="custom-control-label" for="customSwitch{{$item -> id}}"></label>
                                             </div>
                                         </td>
@@ -75,6 +75,7 @@
                                                 data-marker="{{$item -> marker}}"
                                                 data-quantity="{{$item -> quantity}}"
                                                 data-status="{{$item -> status}}"
+                                                @if(Auth::user()->status == '') disabled @endif
                                                 >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -88,7 +89,7 @@
                                                 <span></span>
                                             </button>
                                         
-                                            <button class="dropdown-item delete_data_item @if(Auth::user()->rolefunction->items_delete != 'on') data-page-close @endif" data-id="{{$item->id}}" >
+                                            <button class="dropdown-item delete_data_item @if(Auth::user()->rolefunction->items_delete != 'on') data-page-close @endif" data-id="{{$item->id}}" @if(Auth::user()->status == '') disabled @endif>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round"
@@ -303,12 +304,31 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
+        
+    @if(Auth::user()->rolefunction->items_create != "on")
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+
+    @elseif (Auth::user()->status == '')
+        <script>
+            var $createdata = "data-page-close";
+        </script>
+
+    @else
+        <script>
+            var $createdata = "123";
+        </script>
+    @endif
     <!-- BEGIN: Footer-->
     @include('layouts/footer')
     <!-- END: Footer-->
     <script>
         var $userinfo = {{Auth::user()->id}}
     </script>
+
+
+
     <!-- BEGIN: Page JS-->
     {{-- <script src="../../../app-assets/js/scripts/extensions/ext-component-sweet-alerts.js"></script> --}}
     <script src="../../../app-assets/js/scripts/pages/app-item-list.js"></script>
