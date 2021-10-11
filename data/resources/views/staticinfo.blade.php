@@ -74,6 +74,20 @@
                                             <span class="font-weight-bold">Team</span>
                                         </a>
                                     </li>
+                                    <!-- blog -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="account-pill-blog" data-toggle="pill" href="#account-vertical-blog" aria-expanded="false">
+                                            <i data-feather='command' class="font-medium-3 mr-1"></i>
+                                            <span class="font-weight-bold">Blog</span>
+                                        </a>
+                                    </li>
+                                    <!-- contact -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="account-pill-contact" data-toggle="pill" href="#account-vertical-contact" aria-expanded="false">
+                                            <i data-feather='inbox' class="font-medium-3 mr-1"></i>
+                                            <span class="font-weight-bold">Contact</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <!--/ left menu section -->
@@ -83,269 +97,433 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tab-content">
-                                            <!-- home tab -->
-                                            <div role="tabpanel" class="tab-pane active" id="account-vertical-home" aria-labelledby="account-pill-home" aria-expanded="true">
-    
-                                                <!-- form -->
-                                                <form class="validate-form update-setting-page mt-2">
-                                                 
-                                                        <!-- header media -->
-                                                        <div class="media">
-                                                            <a href="javascript:void(0);" class="mr-25">
-                                                                <img src="{{Auth::user()->profile_photo_path}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                                            </a>
-                                                            <!-- upload and reset button -->
-                                                            <div class="media-body mt-75 ml-1">
-                                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                                                <input type="file" id="account-upload" hidden accept="image/*" name="uaccount-upload" />
+                                            @foreach ($staticinfos as $staticinfo)
+                                                <!-- home tab -->
+                                                <div role="tabpanel" class="tab-pane active" id="account-vertical-home" aria-labelledby="account-pill-home" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-home-page mt-2">
+                                                    
+                                                            <!-- header media -->
+                                                            <div class="media">
+                                                                <a href="javascript:void(0);" class="mr-25">
+                                                                    <img src="{{$staticinfo->home_image}}" id="home_image-img" class="rounded mr-50" alt="profile image" height="240" width="360" />
+                                                                </a>
+                                                                <!-- upload and reset button -->
+                                                                <div class="media-body mt-75 ml-1 align-middle">
+                                                                    <label for="home_image" class="btn btn-sm btn-primary mb-75 mr-75 mt-75">Upload</label>
+                                                                    <input type="file" id="home_image" hidden accept="image/*" name="home_image" />
+                                                                </div>
+                                                                <!--/ upload and reset button -->
                                                             </div>
-                                                            <!--/ upload and reset button -->
-                                                        </div>
-                                                        <!--/ header media -->
+                                                            <!--/ header media -->
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_title">Title</label>
+                                                                        <input type="text" class="form-control" id="home_title" name="home_title" placeholder="Title" value="{{$staticinfo->home_title}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_desc">Description</label>
+                                                                        <textarea class="form-control" id="home_desc" name="home_desc" placeholder="description"  rows="5">{{$staticinfo->home_desc}}
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                                </div>
+                                                            </div>
+                                                    
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ home tab -->
+        
+                                                <!-- about  -->
+                                                <div class="tab-pane fade" id="account-vertical-about" role="tabpanel" aria-labelledby="account-pill-about" aria-expanded="false">
+                                                    <!-- form -->
+                                                    <form class="validate-form update-about-page">
                                                         <div class="row">
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="about_one_title">Title</label>
+                                                                    <input type="text" class="form-control" id="about_one_title" name="about_one_title" placeholder="Title" value="{{$staticinfo->about_one_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="about_one_desc">Description</label>
+                                                                    <textarea class="form-control" id="about_one_desc" name="about_one_desc" placeholder="description"  rows="5">{{$staticinfo->about_one_desc}}
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="about_two_title">Title</label>
+                                                                    <input type="text" class="form-control" id="about_two_title" name="about_two_title" placeholder="Title" value="{{$staticinfo->about_two_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="about_two_desc">Description</label>
+                                                                    <textarea class="form-control" id="about_two_desc" name="about_two_desc" placeholder="description"  rows="5">{{$staticinfo->about_two_desc}}
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="about_three_title">Title</label>
+                                                                    <input type="text" class="form-control" id="about_three_title" name="about_three_title" placeholder="Title" value="{{$staticinfo->about_three_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="about_three_desc">Description</label>
+                                                                    <textarea class="form-control" id="about_three_desc" name="about_three_desc" placeholder="description"  rows="5">{{$staticinfo->about_three_desc}}
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <!-- about image media -->
+                                                            <div class="col-12 col-sm-6">
+                                                                <div class="row">
+                                                                    <a href="javascript:void(0);" class="mr-25">
+                                                                        <img src="{{$staticinfo->about_image}}" id="about_image_img" class="rounded mr-50" alt="profile image" height="160" width="240" />
+                                                                    </a>
+                                                                </div>
+                                                                <!-- upload and reset button -->
+                                                                
+                                                                <div class="row text-center">
+                                                                    <label for="about_image" class="btn btn-sm btn-primary ml-5 mt-1 justify-content-center">Upload</label>
+                                                                    <input type="file" id="about_image" hidden accept="image/*" name="about_image" />
+                                                                </div>
+                                                                
+                                                                <!--/ upload and reset button -->
+                                                            </div>
+                                                            <!--/ about image media -->
                                                             <div class="col-12 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="account-username">Username</label>
-                                                                    <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{Auth::user()->name}}" />
+                                                                    <label for="about_title">Title</label>
+                                                                    <input type="text" class="form-control" id="about_title" name="about_title" placeholder="Title" value="{{$staticinfo->about_title}}" />
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-12 col-sm-6">
+                                                            
                                                                 <div class="form-group">
-                                                                    <label for="account-e-mail">E-mail</label>
-                                                                    <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{Auth::user()->email}}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                  
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ home tab -->
-    
-                                            <!-- about  -->
-                                            <div class="tab-pane fade" id="account-vertical-about" role="tabpanel" aria-labelledby="account-pill-about" aria-expanded="false">
-                                                <!-- form -->
-                                                <form class="validate-form update-password-page">
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="account-old-password">Old Password</label>
-                                                                <div class="input-group form-password-toggle input-group-merge">
-                                                                    <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Old Password" required/>
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-text cursor-pointer">
-                                                                            <i data-feather="eye"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="account-new-password">New Password</label>
-                                                                <div class="input-group form-password-toggle input-group-merge">
-                                                                    <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="New Password" required/>
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-text cursor-pointer">
-                                                                            <i data-feather="eye"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12 col-sm-6">
-                                                            <div class="form-group">
-                                                                <label for="account-retype-new-password">Retype New Password</label>
-                                                                <div class="input-group form-password-toggle input-group-merge">
-                                                                    <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="New Password" required/>
-                                                                    <div class="input-group-append">
-                                                                        <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
-                                                                    </div>
+                                                                    <label for="about_desc">Description</label>
+                                                                    <textarea class="form-control" id="about_desc" name="about_desc" placeholder="description"  rows="5">{{$staticinfo->about_desc}}
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <button type="submit" class="btn btn-primary mr-1 mt-1">Save changes</button>
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ about password -->
+
+                                                <!-- service tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-service" aria-labelledby="account-pill-service" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-service-page mt-2">
+                                                        <div class="row">
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="service_title">Title</label>
+                                                                        <input type="text" class="form-control" id="service_title" name="service_title" placeholder="Title" value="{{$staticinfo->service_title}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="service_desc">Description</label>
+                                                                        <textarea class="form-control" id="service_desc" name="service_desc" placeholder="description"  rows="5">{{$staticinfo->service_desc}}
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="row">
+                                                            <div class="col-12 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="service_one_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_one_title" name="service_one_title" placeholder="Title" value="{{$staticinfo->service_one_title}}" />
+                                                                </div>
                                                             
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ about password -->
-
-                                            <!-- service tab -->
-                                            <div role="tabpanel" class="tab-pane" id="account-vertical-service" aria-labelledby="account-pill-service" aria-expanded="true">
-    
-                                                <!-- form -->
-                                                <form class="validate-form update-service-page mt-2">
-                                                        <b>Service</b>
-                                                        <!-- header media -->
-                                                        <div class="media">
-                                                            <a href="javascript:void(0);" class="mr-25">
-                                                                <img src="{{Auth::user()->profile_photo_path}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                                            </a>
-                                                            <!-- upload and reset button -->
-                                                            <div class="media-body mt-75 ml-1">
-                                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                                                <input type="file" id="account-upload" hidden accept="image/*" name="uaccount-upload" />
+                                                                <div class="form-group">
+                                                                    <label for="service_one_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_one_desc" name="service_one_desc" placeholder="description"  rows="5">{{$staticinfo->service_one_desc}}
+                                                                    </textarea>
+                                                                </div>
                                                             </div>
-                                                            <!--/ upload and reset button -->
+                                                            <div class="col-12 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label for="service_two_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_two_title" name="service_two_title" placeholder="Title" value="{{$staticinfo->service_two_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="service_two_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_two_desc" name="service_two_desc" placeholder="description"  rows="5">{{$staticinfo->service_two_desc}}
+                                                                    </textarea>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <!--/ header media -->
                                                         <div class="row">
                                                             <div class="col-12 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="account-username">Username</label>
-                                                                    <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{Auth::user()->name}}" />
+                                                                    <label for="service_three_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_three_title" name="service_three_title" placeholder="Title" value="{{$staticinfo->service_three_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="service_three_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_three_desc" name="service_three_desc" placeholder="description"  rows="5">{{$staticinfo->service_three_desc}}
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="account-e-mail">E-mail</label>
-                                                                    <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{Auth::user()->email}}" />
+                                                                    <label for="service_four_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_four_title" name="service_four_title" placeholder="Title" value="{{$staticinfo->service_four_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="service_four_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_four_desc" name="service_four_desc" placeholder="description"  rows="5">{{$staticinfo->service_four_desc}}
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                            </div>
                                                         </div>
-                                                  
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ service tab -->
-
-                                            <!-- showcase tab -->
-                                            <div role="tabpanel" class="tab-pane" id="account-vertical-showcase" aria-labelledby="account-pill-showcase" aria-expanded="true">
-    
-                                                <!-- form -->
-                                                <form class="validate-form update-showcase-page mt-2">
-                                                        <b>Showcase</b>
-                                                        <!-- header media -->
-                                                        <div class="media">
-                                                            <a href="javascript:void(0);" class="mr-25">
-                                                                <img src="{{Auth::user()->profile_photo_path}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                                            </a>
-                                                            <!-- upload and reset button -->
-                                                            <div class="media-body mt-75 ml-1">
-                                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                                                <input type="file" id="account-upload" hidden accept="image/*" name="uaccount-upload" />
-                                                            </div>
-                                                            <!--/ upload and reset button -->
-                                                        </div>
-                                                        <!--/ header media -->
                                                         <div class="row">
                                                             <div class="col-12 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="account-username">Username</label>
-                                                                    <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{Auth::user()->name}}" />
+                                                                    <label for="service_five_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_five_title" name="service_five_title" placeholder="Title" value="{{$staticinfo->service_five_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="service_five_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_five_desc" name="service_five_desc" placeholder="description"  rows="5">{{$staticinfo->service_five_desc}}
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label for="account-e-mail">E-mail</label>
-                                                                    <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{Auth::user()->email}}" />
+                                                                    <label for="service_six_title">Title</label>
+                                                                    <input type="text" class="form-control" id="service_six_title" name="service_six_title" placeholder="Title" value="{{$staticinfo->service_six_title}}" />
+                                                                </div>
+                                                            
+                                                                <div class="form-group">
+                                                                    <label for="service_six_desc">Description</label>
+                                                                    <textarea class="form-control" id="service_six_desc" name="service_six_desc" placeholder="description"  rows="5">{{$staticinfo->service_six_desc}}
+                                                                    </textarea>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                            </div>
                                                         </div>
-                                                  
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ showcase tab -->
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ service tab -->
 
-                                            <!-- pricing tab -->
-                                            <div role="tabpanel" class="tab-pane" id="account-vertical-pricing" aria-labelledby="account-pill-pricing" aria-expanded="true">
-    
-                                                <!-- form -->
-                                                <form class="validate-form update-pricing-page mt-2">
-                                                        <b>pricing</b>
-                                                        <!-- header media -->
-                                                        <div class="media">
-                                                            <a href="javascript:void(0);" class="mr-25">
-                                                                <img src="{{Auth::user()->profile_photo_path}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                                            </a>
-                                                            <!-- upload and reset button -->
-                                                            <div class="media-body mt-75 ml-1">
-                                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                                                <input type="file" id="account-upload" hidden accept="image/*" name="uaccount-upload" />
-                                                            </div>
-                                                            <!--/ upload and reset button -->
-                                                        </div>
-                                                        <!--/ header media -->
+                                                <!-- showcase tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-showcase" aria-labelledby="account-pill-showcase" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-showcase-page mt-2">
+                                                           
                                                         <div class="row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="account-username">Username</label>
-                                                                    <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{Auth::user()->name}}" />
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="showcase_title">Title</label>
+                                                                        <input type="text" class="form-control" id="showcase_title" name="showcase_title" placeholder="Title" value="{{$staticinfo->showcase_title}}" />
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-12 col-sm-3"></div>
                                                             </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="account-e-mail">E-mail</label>
-                                                                    <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{Auth::user()->email}}" />
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="showcase_desc">Description</label>
+                                                                        <textarea class="form-control" id="showcase_desc" name="showcase_desc" placeholder="description"  rows="5">{{$staticinfo->showcase_desc}}
+                                                                        </textarea>
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-12 col-sm-3"></div>
                                                             </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
                                                         </div>
-                                                  
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ pricing tab -->
+                                                    </form>
+                                                    <!--/ form -->
 
-                                             <!-- team tab -->
-                                             <div role="tabpanel" class="tab-pane" id="account-vertical-team" aria-labelledby="account-pill-team" aria-expanded="true">
-    
-                                                <!-- form -->
-                                                <form class="validate-form update-team-page mt-2">
-                                                        <b>team</b>
-                                                        <!-- header media -->
-                                                        <div class="media">
-                                                            <a href="javascript:void(0);" class="mr-25">
-                                                                <img src="{{Auth::user()->profile_photo_path}}" id="account-upload-img" class="rounded mr-50" alt="profile image" height="80" width="80" />
-                                                            </a>
-                                                            <!-- upload and reset button -->
-                                                            <div class="media-body mt-75 ml-1">
-                                                                <label for="account-upload" class="btn btn-sm btn-primary mb-75 mr-75">Upload</label>
-                                                                <input type="file" id="account-upload" hidden accept="image/*" name="uaccount-upload" />
-                                                            </div>
-                                                            <!--/ upload and reset button -->
-                                                        </div>
-                                                        <!--/ header media -->
+                                                </div>
+                                                <!--/ showcase tab -->
+
+                                                <!-- pricing tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-pricing" aria-labelledby="account-pill-pricing" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-pricing-page mt-2">
                                                         <div class="row">
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="account-username">Username</label>
-                                                                    <input type="text" class="form-control" id="account-username" name="username" placeholder="Username" value="{{Auth::user()->name}}" />
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="pricing_title">Title</label>
+                                                                        <input type="text" class="form-control" id="pricing_title" name="pricing_title" placeholder="Title" value="{{$staticinfo->pricing_title}}" />
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-12 col-sm-3"></div>
                                                             </div>
-                                                            <div class="col-12 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label for="account-e-mail">E-mail</label>
-                                                                    <input type="email" class="form-control" id="account-e-mail" name="email" placeholder="Email" value="{{Auth::user()->email}}" />
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="pricing_desc">Description</label>
+                                                                        <textarea class="form-control" id="pricing_desc" name="pricing_desc" placeholder="description"  rows="5">{{$staticinfo->pricing_desc}}
+                                                                        </textarea>
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-12 col-sm-3"></div>
                                                             </div>
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
-                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
                                                         </div>
-                                                  
-                                                </form>
-                                                <!--/ form -->
-                                            </div>
-                                            <!--/ team tab -->
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ pricing tab -->
+
+                                                <!-- team tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-team" aria-labelledby="account-pill-team" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-team-page mt-2">
+                                                        
+                                                        <div class="row">
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="team_title">Title</label>
+                                                                        <input type="text" class="form-control" id="team_title" name="team_title" placeholder="Title" value="{{$staticinfo->team_title}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="team_desc">Description</label>
+                                                                        <textarea class="form-control" id="team_desc" name="team_desc" placeholder="description"  rows="5">{{$staticinfo->team_desc}}
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ team tab -->
+
+                                                <!-- blog tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-blog" aria-labelledby="account-pill-blog" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-blog-page mt-2">
+                                                        
+                                                        <div class="row">
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="blog_title">Title</label>
+                                                                        <input type="text" class="form-control" id="blog_title" name="blog_title" placeholder="Title" value="{{$staticinfo->blog_title}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="blog_desc">Description</label>
+                                                                        <textarea class="form-control" id="blog_desc" name="blog_desc" placeholder="description"  rows="5">{{$staticinfo->blog_desc}}
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ blog tab -->
+
+                                                <!-- blog tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-blog" aria-labelledby="account-pill-blog" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-blog-page mt-2">
+                                                        
+                                                        <div class="row">
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="blog_title">Title</label>
+                                                                        <input type="text" class="form-control" id="blog_title" name="blog_title" placeholder="Title" value="{{$staticinfo->blog_title}}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="blog_desc">Description</label>
+                                                                        <textarea class="form-control" id="blog_desc" name="blog_desc" placeholder="description"  rows="5">{{$staticinfo->blog_desc}}
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ blog tab -->
+                                            @endforeach
 
                                         </div>
                                     </div>
@@ -353,7 +531,7 @@
                             </div>
                             <!--/ right content section -->
                         </div>
-                        <button type="button" class="btn btn-outline-danger toast-userpass-already-message" id="type-userpass-already-error" hidden>Error</button>
+                        {{-- <button type="button" class="btn btn-outline-danger toast-userpass-already-message" id="type-userpass-already-error" hidden>Error</button> --}}
                     </section>
                     <!-- / account setting page -->
     
@@ -377,9 +555,9 @@
 
     <script>
         $(function(){                
-            $('.update-setting-page').submit(function(e){
+            $('.update-home-page').submit(function(e){
                 var formData = new FormData(this);
-                var $userid = 'settingupdate/' + {{Auth::user()->id}}
+                var $userid = 'statichomeupdate/1';
                 console.log(formData);
                 e.preventDefault();
                 $.ajax({
@@ -399,9 +577,10 @@
                     }
                 });
             });   
-            $('.update-password-page').submit(function(e){
+
+            $('.update-about-page').submit(function(e){
                 var formData = new FormData(this);
-                var $userid = 'settingpasswordupdate/' + {{Auth::user()->id}}
+                var $userid = 'staticaboutupdate/1'
                 
                 e.preventDefault();
                 $.ajax({
@@ -418,12 +597,124 @@
                         if(data['success']){
                             window.location.reload();
                         }
-                        else{
-                            $('.toast-userpass-already-message').click();
+                    }
+                });
+            }); 
+
+            $('.update-service-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticserviceupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
                         }
                     }
                 });
-            });            
+            });
+            
+            $('.update-showcase-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticshowcaseupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $('.update-pricing-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticpricingupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $('.update-team-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticteamupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $('.update-blog-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticblogupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
         })
         $(window).on('load', function() {
             if (feather) {

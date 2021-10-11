@@ -75,21 +75,24 @@
             </div>
           </div>
         </nav>  
-        <div class="container">      
-          <div class="row space-100">
-            <div class="col-lg-6 col-md-12 col-xs-12">
-              <div class="contents">
-                <h2 class="head-title">You are Using Free Lite Version</h2>
-                <p>Please, Purchase full version of Slick to get all pages, features and permission to use in commercial projects</p>
-                
+        <div class="container">
+          <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="row space-100">
+              <div class="col-lg-6 col-md-12 col-xs-12">
+                <div class="contents">
+                  <h2 class="head-title"><?php echo e($staticinfo->home_title); ?></h2>
+                  <p><?php echo e($staticinfo->home_desc); ?></p>
+                  
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 col-xs-12 p-0">
+                <div class="intro-img">
+                  <img src="<?php echo e($staticinfo->home_image); ?>" alt="" style="width: 560px;height:450px;">
+                </div>            
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-xs-12 p-0 bg-gradient-secondary">
-              <div class="intro-img">
-                <img src="#" alt="">
-              </div>            
-            </div>
-          </div> 
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
+           
         </div>             
       </header>
       <!-- Header Section End --> 
@@ -97,349 +100,353 @@
   
       <!-- Services Section Start -->
       <section id="services" class="section">
-        <div class="container">
-  
-          <div class="row">
-            <!-- Start Col -->
-            <div class="col-lg-4 col-md-6 col-xs-12">
-              <div class="services-item text-center">
-                <div class="icon">
-                  <i class="lni-cog"></i>
+        <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="container">
+    
+            <div class="row">
+              <!-- Start Col -->
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="services-item text-center">
+                  <div class="icon">
+                    <i class="lni-cog"></i>
+                  </div>
+                  <h4><?php echo e($staticinfo->about_one_title); ?></h4>
+                  <p><?php echo e($staticinfo->about_one_desc); ?></p>
                 </div>
-                <h4>Bootstrap 4</h4>
-                <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>
               </div>
-            </div>
-            <!-- End Col -->
-            <!-- Start Col -->
-            <div class="col-lg-4 col-md-6 col-xs-12">
-              <div class="services-item text-center">
-                <div class="icon">
-                  <i class="lni-brush"></i>
+              <!-- End Col -->
+              <!-- Start Col -->
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="services-item text-center">
+                  <div class="icon">
+                    <i class="lni-brush"></i>
+                  </div>
+                  <h4><?php echo e($staticinfo->about_two_title); ?></h4>
+                  <p><?php echo e($staticinfo->about_two_desc); ?></p>
                 </div>
-                <h4>Slick Design</h4>
-                <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>
               </div>
-            </div>
-            <!-- End Col -->
-            <!-- Start Col -->
-            <div class="col-lg-4 col-md-6 col-xs-12">
-              <div class="services-item text-center">
-                <div class="icon">
-                  <i class="lni-heart"></i>
+              <!-- End Col -->
+              <!-- Start Col -->
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="services-item text-center">
+                  <div class="icon">
+                    <i class="lni-heart"></i>
+                  </div>
+                  <h4><?php echo e($staticinfo->about_three_title); ?></h4>
+                  <p><?php echo e($staticinfo->about_three_desc); ?></p>
                 </div>
-                <h4>Crafted with Love</h4>
-                <p>Share processes and data secure lona need to know basis Our team assured your web site is always safe.</p>
               </div>
+              <!-- End Col -->
+    
             </div>
-            <!-- End Col -->
-  
           </div>
-        </div>
+          <section id="business-plan">
+            <div class="container">
+    
+              <div class="row">
+                <!-- Start Col -->
+                <div class="col-lg-6 col-md-12 pl-0 pt-70 pr-5">
+                  <div class="business-item-img">
+                    <img src="<?php echo e($staticinfo->about_image); ?>" class="img-fluid" alt="" style="width: 550px;height:400px">
+                  </div>
+                </div>
+                <!-- End Col -->
+                <!-- Start Col -->
+                <div class="col-lg-6 col-md-12 pl-4 pt-3">
+                  <div class="business-item-info">
+                    <h3><?php echo e($staticinfo->about_title); ?></h3>
+                    <p><?php echo e($staticinfo->about_desc); ?></p>
+      
+                    
+                  </div>
+                </div>
+                <!-- End Col -->
+      
+              </div>
+            </div>
+          </section>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </section>
       <!-- Services Section End -->
   
   
-  
-      <!-- Business Plan Section Start -->
-      <section id="business-plan">
-        <div class="container">
-  
-          <div class="row">
-            <!-- Start Col -->
-            <div class="col-lg-6 col-md-12 pl-0 pt-70 pr-5">
-              <div class="business-item-img">
-                <img src="./dashboards/img/business/business-img.png" class="img-fluid" alt="">
-              </div>
-            </div>
-            <!-- End Col -->
-            <!-- Start Col -->
-            <div class="col-lg-6 col-md-12 pl-4">
-              <div class="business-item-info">
-                <h3>Crafted For Business, Startup and Agency Websites</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do <br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br> veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea <br> commodo consequat. Duis aute irure dolor in reprehenderit in voluptate <br> velit esse cillum dolore eu fugiat nulla pariatur.</p>
-  
-                <a class="btn btn-common" href="#">download</a>
-              </div>
-            </div>
-            <!-- End Col -->
-  
-          </div>
-        </div>
-      </section>
-      <!-- Business Plan Section End -->
-  
-  
-  
       <!-- Cool Fetatures Section Start -->
       <section id="features" class="section">
-        <div class="container">
-          <!-- Start Row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="features-text section-header text-center">  
-                <div>   
-                  <h2 class="section-title">Services We Provide</h2>
-                  <div class="desc-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do <br> eiusmod tempor incididunt ut labore et dolore.</p>
+        <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="container">
+            <!-- Start Row -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="features-text section-header text-center">  
+                  <div>   
+                    <h2 class="section-title"><?php echo e($staticinfo->service_title); ?></h2>
+                    <div class="desc-text">
+                      <p><?php echo e($staticinfo->service_desc); ?></p>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+    
+            </div>
+            <!-- End Row -->
+            <!-- Start Row -->
+            <div class="row featured-bg">
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item featured-border1">
+                  <div class="feature-icon float-left">
+                    <i class="lni-coffee-cup"></i>
                   </div>
-                </div> 
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_one_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_one_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
               </div>
+              <!-- End Col -->
+              
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item featured-border2">
+                  <div class="feature-icon float-left">
+                    <i class="lni-briefcase"></i>
+                  </div>
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_two_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_two_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
+              </div>
+              <!-- End Col -->
+              
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item featured-border1">
+                  <div class="feature-icon float-left">
+                    <i class="lni-invention"></i>
+                  </div>
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_three_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_three_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
+              </div>
+              <!-- End Col -->
+              
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item featured-border2">
+                  <div class="feature-icon float-left">
+                    <i class="lni-layers"></i>
+                  </div>
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_four_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_four_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
+              </div>
+              <!-- End Col -->
+              
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item featured-border3">
+                  <div class="feature-icon float-left">
+                    <i class="lni-reload"></i>
+                  </div>
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_five_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_five_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
+              </div>
+              <!-- End Col -->
+              
+            <!-- Start Col -->
+              <div class="col-lg-6 col-md-6 col-xs-12 p-0">
+                <!-- Start Fetatures -->
+                <div class="feature-item">
+                  <div class="feature-icon float-left">
+                    <i class="lni-support"></i>
+                  </div>
+                  <div class="feature-info float-left">
+                    <h4><?php echo e($staticinfo->service_six_title); ?></h4>
+                    <p><?php echo e($staticinfo->service_six_desc); ?></p>
+                  </div>
+                </div>
+                <!-- End Fetatures -->
+              </div>
+              <!-- End Col -->
+              
+    
             </div>
-  
+            <!-- End Row -->
           </div>
-          <!-- End Row -->
-          <!-- Start Row -->
-          <div class="row featured-bg">
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item featured-border1">
-                 <div class="feature-icon float-left">
-                   <i class="lni-coffee-cup"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Easy to Customize</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item featured-border2">
-                 <div class="feature-icon float-left">
-                   <i class="lni-briefcase"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Business Template</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item featured-border1">
-                 <div class="feature-icon float-left">
-                   <i class="lni-invention"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Clean & Trendy Design</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item featured-border2">
-                 <div class="feature-icon float-left">
-                  <i class="lni-layers"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Tons of Sections</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item featured-border3">
-                 <div class="feature-icon float-left">
-                   <i class="lni-reload"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Free Future Updates</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-           <!-- Start Col -->
-            <div class="col-lg-6 col-md-6 col-xs-12 p-0">
-               <!-- Start Fetatures -->
-              <div class="feature-item">
-                 <div class="feature-icon float-left">
-                   <i class="lni-support"></i>
-                 </div>
-                 <div class="feature-info float-left">
-                   <h4>Premier Support</h4>
-                   <p>Producing long lasting organic SEO results for <br> brand of different kinds for more than a decade,<br> we understand that’s your.</p>
-                 </div>
-              </div>
-              <!-- End Fetatures -->
-            </div>
-             <!-- End Col -->
-            
-  
-          </div>
-          <!-- End Row -->
-        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </section>
       <!-- Cool Fetatures Section End --> 
   
   
       <!-- Recent Showcase Section Start -->
       <section id="showcase">
-        <div class="container-fluid right-position">
-          <!-- Start Row -->
-          <div class="row gradient-bg">
-            <div class="col-lg-12">
-              <div class="showcase-text section-header text-center">  
-                <div>   
-                  <h2 class="section-title">Recent Works</h2>
-                  <div class="desc-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>  
-                    <p>eiusmod tempor incididunt ut labore et dolore.</p>
-                  </div>
-                </div> 
+        <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          
+          <div class="container-fluid right-position">
+            <!-- Start Row -->
+            <div class="row gradient-bg">
+              <div class="col-lg-12">
+                <div class="showcase-text section-header text-center">  
+                  <div>   
+                    <h2 class="section-title"><?php echo e($staticinfo->showcase_title); ?></h2>
+                    <div class="desc-text">
+                      <p><?php echo e($staticinfo->showcase_desc); ?></p>
+                    </div>
+                  </div> 
+                </div>
               </div>
+    
             </div>
-  
-          </div>
-          <!-- End Row -->
-          <!-- Start Row -->
-        
-            <div class="row justify-content-center showcase-area">
-              <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
-                <div class="showcase-slider owl-carousel">
-                  <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="item bg-info">
-                      <div class="screenshot-thumb">
-                        <img src="<?php echo e($item->photo); ?>" class="img-fluid" alt="" style="width: 290px; height:250px;" />
-                        <div class="hover-content text-center">
-                          <div class="fancy-table">
-                            <div class="table-cell">
-                              <div class="single-text">
-                                <p><?php echo e($item->title); ?></p>
-                                <h5><?php echo e($item->description); ?></h5>
-                              </div>
-                              <div class="zoom-icon">
-                                <a class="lightbox" href="<?php echo e($item -> photo); ?>"><i class="lni-zoom-in"></i></a>
-                                <a href="#"><i class="lni-link"></i></a>
+            <!-- End Row -->
+            <!-- Start Row -->
+          
+              <div class="row justify-content-center showcase-area">
+                <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
+                  <div class="showcase-slider owl-carousel">
+                    <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                      <div class="item bg-info">
+                        <div class="screenshot-thumb">
+                          <img src="<?php echo e($item->photo); ?>" class="img-fluid" alt="" style="width: 290px; height:250px;" />
+                          <div class="hover-content text-center">
+                            <div class="fancy-table">
+                              <div class="table-cell">
+                                <div class="single-text">
+                                  <p><?php echo e($item->title); ?></p>
+                                  <h5><?php echo e($item->description); ?></h5>
+                                </div>
+                                <div class="zoom-icon">
+                                  <a class="lightbox" href="<?php echo e($item -> photo); ?>"><i class="lni-zoom-in"></i></a>
+                                  <a href="#"><i class="lni-link"></i></a>
+                                </div>
                               </div>
                             </div>
                           </div>
+        
                         </div>
-      
                       </div>
-                    </div>
-                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    
+                  </div>
                 </div>
               </div>
-            </div>
-          
-          
-          <!-- End Row -->
-        </div>
+            
+            
+            <!-- End Row -->
+          </div>
+        
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </section>
       <!-- Recent Showcase Section End --> 
   
       <!-- Our Pricing Plan Section Start -->
       <section id="pricing" class="section">
-        <div class="container">
-          <!-- Start Row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="pricing-text section-header text-center">  
-                <div>   
-                  <h2 class="section-title">Pricing Plans</h2>
-                  <div class="desc-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>  
-                    <p>eiusmod tempor incididunt ut labore et dolore.</p>
+        <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        
+          <div class="container">
+            <!-- Start Row -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="pricing-text section-header text-center">  
+                  <div>   
+                    <h2 class="section-title"><?php echo e($staticinfo->pricing_title); ?></h2>
+                    <div class="desc-text">
+                      <p><?php echo e($staticinfo->pricing_desc); ?></p>
+                    </div>
+                  </div> 
+                </div>
+              </div>
+    
+            </div>
+            <!-- End Row -->
+            <!-- Start Row -->
+            <div class="row pricing-tables">
+            <!--  Start Col -->
+              <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="pricing-table text-center">
+                  <div class="pricing-details">
+                    <h3>Free</h3>
+                    <h1><span>$</span>00</h1>
+                    <ul>
+                      <li>Free Instalation</li>
+                      <li>500MB Storage</li>
+                      <li>Single User</li>
+                      <li>5 GB Bandwith</li>
+                      <li>Minimal Features</li>
+                      <li>No Dashboards</li>
+                    </ul>
                   </div>
-                </div> 
+                  <div class="plan-button">
+                    <a href="#" class="btn btn-border">Purchase</a>
+                  </div>
+                </div>
               </div>
+              <!--  End Col -->
+            <!--  Start Col -->
+              <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="pricing-table text-center">
+                  <div class="pricing-details">
+                    <h3>standard</h3>
+                    <h1><span>$</span>19.99</h1>
+                    <ul>
+                      <li>Free Instalation</li>
+                      <li>2 GB Storage</li>
+                      <li>Upto 2 users</li>
+                      <li>50 GB Bandwith</li>
+                      <li>All Features</li>
+                      <li>Sales Dashboards</li>                  
+                    </ul>
+                  </div>
+                  <div class="plan-button">
+                    <a href="#" class="btn btn-common">Purchase</a>
+                  </div>
+                </div>
+              </div>
+              <!--  End Col -->
+            <!--  Start Col -->
+              <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="pricing-table text-center">
+                  <div class="pricing-details">
+                    <h3>Business</h3>
+                    <h1><span>$</span>29.99</h1>
+                    <ul>
+                      <li>Free Instalation</li>
+                      <li>5 GB Storage</li>
+                      <li>Upto 4 users</li>
+                      <li>100 GB Bandwith</li>
+                      <li>All Features</li>
+                      <li>Sales Dashboards</li>
+                    </ul>
+                  </div>
+                  <div class="plan-button">
+                    <a href="#" class="btn btn-border">Purchase</a>
+                  </div>
+                </div>
+              </div>
+              <!--  End Col -->
+    
             </div>
-  
+            <!-- End Row -->
           </div>
-          <!-- End Row -->
-          <!-- Start Row -->
-          <div class="row pricing-tables">
-           <!--  Start Col -->
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="pricing-table text-center">
-                <div class="pricing-details">
-                  <h3>Free</h3>
-                  <h1><span>$</span>00</h1>
-                  <ul>
-                    <li>Free Instalation</li>
-                    <li>500MB Storage</li>
-                    <li>Single User</li>
-                    <li>5 GB Bandwith</li>
-                    <li>Minimal Features</li>
-                    <li>No Dashboards</li>
-                  </ul>
-                </div>
-                <div class="plan-button">
-                  <a href="#" class="btn btn-border">Purchase</a>
-                </div>
-              </div>
-            </div>
-             <!--  End Col -->
-           <!--  Start Col -->
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="pricing-table text-center">
-                <div class="pricing-details">
-                  <h3>standard</h3>
-                  <h1><span>$</span>19.99</h1>
-                  <ul>
-                    <li>Free Instalation</li>
-                    <li>2 GB Storage</li>
-                    <li>Upto 2 users</li>
-                    <li>50 GB Bandwith</li>
-                    <li>All Features</li>
-                    <li>Sales Dashboards</li>                  
-                  </ul>
-                </div>
-                <div class="plan-button">
-                  <a href="#" class="btn btn-common">Purchase</a>
-                </div>
-              </div>
-            </div>
-             <!--  End Col -->
-           <!--  Start Col -->
-            <div class="col-lg-4 col-md-4 col-xs-12">
-              <div class="pricing-table text-center">
-                <div class="pricing-details">
-                  <h3>Business</h3>
-                  <h1><span>$</span>29.99</h1>
-                  <ul>
-                    <li>Free Instalation</li>
-                    <li>5 GB Storage</li>
-                    <li>Upto 4 users</li>
-                    <li>100 GB Bandwith</li>
-                    <li>All Features</li>
-                    <li>Sales Dashboards</li>
-                  </ul>
-                </div>
-                <div class="plan-button">
-                  <a href="#" class="btn btn-border">Purchase</a>
-                </div>
-              </div>
-            </div>
-             <!--  End Col -->
-  
-          </div>
-          <!-- End Row -->
-        </div>
+        
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </section>
       <!-- Our Pricing Plan Section End --> 
   
@@ -553,55 +560,56 @@
   
       <!-- Team section Start -->
       <section id="team" class="section">
-        <div class="container">
-          <!-- Start Row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="team-text section-header text-center">  
-                <div>   
-                  <h2 class="section-title">Team Members</h2>
-                  <div class="desc-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>  
-                    <p>eiusmod tempor incididunt ut labore et dolore.</p>
-                  </div>
-                </div> 
+        <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="container">
+            <!-- Start Row -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="team-text section-header text-center">  
+                  <div>   
+                    <h2 class="section-title"><?php echo e($staticinfo->team_title); ?></h2>
+                    <div class="desc-text">
+                      <p><?php echo e($staticinfo->team_desc); ?></p>
+                    </div>
+                  </div> 
+                </div>
               </div>
-            </div>
-  
-          </div>
-          <!-- End Row -->
-          <!-- Start Row -->
-          <div class="row">
-
-            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-              <!-- Start Col -->
-              <div class="col-lg-3 col-md-6 col-xs-12">
-                <div class="single-team">
-                  <div class="team-thumb">
-                    <img src="<?php echo e($user -> profile_photo_path); ?>" class="img-fluid" alt="" style="width: 263px;height:310px;">
-                  </div>
     
-                  <div class="team-details">
-                  <div class="team-social-icons">
-                      <ul class="social-list">
-                        <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                        <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                        <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                      </ul>
-                    </div> 
-                    <div class="team-inner text-center">
-                      <h5 class="team-title"><?php echo e($user->name); ?></h5>
-                      <p><?php echo e($user->role); ?></p>
+            </div>
+            <!-- End Row -->
+            <!-- Start Row -->
+            <div class="row">
+
+              <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <!-- Start Col -->
+                <div class="col-lg-3 col-md-6 col-xs-12">
+                  <div class="single-team">
+                    <div class="team-thumb">
+                      <img src="<?php echo e($user -> profile_photo_path); ?>" class="img-fluid" alt="" style="width: 263px;height:310px;">
+                    </div>
+      
+                    <div class="team-details">
+                    <div class="team-social-icons">
+                        <ul class="social-list">
+                          <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
+                          <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
+                          <li><a href="#"><i class="lni-google-plus"></i></a></li>
+                        </ul>
+                      </div> 
+                      <div class="team-inner text-center">
+                        <h5 class="team-title"><?php echo e($user->name); ?></h5>
+                        <p><?php echo e($user->role); ?></p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Start Col -->
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
-  
+                <!-- Start Col -->
+              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
+    
+            </div>
+            <!-- End Row -->
           </div>
-          <!-- End Row -->
-        </div>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </section>
       <!-- Team section End -->
   
@@ -611,20 +619,20 @@
         <!-- Container Starts -->
         <div class="container">
           <!-- Start Row -->
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="blog-text section-header text-center">  
-                <div>   
-                  <h2 class="section-title">Latest Blog Posts</h2>
-                  <div class="desc-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do</p>  
-                    <p>eiusmod tempor incididunt ut labore et dolore.</p>
-                  </div>
-                </div> 
+          <?php $__currentLoopData = $staticinfos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $staticinfo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="blog-text section-header text-center">  
+                  <div>   
+                    <h2 class="section-title"><?php echo e($staticinfo->blog_title); ?></h2>
+                    <div class="desc-text">
+                      <p><?php echo e($staticinfo->blog_desc); ?></p>
+                    </div>
+                  </div> 
+                </div>
               </div>
             </div>
-  
-          </div>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <!-- End Row -->
           <!-- Start Row -->
           <div class="row">

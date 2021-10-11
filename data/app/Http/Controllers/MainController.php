@@ -14,7 +14,8 @@ class MainController extends Controller
     $items = DB::table('items')->take(20)->get();
     $blogs = DB::table('blogs')->orderBy('photo', 'desc')->take(3)->get();
     $siteinfos = DB::table('siteinfo')->get();
+    $staticinfos = DB::table('staticinfos')->get();
     // print_r($users);exit;
-    return view('front/mainpage')->with('items', $items)->with('users', $users)->with('blogs', $blogs)->with('siteinfos', $siteinfos);
+    return view('front/mainpage')->with('items', $items)->with('users', $users)->with('blogs', $blogs)->with('siteinfos', $siteinfos)->with('staticinfos', $staticinfos);
   }
 }

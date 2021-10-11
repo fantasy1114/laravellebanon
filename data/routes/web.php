@@ -96,6 +96,14 @@ Route::group(['middleware' => 'auth'], function() {
 
       // static_ info
       Route::get('/staticinfo', [App\Http\Controllers\StaticinfoController::class, 'index'])->name('index');
-
+      Route::post('/statichomeupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'statichomeupdate'])->name('statichomeupdate');
+      Route::post('/staticaboutupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticaboutupdate'])->name('staticaboutupdate');
+      Route::post('/staticserviceupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticserviceupdate'])->name('staticserviceupdate');
+      Route::post('/staticshowcaseupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticshowcaseupdate'])->name('staticshowcaseupdate');
+      Route::post('/staticpricingupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticpricingupdate'])->name('staticpricingupdate');
+      Route::post('/staticteamupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticteamupdate'])->name('staticteamupdate');
+      Route::post('/staticblogupdate/{id}', [App\Http\Controllers\StaticinfoController::class, 'staticblogupdate'])->name('staticblogupdate');
+      
+    
     });
   

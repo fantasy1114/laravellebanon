@@ -12,71 +12,124 @@ class StaticinfoController extends Controller
   // User List Page
   public function index()
   {
-    // $staticinfos = DB::table('staticinfos')->get();
-    // return view('/staticinfo', ['staticinfos' => $staticinfos]);
-    return view('/staticinfo');
+    $staticinfos = DB::table('staticinfos')->get();
+    return view('/staticinfo', ['staticinfos' => $staticinfos]);
+
   }
 
-  public function siteinfoupdate(Request $request, $id)
+  public function statichomeupdate(Request $request, $id)
   {
-    
-    $siteinfos = DB::table('siteinfo')->get();
-   
-    // print_r($request);exit();
 
-    $validatedData = $request->validate([
-        'utitle' => 'required',
-        'ulat' => 'required',
-        'ulng' => 'required',
-        'ucontacts' => 'required',
-        'uphone' => 'required',
-        'uemail' => 'required',
-        'uoffice' => 'required',
-        'uwhatapp' => 'required',
-    ]);
-    if ($request->file('uaccount-upload')) {
-      // begin image unlink
-      // ini_set('memory_limit', '-1');
-      $imagelinks = DB::table('siteinfo')->where('id', $id)->get();
-      $deleteimage = '';
-      foreach ($imagelinks as $imagelink){
-        $deleteimage = $imagelink->logo;
-      }
-      unlink($deleteimage);
-      // end Image unlink
-      $imagePath = $request->file('uaccount-upload');
-      // $imageName = $imagePath->getClientOriginalName();
-      $imageName = time().'.png';
-    
-      $imagePath->move(public_path('uploads/logos/'), $imageName);
-      DB::table('siteinfo')->where('id', $id)->update([
-        'title' => $validatedData['utitle'],
-        'logo' => './uploads/logos/'.$imageName,
-        'lat' => $validatedData['ulat'],
-        'lng' => $validatedData['ulng'],
-        'phone' => $validatedData['uphone'],
-        'email' => $validatedData['uemail'],
-        'office' => $validatedData['uoffice'],
-        'whatapp' => $validatedData['uwhatapp'],
-        'contacts' => $validatedData['ucontacts']
-      ]);
+    if ($request->file('home_image')) {
+        $imagePath = $request->file('home_image');
+        $imageName = time().'.png';
+        $imagePath->move(public_path('uploads/static/'), $imageName);
+        DB::table('staticinfos')->where('id', $id)->update([
+          'home_title' => request('home_title'),
+          'home_desc' => request('home_desc'),
+          'home_image' => './uploads/static/'.$imageName,
+        ]);
+        return response()->json(['success'=>true]);
     }
     else{
-      DB::table('siteinfo')->where('id', $id)->update([
-        'title' => $validatedData['utitle'],
-        'lat' => $validatedData['ulat'],
-        'lng' => $validatedData['ulng'],
-        'phone' => $validatedData['uphone'],
-        'email' => $validatedData['uemail'],
-        'office' => $validatedData['uoffice'],
-        'whatapp' => $validatedData['uwhatapp'],
-        'contacts' => $validatedData['ucontacts']
-        // 'location' => $validatedData['location']
+      DB::table('staticinfos')->where('id', $id)->update([
+        'home_title' => request('home_title'),
+        'home_desc' => request('home_desc'),
       ]);
+      return response()->json(['success'=>true]);
     }
-
-    
-   
-    return response()->json(['success'=>true]);
   }
+
+  public function staticaboutupdate(Request $request, $id)
+  {
+
+    if ($request->file('about_image')) {
+        $imagePath = $request->file('about_image');
+        $imageName = time().'.png';
+        $imagePath->move(public_path('uploads/static/'), $imageName);
+        DB::table('staticinfos')->where('id', $id)->update([
+          'about_one_title' => request('about_one_title'),
+          'about_one_desc' => request('about_one_desc'),
+          'about_two_title' => request('about_two_title'),
+          'about_two_desc' => request('about_two_desc'),
+          'about_three_title' => request('about_three_title'),
+          'about_three_desc' => request('about_three_desc'),
+          'about_title' => request('about_title'),
+          'about_desc' => request('about_desc'),
+          'about_image' => './uploads/static/'.$imageName,
+        ]);
+        return response()->json(['success'=>true]);
+    }
+    else{
+      DB::table('staticinfos')->where('id', $id)->update([
+        'about_one_title' => request('about_one_title'),
+        'about_one_desc' => request('about_one_desc'),
+        'about_two_title' => request('about_two_title'),
+        'about_two_desc' => request('about_two_desc'),
+        'about_three_title' => request('about_three_title'),
+        'about_three_desc' => request('about_three_desc'),
+        'about_title' => request('about_title'),
+        'about_desc' => request('about_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    }
+  }
+
+  public function staticserviceupdate(Request $request, $id)
+  {
+
+    DB::table('staticinfos')->where('id', $id)->update([
+      'service_title' => request('service_title'),
+      'service_desc' => request('service_desc'),
+      'service_one_title' => request('service_one_title'),
+      'service_one_desc' => request('service_one_desc'),
+      'service_two_title' => request('service_two_title'),
+      'service_two_desc' => request('service_two_desc'),
+      'service_three_title' => request('service_three_title'),
+      'service_three_desc' => request('service_three_desc'),
+      'service_four_title' => request('service_four_title'),
+      'service_four_desc' => request('service_four_desc'),
+      'service_five_title' => request('service_five_title'),
+      'service_five_desc' => request('service_five_desc'),
+      'service_six_title' => request('service_six_title'),
+      'service_six_desc' => request('service_six_desc'),
+    ]);
+    return response()->json(['success'=>true]);
+  
+  }
+
+  public function staticshowcaseupdate(Request $request, $id)
+  {
+
+      DB::table('staticinfos')->where('id', $id)->update([
+        'showcase_title' => request('showcase_title'),
+        'showcase_desc' => request('showcase_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    
+  }
+
+  public function staticpricingupdate(Request $request, $id)
+  {
+
+      DB::table('staticinfos')->where('id', $id)->update([
+        'pricing_title' => request('pricing_title'),
+        'pricing_desc' => request('pricing_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    
+  }
+
+  public function staticteamupdate(Request $request, $id)
+  {
+
+      DB::table('staticinfos')->where('id', $id)->update([
+        'team_title' => request('team_title'),
+        'team_desc' => request('team_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    
+  }
+
+
 }

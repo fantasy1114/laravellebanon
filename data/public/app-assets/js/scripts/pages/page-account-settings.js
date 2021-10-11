@@ -113,4 +113,47 @@ $(function () {
       });
     });
   }
+
+
+  // static Home
+  var form = $('.validate-form'),
+  flat_picker = $('.flatpickr'),
+  homeimageimg = $('#home_image-img'),
+  homeimageBtn = $('#home_image');
+
+  // Update user photo on click of button
+  if (homeimageBtn) {
+    homeimageBtn.on('change', function (e) {
+      var reader = new FileReader(),
+        files = e.target.files;
+      reader.onload = function () {
+        if (homeimageimg) {
+          homeimageimg.attr('src', reader.result);
+        }
+      };
+      reader.readAsDataURL(files[0]);
+    });
+  }
+
+  // static About
+  var form = $('.validate-form'),
+  flat_picker = $('.flatpickr'),
+  aboutimageimg = $('#about_image_img'),
+  aboutimage = $('#about_image');
+
+  // Update user photo on click of button
+  if (aboutimage) {
+    aboutimage.on('change', function (e) {
+      var reader = new FileReader(),
+        files = e.target.files;
+      reader.onload = function () {
+        if (aboutimageimg) {
+          aboutimageimg.attr('src', reader.result);
+        }
+      };
+      reader.readAsDataURL(files[0]);
+    });
+  }
+
+
 });
