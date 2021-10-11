@@ -13,19 +13,11 @@ $(function() {
     var dtUserTable = $('.user-list-table'),
         newUserSidebar = $('.new-user-modal'),
         newUserForm = $('.add-new-user')
-        // statusObj = {
-        //     1: { title: 'Pending', class: 'badge-light-warning' },
-        //     2: { title: 'Active', class: 'badge-light-success' },
-        //     3: { title: 'Inactive', class: 'badge-light-secondary' }
-        // };
 
     var assetPath = '../../../app-assets/';
-    // userView = 'app-user-view.html',
-    // userEdit = 'userlist/edit/';
+
     if ($('body').attr('data-framework') === 'laravel') {
         assetPath = $('body').attr('data-asset-path');
-        // userView = assetPath + 'app/user/view';
-        // userEdit = assetPath + 'app/user/edit';
     }
 
     // Users List datatable
@@ -35,66 +27,17 @@ $(function() {
             columns: [
                 // columns according to JSON
                 { data: 'responsive_id' },
-                { data: 'companyname' },
-                { data: 'status' },
-                { data: 'sellmethod' },
-                { data: 'exchange' },
-                { data: 'owner' },
-                { data: 'can' },
-                { data: 'delivery' },
-               
-                { data: '' }
+                { data: 'title' },
+                { data: 'photo' },
+                { data: 'text' },
+                { data: 'date' },
             ],
             columnDefs: [{
-                    // For Responsive
-                    className: 'control',
-                    orderable: false,
-                    responsivePriority: 2,
-
                 },
                 {
-                    targets: 9,
+                    targets: 5,
                     responsivePriority: 4,
                 },
-                {
-                    // User full name and username
-                    targets: 0,
-                    responsivePriority: 4,
-                    render: function(data, type, full, meta) {
-                        var $name = full['companyname'],
-                            // $uname = full['username'],
-                            $image = full['avatar'];
-                        if ($image) {
-                            // For Avatar image
-                            var $output =
-                                '<img src="' + assetPath + 'images/avatars/' + $image + '" alt="Avatar" height="32" width="32">';
-                        } else {
-                            // For Avatar badge
-                            var stateNum = Math.floor(Math.random() * 6) + 1;
-                            var states = ['success', 'danger', 'warning', 'info', 'dark', 'primary', 'secondary'];
-                            var $state = states[stateNum],
-                                $name = full['companyname'],
-                                $initials = $name.match(/\b\w/g) || [];
-                            $initials = (($initials.shift() || '') + ($initials.pop() || '')).toUpperCase();
-                            $output = '<span class="avatar-content">' + $initials + '</span>';
-                        }
-                        var colorClass = $image === '' ? ' bg-light-' + $state + ' ' : '';
-                        // Creates full output for row
-                        var $row_output =
-                            '<div class="d-flex justify-content-left align-items-center">' +
-                            '<div class="avatar-wrapper">' +
-                            '<div class="avatar ' +
-                            colorClass +
-                            ' mr-1">' +
-                            $output +
-                            '</div>' +
-                            '</div>' +
-
-                            '</div>';
-                        return $row_output;
-                    }
-                },
-              
             ],
             order: [
                 [2, 'desc']
@@ -114,7 +57,7 @@ $(function() {
             },
             // Buttons with Dropdown
             buttons: [{
-                text: 'Add New Company',
+                text: 'Add New Blog',
                 className: 'add-new btn btn-primary mt-50 ' + $createdata,
                 attr: {
                     'data-toggle': 'modal',
@@ -130,39 +73,19 @@ $(function() {
                     display: $.fn.dataTable.Responsive.display.modal({
                         header: function(row) {
                             var data = row.data();
-                            return 'Details of ' + data['companyname'];
+                            return 'Details of ' + data['title'];
                         }
                     }),
                     type: 'column',
                     renderer: $.fn.dataTable.Responsive.renderer.tableAll({
                         tableClass: 'table',
                         columnDefs: [{
+                                targets: 1,
+                                visible: false
+                            },
+                            {
                                 targets: 2,
                                 visible: false
-                            },
-                            {
-                                targets: 3,
-                                visible: false
-                            },
-                            {
-                                targets: 4,
-                                visible: false
-                            },
-                            {
-                                targets: 5,
-                                visible: false
-                            },
-                            {
-                                targets: 6,
-                                visible: false
-                            },
-                            {
-                                targets: 7,
-                                visible: true
-                            },
-                            {
-                                targets: 8,
-                                visible: true
                             }
                         ]
                     })
@@ -198,6 +121,7 @@ $(function() {
                                 select.append('<option value="' + d + '" class="text-capitalize">' + d + '</option>');
                             });
                     });
+
             }
         });
     }
@@ -211,25 +135,19 @@ $(function() {
         }
     }
 
+
     // Form Validation
     if (newUserForm.length) {
         newUserForm.validate({
             errorClass: 'error',
             rules: {
-                'companyname': {
+                'title': {
                     required: true
                 },
-                'sellmethod': {
-                    required: true
-                },
-                'exchange': {
-                    required: true
-                },
-
-                'delivery': {
+                'text': {
                     required: true
                 }
-                
+
             }
         });
 
@@ -240,7 +158,7 @@ $(function() {
             if (isValid) {
                 $.ajax({
                     type: 'post',
-                    url: 'companymanagement/' + $userinfo,
+                    url: 'blogs',
                     cache:false,
                     data: formData,
                     contentType: false,
@@ -250,7 +168,7 @@ $(function() {
                             window.location.reload();
                         }
                         else{
-                            $('.toast-company-update-message').click();
+                            $('.toast-category-already-message').click();
                         }
                     }
                 });

@@ -298,16 +298,7 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-    <!-- BEGIN: Footer-->
-    <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <!-- END: Footer-->
-    <script>
-        var $userinfo = <?php echo e(Auth::user()->id); ?>
-
-    </script>
-
         
-    
     <?php if(Auth::user()->rolefunction->items_create != "on"): ?>
         <script>
             var $createdata = "data-page-close";
@@ -323,6 +314,14 @@
             var $createdata = "123";
         </script>
     <?php endif; ?>
+    <!-- BEGIN: Footer-->
+    <?php echo $__env->make('layouts/footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <!-- END: Footer-->
+    <script>
+        var $userinfo = <?php echo e(Auth::user()->id); ?>
+
+    </script>
+
 
 
     <!-- BEGIN: Page JS-->

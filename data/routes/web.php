@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function() {
       Route::get('/userdelete/{id}', [App\Http\Controllers\UserlistController::class, 'userdelete'])->name('userdelete');
       Route::post('/userupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userupdate'])->name('userupdate');
       Route::post('/userliststatusupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userliststatusupdate'])->name('userliststatusupdate');
+      Route::post('/userlistshowupdate/{id}', [App\Http\Controllers\UserlistController::class, 'userlistshowupdate'])->name('userlistshowupdate');
+      
       // END -------- USERLIST ----------
       //-------------- BEGIN companymanagement-------------
       Route::get('companymanagement', [App\Http\Controllers\AllusercompanymanagementController::class, 'index'])->name('index');
@@ -54,16 +56,6 @@ Route::group(['middleware' => 'auth'], function() {
       Route::get('/itemsdelete/{id}', [App\Http\Controllers\ItemsController::class, 'itemsdelete'])->name('itemsdelete');
       Route::post('/itemsupdate/{id}', [App\Http\Controllers\ItemsController::class, 'itemsupdate'])->name('itemsupdate');
       // // -------END Item -----------------
-
-      // // ---------BEGIN Item Status-------------
-      // Route::get('/itemstatus', [App\Http\Controllers\ItemstatusController::class, 'index'])->name('index');
-      // Route::post('/itemstatusupdate/{id}', [App\Http\Controllers\ItemstatusController::class, 'itemstatusupdate'])->name('itemstatusupdate');
-      // // -------END Item Status -----------------
-
-      // // ---------BEGIN CompanySetting-------------
-      // Route::get('/companysetting', [App\Http\Controllers\CompanysettingController::class, 'index'])->name('index');
-      // Route::post('/companysettingupdate/{id}', [App\Http\Controllers\CompanysettingController::class, 'companysettingupdate'])->name('companysettingupdate');
-      // // -------END CompanySetting -----------------
 
       // // ---------BEGIN SiteInfo-------------
       Route::get('/siteinfo', [App\Http\Controllers\SiteinfoController::class, 'index'])->name('index');
@@ -94,6 +86,16 @@ Route::group(['middleware' => 'auth'], function() {
       Route::post('/roleupdatethree/{id}', [App\Http\Controllers\UserroleController::class, 'roleupdatethree'])->name('roleupdatethree');
       Route::get('/userrole', [App\Http\Controllers\UserroleController::class, 'index'])->name('index');
 
-      Route::get('/frontend', [App\Http\Controllers\FrontendController::class, 'index'])->name('index');
+
+
+      // blog
+      Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('index');
+      Route::post('/blogs', [App\Http\Controllers\BlogController::class, 'blogscreate'])->name('blogscreate');
+      Route::get('/blogsdelete/{id}', [App\Http\Controllers\BlogController::class, 'blogsdelete'])->name('blogsdelete');
+      Route::post('/blogsupdate/{id}', [App\Http\Controllers\BlogController::class, 'blogsupdate'])->name('blogsupdate');
+
+      // static_ info
+      Route::get('/staticinfo', [App\Http\Controllers\StaticinfoController::class, 'index'])->name('index');
+
     });
   

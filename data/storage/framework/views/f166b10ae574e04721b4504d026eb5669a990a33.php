@@ -47,28 +47,30 @@
                                         <th>Exchange Rate</th>
                                         <th>Can Deliver</th>
                                         <th>Delivery Time</th>
+                                        <th>Owner</th>
                                         <th class="<?php if(Auth::user()->rolefunction->companies_write != 'on' && Auth::user()->rolefunction->companies_delete != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $__currentLoopData = $companys; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-                                            <td><?php echo e($company -> companyname); ?></td>
-                                            <td><?php echo e($company -> companyname); ?></td>
-                                            <td><img src="<?php echo e($company -> logo); ?>" style="width:48px; height:34px;"></td>
+                                            <td><?php echo e($company->companyname); ?></td>
+                                            <td><?php echo e($company->companyname); ?></td>
+                                            <td><img src="<?php echo e($company->logo); ?>" style="width:48px; height:34px;"></td>
                                             <td>
-                                                <div class="custom-control custom-switch custom-control-inline status-update" data-id="<?php echo e($company -> id); ?>" data-status="<?php echo e($company -> status); ?>">
-                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company -> id); ?>" <?php if($company -> status == 'on'): ?> checked <?php endif; ?> 
+                                                <div class="custom-control custom-switch custom-control-inline status-update" data-id="<?php echo e($company->id); ?>" data-status="<?php echo e($company -> status); ?>">
+                                                    <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($company->id); ?>" <?php if($company->status == 'on'): ?> checked <?php endif; ?> 
                                                     <?php if(Auth::user()->rolefunction->companies_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>
                                                     class="status-checked" >
                                                     <label class="custom-control-label" for="customSwitch<?php echo e($company -> id); ?>"></label>
                                                 </div>
                                             </td>
-                                            <td><?php echo e($company -> sellmethod); ?></td>
-                                            <td><?php echo e($company -> exchange); ?></td>
-                                            <td> <input type="checkbox" class="" <?php if($company -> can == 'on'): ?> checked <?php endif; ?> disabled>
+                                            <td><?php echo e($company->sellmethod); ?></td>
+                                            <td><?php echo e($company->exchange); ?></td>
+                                            <td><?php echo e($company->owner->name); ?></td>
+                                            <td> <input type="checkbox" class="" <?php if($company->can == 'on'): ?> checked <?php endif; ?> disabled>
                                                 </td>
-                                            <td><?php echo e($company -> delivery); ?></td>
+                                            <td><?php echo e($company->delivery); ?></td>
                                             <td>
                                                 <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->companies_write != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($company -> id); ?>" data-companyname="<?php echo e($company -> companyname); ?>" data-status="<?php echo e($company -> status); ?>" data-sellmethod="<?php echo e($company -> sellmethod); ?>" data-exchange="<?php echo e($company -> exchange); ?>" data-delivery="<?php echo e($company -> delivery); ?>" data-can="<?php echo e($company -> can); ?>" data-logo="<?php echo e($company -> logo); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 mr-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>

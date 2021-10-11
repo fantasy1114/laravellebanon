@@ -40,6 +40,7 @@ $(function () {
   var deletecompanydata = $('.delete_company_data');
   var deletecategorydata = $('.delete_category_data');
   var deletedataitem = $('.delete_data_item');
+  var deleteblogdata = $('.delete_blog_data');
 
   var confirmColor = $('#confirm-color');
 
@@ -596,6 +597,42 @@ $(function () {
     deletedataitem.on('click', function () {
       var $id = $(this).data('id');      
       var $userid = 'itemsdelete/' + $id;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-outline-danger ml-1'
+        },
+        buttonsStyling: false
+      }).then(function (result) {
+        if (result.value) {
+          $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'get',
+            url: $userid,
+            success: function(data) {
+                if(data['success']){
+                    window.location.reload();
+                }
+            }
+          });
+        }
+      });
+    });
+  }
+
+  // delete blog deletedata
+
+  if (deleteblogdata.length) {
+    deleteblogdata.on('click', function () {
+      var $id = $(this).data('id');      
+      var $userid = 'blogsdelete/' + $id;
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",

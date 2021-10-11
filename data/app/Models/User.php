@@ -28,6 +28,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'user_show',
         'status',
         'startdata',
         'enddata',

@@ -14,7 +14,7 @@ class AllusercompanymanagementController extends Controller
   public function index()
   {
     if(Auth::user()->rolefunction->companies_list == 'All'){
-      $companys = DB::table('companies')->get();
+      $companys = Companies::with('owner')->get();
       $exchanges = DB::table('exchange')->get();
       foreach ($exchanges as $exchange){
         $exchange_value = $exchange->exchange;
@@ -22,7 +22,7 @@ class AllusercompanymanagementController extends Controller
       return view('/companymanagement', ['companys' => $companys], ['exchange_value' => $exchange_value]);
     }
     else if(Auth::user()->rolefunction->companies_list == 'Only his'){
-      $companys = DB::table('companies')->where('users_id', Auth::user()->id)->get();
+      $companys = Companies::with('owner')->where('users_id', Auth::user()->id)->get();
       $exchanges = DB::table('exchange')->get();
       foreach ($exchanges as $exchange){
         $exchange_value = $exchange->exchange;
@@ -53,7 +53,8 @@ class AllusercompanymanagementController extends Controller
     $imageName = "default.png";
     if ($request->file('account-upload')) {
       $imagePath = $request->file('account-upload');
-      $imageName = $imagePath->getClientOriginalName();
+      // $imageName = $imagePath->getClientOriginalName();
+      $imageName = time().'.png';
       $imagePath->move(public_path('uploads/company/'), $imageName);
     }
     if($ischecking == 0){
@@ -135,7 +136,8 @@ class AllusercompanymanagementController extends Controller
       if($ischecking == 0){
         if ($request->file('uaccount-upload')) {
           $imagePath = $request->file('uaccount-upload');
-          $imageName = $imagePath->getClientOriginalName();
+          // $imageName = $imagePath->getClientOriginalName();
+          $imageName = time().'.png';
           $imagePath->move(public_path('uploads/company/'), $imageName);
   
           DB::table('companies')->where('id', $id)->update([

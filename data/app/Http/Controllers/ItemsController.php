@@ -57,7 +57,8 @@ class ItemsController extends Controller
     $imageName = "default.png";
     if ($request->file('account-upload')) {
       $imagePath = $request->file('account-upload');
-      $imageName = $imagePath->getClientOriginalName();
+      // $imageName = $imagePath->getClientOriginalName();
+      $imageName = time().'.png';
       $imagePath->move(public_path('uploads'), $imageName);
     }   
     if($itemschecking == 0){
@@ -141,7 +142,8 @@ class ItemsController extends Controller
       if($itemschecking == 0){
         if ($request->file('uaccount-upload')) {
           $imagePath = $request->file('uaccount-upload');
-          $imageName = $imagePath->getClientOriginalName();
+          // $imageName = $imagePath->getClientOriginalName();
+          $imageName = time().'.png';
           $imagePath->move(public_path('uploads'), $imageName);
           DB::table('items')->where('id', $id)->update([
             'category_id' => $categorychecking,

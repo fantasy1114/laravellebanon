@@ -19,6 +19,7 @@ $(function () {
     typecategoryError = $('#type-category-error'),
     typecategoryalreadyerror = $('#type-category-already-error'),
     typeitemalreadyerror = $('#type-item-already-error'),
+    typeblogalreadyerror = $('#type-blog-already-error'),
     typeuserpassalreadyerror = $('#type-userpass-already-error'),
     typealreadydatasuccess = $('#type-already-data-success'),
 
@@ -98,6 +99,13 @@ $(function () {
   });
   typeitemalreadyerror.on('click', function () {
     toastr['error']('👋 The item already exists.', 'Error!', {
+      closeButton: true,
+      tapToDismiss: false,
+      rtl: isRtl
+    });
+  });
+  typeblogalreadyerror.on('click', function () {
+    toastr['error']('👋 The Blog already exists.', 'Error!', {
       closeButton: true,
       tapToDismiss: false,
       rtl: isRtl

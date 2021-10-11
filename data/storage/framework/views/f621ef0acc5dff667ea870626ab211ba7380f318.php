@@ -81,15 +81,12 @@
               <div class="contents">
                 <h2 class="head-title">You are Using Free Lite Version</h2>
                 <p>Please, Purchase full version of Slick to get all pages, features and permission to use in commercial projects</p>
-                <div class="header-button">
-                  <a href="#" rel="nofollow" target="_blank" class="btn btn-border-filled">Purchase Now</a>
-                  <a href="#" rel="nofollow" target="_blank" class="btn btn-border page-scroll">Learn More</a>
-                </div>
+                
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-xs-12 p-0">
+            <div class="col-lg-6 col-md-12 col-xs-12 p-0 bg-gradient-secondary">
               <div class="intro-img">
-                <img src="./dashboards/img/intro.png" alt="">
+                <img src="#" alt="">
               </div>            
             </div>
           </div> 
@@ -318,20 +315,20 @@
           </div>
           <!-- End Row -->
           <!-- Start Row -->
-          
+        
             <div class="row justify-content-center showcase-area">
               <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
                 <div class="showcase-slider owl-carousel">
                   <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="item bg-info">
                       <div class="screenshot-thumb">
-                        <img src="<?php echo e($item -> photo); ?>" class="img-fluid" alt="" style="width: 290px; height:250px;" />
+                        <img src="<?php echo e($item->photo); ?>" class="img-fluid" alt="" style="width: 290px; height:250px;" />
                         <div class="hover-content text-center">
                           <div class="fancy-table">
                             <div class="table-cell">
                               <div class="single-text">
-                                <p>Icon , Web</p>
-                                <h5>Redesign Slack</h5>
+                                <p><?php echo e($item->title); ?></p>
+                                <h5><?php echo e($item->description); ?></h5>
                               </div>
                               <div class="zoom-icon">
                                 <a class="lightbox" href="<?php echo e($item -> photo); ?>"><i class="lni-zoom-in"></i></a>
@@ -344,9 +341,6 @@
                       </div>
                     </div>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  
-                
-    
                   
                 </div>
               </div>
@@ -596,16 +590,14 @@
                       </ul>
                     </div> 
                     <div class="team-inner text-center">
-                      <h5 class="team-title"><?php echo e($user -> name); ?></h5>
-                      <p><?php echo e($user -> role); ?></p>
+                      <h5 class="team-title"><?php echo e($user->name); ?></h5>
+                      <p><?php echo e($user->role); ?></p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Start Col -->
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            
-   
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
   
           </div>
           <!-- End Row -->
@@ -636,34 +628,31 @@
           <!-- End Row -->
           <!-- Start Row -->
           <div class="row">
-            <?php $__currentLoopData = $lastitems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lastitem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
               <!-- Start Col -->
-              <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+              <div class="col-sm-4 col-xs-12 blog-item">
                 <!-- Blog Item Starts -->
-                <div class="blog-item-wrapper">
+                <div class="blog-item-wrapper p-5">
                   <div class="blog-item-img">
-                    <a href="single-post.html">
-                      <img src="<?php echo e($lastitem -> photo); ?>" class="img-fluid" alt="" style="width:360px;height:240px;">
+                    <a href="#">
+                      <img src="<?php echo e($blog->photo); ?>" class="img-fluid" alt="" style="width:240px;height:180px;">
                     </a>             
                   </div>
                   <div class="blog-item-text"> 
-                    <h3><a href="single-post.html">How Slick Will Transform  <br>Your Business</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-                    <a href="" class="read-more">5 Min read</a>
+                    <h3><a class="lightbox" href="<?php echo e($blog->photo); ?>"><?php echo e($blog->title); ?></a></h3>
+                    <p><?php echo e($blog->blog_text); ?></p>
+                    <a href="#" class="read-more"></a>
                   </div>
                   <div class="author">
-                    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-                    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
+                    
+                    <span class="date float-right"><i class="lni-calendar"></i><?php echo e($blog->blog_date); ?></span>
                   </div>
                 </div>
                 <!-- Blog Item Wrapper Ends-->
               </div>
               <!-- End Col -->
               <!-- Start Col -->
-              
-              <!-- End Col -->
-              <!-- Start Col -->
-              
+            
               <!-- End Col -->
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </div>

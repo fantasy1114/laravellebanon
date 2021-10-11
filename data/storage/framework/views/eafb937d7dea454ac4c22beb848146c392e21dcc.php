@@ -41,6 +41,7 @@
                                         <th>Email</th>
                                         <th>Photo</th>
                                         <th>Role</th>
+                                        <th>Show</th>
                                         <th>Status</th>
                                         <th>StartData</th>
                                         <th>EndData</th>
@@ -54,7 +55,13 @@
                                             <td><?php echo e($userlist->name); ?></td>
                                             <td><?php echo e($userlist->email); ?></td>
                                             <td><img src="<?php echo e($userlist -> profile_photo_path); ?>" style="width: 48px;height:36px;"></td>
-                                            <td><?php echo e($userlist -> role); ?></td>
+                                            <td><?php echo e($userlist->role); ?></td>
+                                            <td>
+                                                <div class="custom-control custom-switch custom-control-inline show-userlist-update" data-id="<?php echo e($userlist->id); ?>" data-user_show="<?php echo e($userlist->user_show); ?>">
+                                                <input type="checkbox" class="custom-control-input" id="customSwitchshow<?php echo e($userlist->id); ?>" <?php if($userlist->user_show == 'on'): ?> checked <?php endif; ?> class="status-checked"  <?php if($userlist->id == 1 || Auth::user()->rolefunction->users_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
+                                                <label class="custom-control-label" for="customSwitchshow<?php echo e($userlist->id); ?>"></label>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="custom-control custom-switch custom-control-inline status-userlist-update" data-id="<?php echo e($userlist -> id); ?>" data-status="<?php echo e($userlist -> status); ?>">
                                                 <input type="checkbox" class="custom-control-input" id="customSwitch<?php echo e($userlist -> id); ?>" <?php if($userlist -> status == 'on'): ?> checked <?php endif; ?> class="status-checked"  <?php if($userlist->id == 1 || Auth::user()->rolefunction->users_write != 'on' || Auth::user()->status == ''): ?> disabled <?php endif; ?>>
@@ -316,23 +323,42 @@
             });
 
             $('.status-userlist-update').on('change', function () {
-            var $id = $(this).data('id');
-            var $userid = 'userliststatusupdate/' + ($(this).data('id'));
-            console.log($id);
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'post',
-                url: $userid,
-                data: {status: 'change'},
-                success: function(data) {
-                    if(data['success']){
-                        $('.toast-sucess-message').click();
+                var $id = $(this).data('id');
+                var $userid = 'userliststatusupdate/' + ($(this).data('id'));
+                // console.log($id);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    data: {status: 'change'},
+                    success: function(data) {
+                        if(data['success']){
+                            $('.toast-sucess-message').click();
+                        }
                     }
-                }
+                });
             });
-        });
+            $('.show-userlist-update').on('change', function () {
+                var $id = $(this).data('id');
+                var $userid = 'userlistshowupdate/' + ($(this).data('id'));
+                // console.log($id);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    data: {status: 'change'},
+                    success: function(data) {
+                        if(data['success']){
+                            $('.toast-sucess-message').click();
+                        }
+                    }
+                });
+            });
+            
         });
         $(window).on('load', function() {
             if (feather) {

@@ -58,7 +58,8 @@ class CategoryController extends Controller
     $imageName = "default.png";
     if ($request->file('account-upload')) {
       $imagePath = $request->file('account-upload');
-      $imageName = $imagePath->getClientOriginalName();
+      // $imageName = $imagePath->getClientOriginalName();
+      $imageName = time().'.png';
       $imagePath->move(public_path('uploads/category/'), $imageName);
     }
     if($categoryschecking == 0){
@@ -166,7 +167,8 @@ class CategoryController extends Controller
       if($categoryschecking == 0){
         if ($request->file('uaccount-upload')) {
           $imagePath = $request->file('uaccount-upload');
-          $imageName = $imagePath->getClientOriginalName();
+          // $imageName = $imagePath->getClientOriginalName();
+          $imageName = time().'.png';
           $imagePath->move(public_path('uploads/category/'), $imageName);
           DB::table('categories')->where('id', $id)->update([
               'companies_id' => $companychecking,

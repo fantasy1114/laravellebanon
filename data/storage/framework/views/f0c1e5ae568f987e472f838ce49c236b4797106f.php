@@ -75,5 +75,15 @@
     .data-page-close{
         display: none!important;
     }
+    .footer{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        margin-top: 100px;
+    }
+    .content-wrapper{
+        padding-bottom: 50px;
+    }
     
 </style><?php /**PATH D:\Lebanon\phpframe\data\resources\views/layouts/header.blade.php ENDPATH**/ ?>

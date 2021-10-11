@@ -52,6 +52,14 @@ class CreateRolesTable extends Migration
             $table->string("currency_create")->nullable();
             $table->string("currency_delete")->nullable();
             $table->string("currency_list");
+
+            // Blogs
+            $table->string("blog_view")->nullable();
+            $table->string("blog_write")->nullable();
+            $table->string("blog_create")->nullable();
+            $table->string("blog_delete")->nullable();
+            $table->string("blog_list")->nullable();
+            
             $table->timestamps();
         });
     }

@@ -7,13 +7,14 @@ use App\Models\Siteinfo;
 use Illuminate\Support\Facades\DB;
 use App\Models\Logs;
 
-class SiteinfoController extends Controller
+class StaticinfoController extends Controller
 {
   // User List Page
   public function index()
   {
-    $siteinfos = DB::table('siteinfo')->get();
-    return view('/siteinfo', ['siteinfos' => $siteinfos]);
+    // $staticinfos = DB::table('staticinfos')->get();
+    // return view('/staticinfo', ['staticinfos' => $staticinfos]);
+    return view('/staticinfo');
   }
 
   public function siteinfoupdate(Request $request, $id)

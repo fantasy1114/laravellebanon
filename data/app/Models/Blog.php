@@ -5,7 +5,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Companies extends Model 
+
+class Blog extends Model
 {
     use HasFactory, Notifiable;
 
@@ -15,14 +16,14 @@ class Companies extends Model
      * @var array
      */
     protected $fillable = [
-        'companyname',
-        'status',
-        'sellmethod',
-        'exchange',
-        'delivery',
+        'title',
+        'photo',
+        'blog_text',
+        'blog_date',
     ];
-    public function owner()
-    {
-        return $this->belongsTo(\App\Models\User::class, "users_id");
-    }
+
+    // public function companies()
+    // {
+    //     return $this->belongsTo(\App\Models\Companies::class, "companies_id");
+    // }
 }

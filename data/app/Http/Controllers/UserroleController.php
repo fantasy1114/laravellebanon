@@ -96,6 +96,13 @@ class UserroleController extends Controller
             'currency_delete' => request('superadmin-currency-delete'),
             'currency_list' => request('superadmin-currency-list'),
             
+            'blog_view' => request('superadmin-blog-read'),
+            'blog_write' => request('superadmin-blog-write'),
+            'blog_create' => request('superadmin-blog-create'),
+            'blog_delete' => request('superadmin-blog-delete'),
+            'blog_list' => request('superadmin-blog-list'),
+            
+            
         ]);
       return response()->json(['success'=>true]);
   }
@@ -137,6 +144,12 @@ class UserroleController extends Controller
       'currency_create' => request('admin-currency-create'),
       'currency_delete' => request('admin-currency-delete'),
       'currency_list' => request('admin-currency-list'),
+
+      'blog_view' => request('admin-blog-read'),
+      'blog_write' => request('admin-blog-write'),
+      'blog_create' => request('admin-blog-create'),
+      'blog_delete' => request('admin-blog-delete'),
+      'blog_list' => request('admin-blog-list'),
       
     ]);
     return response()->json(['success'=>true]);
@@ -178,6 +191,12 @@ class UserroleController extends Controller
       'currency_create' => request('subscriber-currency-create'),
       'currency_delete' => request('subscriber-currency-delete'),
       'currency_list' => request('subscriber-currency-list'),
+
+      'blog_view' => request('subscriber-blog-read'),
+      'blog_write' => request('subscriber-blog-write'),
+      'blog_create' => request('subscriber-blog-create'),
+      'blog_delete' => request('subscriber-blog-delete'),
+      'blog_list' => request('subscriber-blog-list'),
       
     ]);
     return response()->json(['success'=>true]);

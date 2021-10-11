@@ -276,6 +276,43 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-read" name="superadmin-blog-read" @if ($superadmin->blog_view == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-write" name="superadmin-blog-write" @if ($superadmin->blog_write == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-create" name="superadmin-blog-create" @if ($superadmin->blog_create == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-delete" name="superadmin-blog-delete" @if ($superadmin->blog_delete == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="superadmin-blog-list" class="form-control" name="superadmin-blog-list" >
+                                                                                <option value="All" {{$superadmin->blog_list== "All" ? "selected" : ""}}>All</option>
+                                                                                <option value="Only his" {{$superadmin->blog_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                                <option value="No" {{$superadmin->blog_list== "No" ? "selected" : ""}}>No</option>
+                                                                            
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                             @endforeach
                                                         </tbody>
@@ -525,6 +562,42 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" @if ($admin->blog_view == 'on') checked @endif id="admin-blog-read" name="admin-blog-read" />
+                                                                            <label class="custom-control-label" for="admin-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" @if ($admin->blog_write == 'on') checked @endif id="admin-blog-write" name="admin-blog-write"/>
+                                                                            <label class="custom-control-label" for="admin-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" @if ($admin->blog_create == 'on') checked @endif id="admin-blog-create" name="admin-blog-create"/>
+                                                                            <label class="custom-control-label" for="admin-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" @if ($admin->blog_delete == 'on') checked @endif id="admin-blog-delete" name="admin-blog-delete"/>
+                                                                            <label class="custom-control-label" for="admin-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="admin-blog-list" class="form-control" name="admin-blog-list">
+                                                                                <option value="All" {{$admin->blog_list== "All" ? "selected" : ""}}>All</option>
+                                                                                <option value="Only his" {{$admin->blog_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                                <option value="No" {{$admin->blog_list== "No" ? "selected" : ""}}>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             @endforeach
                                                         </tbody>
                                                     </table>
@@ -542,7 +615,7 @@
 
                                 <!-- Social Tab starts -->
                                 <div class="tab-pane" id="social" aria-labelledby="social-tab" role="tabpanel">
-                                    <!-- users edit social form start -->
+                                    <!-- users edit subscriber form start -->
                                     <form class="form-validate subscriber-data-save">
                                         <div class="row">
                                             <div class="col-12">
@@ -770,6 +843,43 @@
                                                                                 <option value="All" {{$subscriber->currency_list== "All" ? "selected" : ""}}>All</option>
                                                                                 <option value="Only his" {{$subscriber->currency_list== "Only his" ? "selected" : ""}}>Only his</option>
                                                                                 <option value="No" {{$subscriber->currency_list== "No" ? "selected" : ""}}>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-read" name="subscriber-blog-read" @if ($subscriber->blog_view == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-write" name="subscriber-blog-write" @if ($subscriber->blog_write == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-create" name="subscriber-blog-create" @if ($subscriber->blog_create == 'on') checked @endif />
+                                                                            <label class="custom-control-label" for="subscribe-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-delete" name="subscriber-blog-delete" @if ($subscriber->blog_delete == 'on') checked @endif/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="subscribe-blog-list" class="form-control" name="subscriber-blog-list">
+                                                                                <option value="All" {{$subscriber->blog_list== "All" ? "selected" : ""}}>All</option>
+                                                                                <option value="Only his" {{$subscriber->blog_list== "Only his" ? "selected" : ""}}>Only his</option>
+                                                                                <option value="No" {{$subscriber->blog_list== "No" ? "selected" : ""}}>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>

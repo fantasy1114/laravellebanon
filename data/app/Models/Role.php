@@ -53,6 +53,12 @@ class Role extends Model
         'currency_create',
         'currency_delete',
         'currency_list',
+
+        'blog_view',
+        'blog_write',
+        'blog_create',
+        'blog_delete',
+        'blog_list',
         
     ];
 

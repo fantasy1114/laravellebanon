@@ -81,15 +81,15 @@
               <div class="contents">
                 <h2 class="head-title">You are Using Free Lite Version</h2>
                 <p>Please, Purchase full version of Slick to get all pages, features and permission to use in commercial projects</p>
-                <div class="header-button">
+                {{-- <div class="header-button">
                   <a href="#" rel="nofollow" target="_blank" class="btn btn-border-filled">Purchase Now</a>
                   <a href="#" rel="nofollow" target="_blank" class="btn btn-border page-scroll">Learn More</a>
-                </div>
+                </div> --}}
               </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-xs-12 p-0">
+            <div class="col-lg-6 col-md-12 col-xs-12 p-0 bg-gradient-secondary">
               <div class="intro-img">
-                <img src="./dashboards/img/intro.png" alt="">
+                <img src="" alt="">
               </div>            
             </div>
           </div> 
@@ -318,22 +318,20 @@
           </div>
           <!-- End Row -->
           <!-- Start Row -->
-          {{-- @foreach ($items as $item)
-            <input type="text" placeholder="{{$item -> photo}}" >
-          @endforeach --}}
+        
             <div class="row justify-content-center showcase-area">
               <div class="col-lg-12 col-md-12 col-xs-12 pr-0">
                 <div class="showcase-slider owl-carousel">
                   @foreach ($items as $item)
                     <div class="item bg-info">
                       <div class="screenshot-thumb">
-                        <img src="{{$item -> photo}}" class="img-fluid" alt="" style="width: 290px; height:250px;" />
+                        <img src="{{$item->photo}}" class="img-fluid" alt="" style="width: 290px; height:250px;" />
                         <div class="hover-content text-center">
                           <div class="fancy-table">
                             <div class="table-cell">
                               <div class="single-text">
-                                <p>Icon , Web</p>
-                                <h5>Redesign Slack</h5>
+                                <p>{{$item->title}}</p>
+                                <h5>{{$item->description}}</h5>
                               </div>
                               <div class="zoom-icon">
                                 <a class="lightbox" href="{{$item -> photo}}"><i class="lni-zoom-in"></i></a>
@@ -346,372 +344,6 @@
                       </div>
                     </div>
                   @endforeach
-                  {{-- <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/02.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/02.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/03.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/03.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/04.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/04.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/05.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/05.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/01.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-    
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/02.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/02.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/03.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/03.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/04.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/04.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/05.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/05.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/01.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-    
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/02.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/03.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/04.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/05.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/01.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-    
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/02.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/03.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/04.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="screenshot-thumb">
-                      <img src="./dashboards/img/showcase/05.jpg" class="img-fluid" alt="" />
-                      <div class="hover-content text-center">
-                        <div class="fancy-table">
-                          <div class="table-cell">
-                            <div class="single-text">
-                              <p>Icon , Web</p>
-                              <h5>Redesign Slack</h5>
-                            </div>
-                            <div class="zoom-icon">
-                              <a class="lightbox" href="img/showcase/01.jpg"><i class="lni-zoom-in"></i></a>
-                              <a href="#"><i class="lni-link"></i></a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> --}}
-                
-    
                   
                 </div>
               </div>
@@ -961,86 +593,14 @@
                       </ul>
                     </div> 
                     <div class="team-inner text-center">
-                      <h5 class="team-title">{{$user -> name}}</h5>
-                      <p>{{$user -> role}}</p>
+                      <h5 class="team-title">{{$user->name}}</h5>
+                      <p>{{$user->role}}</p>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Start Col -->
-            @endforeach
-            {{-- <!-- Start Col -->
-            <div class="col-lg-3 col-md-6 col-xs-12">
-              <div class="single-team">
-                <div class="team-thumb">
-                  <img src="./dashboards/img/team/02.jpg" class="img-fluid" alt="">
-                </div>
-  
-                <div class="team-details">
-                <div class="team-social-icons">
-                    <ul class="social-list">
-                      <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                    </ul>
-                  </div>
-                  <div class="team-inner text-center">
-                    <h5 class="team-title">Celina D Cruze</h5>
-                    <p>Front-end Developer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Start Col -->
-   
-            <!-- Start Col -->
-            <div class="col-lg-3 col-md-6 col-xs-12">
-              <div class="single-team">
-                <div class="team-thumb">
-                  <img src="./dashboards/img/team/03.jpg" class="img-fluid" alt="">
-                </div>
-  
-                <div class="team-details">
-                <div class="team-social-icons">
-                    <ul class="social-list">
-                      <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                    </ul>
-                  </div>
-                  <div class="team-inner text-center">
-                    <h5 class="team-title">Daryl Dixon</h5>
-                    <p>Content Writer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Start Col -->
-   
-            <!-- Start Col -->
-            <div class="col-lg-3 col-md-6 col-xs-12">
-              <div class="single-team">
-                <div class="team-thumb">
-                  <img src="./dashboards/img/team/04.jpg" class="img-fluid" alt="">
-                </div>
-  
-                <div class="team-details">
-                  <div class="team-social-icons">
-                    <ul class="social-list">
-                      <li><a href="#"><i class="lni-facebook-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-twitter-filled"></i></a></li>
-                      <li><a href="#"><i class="lni-google-plus"></i></a></li>
-                    </ul>
-                  </div>
-                  <div class="team-inner text-center">
-                    <h5 class="team-title">Mark Parker</h5>
-                    <p>Support Engineer</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Start Col --> --}}
-   
+            @endforeach  
   
           </div>
           <!-- End Row -->
@@ -1071,72 +631,31 @@
           <!-- End Row -->
           <!-- Start Row -->
           <div class="row">
-            @foreach ($lastitems as $lastitem)
+            @foreach ($blogs as $blog)
               <!-- Start Col -->
-              <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
+              <div class="col-sm-4 col-xs-12 blog-item">
                 <!-- Blog Item Starts -->
-                <div class="blog-item-wrapper">
+                <div class="blog-item-wrapper p-5">
                   <div class="blog-item-img">
-                    <a href="single-post.html">
-                      <img src="{{$lastitem -> photo}}" class="img-fluid" alt="" style="width:360px;height:240px;">
+                    <a href="#">
+                      <img src="{{$blog->photo}}" class="img-fluid" alt="" style="width:240px;height:180px;">
                     </a>             
                   </div>
                   <div class="blog-item-text"> 
-                    <h3><a href="single-post.html">How Slick Will Transform  <br>Your Business</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-                    <a href="" class="read-more">5 Min read</a>
+                    <h3><a class="lightbox" href="{{$blog->photo}}">{{$blog->title}}</a></h3>
+                    <p>{{$blog->blog_text}}</p>
+                    <a href="#" class="read-more"></a>
                   </div>
                   <div class="author">
-                    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-                    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
+                    {{-- <span class="name"><i class="lni-user"></i>posted date</span> --}}
+                    <span class="date float-right"><i class="lni-calendar"></i>{{$blog->blog_date}}</span>
                   </div>
                 </div>
                 <!-- Blog Item Wrapper Ends-->
               </div>
               <!-- End Col -->
               <!-- Start Col -->
-              {{-- <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-                <!-- Blog Item Starts -->
-                <div class="blog-item-wrapper">
-                  <div class="blog-item-img">
-                    <a href="single-post.html">
-                      <img src="./dashboards/img/blog/02.jpg" class="img-fluid" alt="">
-                    </a>             
-                  </div>
-                  <div class="blog-item-text"> 
-                    <h3><a href="single-post.html">Growth Techniques for  <br>New Startups</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-                    <a href="" class="read-more">5 Min read</a>
-                  </div>
-                  <div class="author">
-                    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-                    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
-                  </div>
-                </div>
-                <!-- Blog Item Wrapper Ends-->
-              </div> --}}
-              <!-- End Col -->
-              <!-- Start Col -->
-              {{-- <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-                <!-- Blog Item Starts -->
-                <div class="blog-item-wrapper">
-                  <div class="blog-item-img">
-                    <a href="single-post.html">
-                      <img src="./dashboards/img/blog/03.jpg" class="img-fluid" alt="">
-                    </a>             
-                  </div>
-                  <div class="blog-item-text"> 
-                    <h3><a href="single-post.html">Writing Professional <br>Emails to Customers</a></h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-                    <a href="" class="read-more">5 Min read</a>
-                  </div>
-                  <div class="author">
-                    <span class="name"><i class="lni-user"></i><a href="#">Posted by Admin</a></span>
-                    <span class="date float-right"><i class="lni-calendar"></i><a href="#">10 April, 2020</a></span>
-                  </div>
-                </div>
-                <!-- Blog Item Wrapper Ends-->
-              </div> --}}
+            
               <!-- End Col -->
             @endforeach
           </div>

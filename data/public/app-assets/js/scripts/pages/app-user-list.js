@@ -37,7 +37,7 @@ $(function() {
                 { data: 'responsive_id' },
                 { data: 'full_name' },
                 { data: 'email' },
-                
+                { data: 'user_show'},
                 { data: 'role' },
                 { data: 'status' },
                 { data: 'startdata' },
@@ -54,7 +54,7 @@ $(function() {
 
                 },
                 {
-                    targets: 8,
+                    targets: 9,
                     responsivePriority: 4,
                 },
                 {

@@ -42,7 +42,8 @@ class UserlistController extends Controller
     $imageName = 'default.png';
     if ($request->file('account-upload')) {
       $imagePath = $request->file('account-upload');
-      $imageName = $imagePath->getClientOriginalName();
+      // $imageName = $imagePath->getClientOriginalName();
+      $imageName = time().'.png';
       $imagePath->move(public_path('uploads/users'), $imageName);
     }
     $roles_data_id = 3;
@@ -106,7 +107,8 @@ class UserlistController extends Controller
     }
     if ($request->file('uaccount-upload')) {
       $imagePath = $request->file('uaccount-upload');
-      $imageName = $imagePath->getClientOriginalName();
+      // $imageName = $imagePath->getClientOriginalName();
+      $imageName = time().'.png';
       $imagePath->move(public_path('uploads/users/'), $imageName);
       DB::table('users')->where('id', $id)->update([
           'name' => $validatedData['uUsername'],
@@ -154,5 +156,27 @@ class UserlistController extends Controller
         return response()->json(['success'=>true]);
       }
     }
+  }
+  public function userlistshowupdate(Request $request, $id){
+    $itemes = DB::table('users')->where('id', $id)->get();
+    $showchange = request('status');
+    if($showchange == 'change'){
+      foreach($itemes as $item){
+        $status = $item->user_show;
+      }
+      if($status == ''){
+        DB::table('users')->where('id', $id)->update([
+          'user_show' => 'on'
+        ]);
+        return response()->json(['success'=>true]);
+      }
+      else{
+        DB::table('users')->where('id', $id)->update([
+          'user_show' => ''
+        ]);
+        return response()->json(['success'=>true]);
+      }
+    }
+
   }
 }

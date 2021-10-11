@@ -276,6 +276,43 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-read" name="superadmin-blog-read" <?php if($superadmin->blog_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-write" name="superadmin-blog-write" <?php if($superadmin->blog_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-create" name="superadmin-blog-create" <?php if($superadmin->blog_create == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-blog-delete" name="superadmin-blog-delete" <?php if($superadmin->blog_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="superadmin-blog-list" class="form-control" name="superadmin-blog-list" >
+                                                                                <option value="All" <?php echo e($superadmin->blog_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                                <option value="Only his" <?php echo e($superadmin->blog_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                                <option value="No" <?php echo e($superadmin->blog_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
 
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </tbody>
@@ -525,6 +562,42 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->blog_view == 'on'): ?> checked <?php endif; ?> id="admin-blog-read" name="admin-blog-read" />
+                                                                            <label class="custom-control-label" for="admin-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->blog_write == 'on'): ?> checked <?php endif; ?> id="admin-blog-write" name="admin-blog-write"/>
+                                                                            <label class="custom-control-label" for="admin-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->blog_create == 'on'): ?> checked <?php endif; ?> id="admin-blog-create" name="admin-blog-create"/>
+                                                                            <label class="custom-control-label" for="admin-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->blog_delete == 'on'): ?> checked <?php endif; ?> id="admin-blog-delete" name="admin-blog-delete"/>
+                                                                            <label class="custom-control-label" for="admin-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="admin-blog-list" class="form-control" name="admin-blog-list">
+                                                                                <option value="All" <?php echo e($admin->blog_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                                <option value="Only his" <?php echo e($admin->blog_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                                <option value="No" <?php echo e($admin->blog_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </tbody>
                                                     </table>
@@ -542,7 +615,7 @@
 
                                 <!-- Social Tab starts -->
                                 <div class="tab-pane" id="social" aria-labelledby="social-tab" role="tabpanel">
-                                    <!-- users edit social form start -->
+                                    <!-- users edit subscriber form start -->
                                     <form class="form-validate subscriber-data-save">
                                         <div class="row">
                                             <div class="col-12">
@@ -770,6 +843,43 @@
                                                                                 <option value="All" <?php echo e($subscriber->currency_list== "All" ? "selected" : ""); ?>>All</option>
                                                                                 <option value="Only his" <?php echo e($subscriber->currency_list== "Only his" ? "selected" : ""); ?>>Only his</option>
                                                                                 <option value="No" <?php echo e($subscriber->currency_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Blogs</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-read" name="subscriber-blog-read" <?php if($subscriber->blog_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-write" name="subscriber-blog-write" <?php if($subscriber->blog_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-create" name="subscriber-blog-create" <?php if($subscriber->blog_create == 'on'): ?> checked <?php endif; ?> />
+                                                                            <label class="custom-control-label" for="subscribe-blog-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-blog-delete" name="subscriber-blog-delete" <?php if($subscriber->blog_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-blog-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="subscribe-blog-list" class="form-control" name="subscriber-blog-list">
+                                                                                <option value="All" <?php echo e($subscriber->blog_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                                <option value="Only his" <?php echo e($subscriber->blog_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                                <option value="No" <?php echo e($subscriber->blog_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             </select>
                                                                         </div>
                                                                     </td>

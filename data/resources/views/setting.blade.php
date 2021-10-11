@@ -5,9 +5,6 @@
 @include('layouts/header')
 <!-- END: Head-->
 <!-- BEGIN: Body-->
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
-<link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-pickadate.css">
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
