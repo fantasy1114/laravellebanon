@@ -20,6 +20,7 @@ $(function () {
     typecategoryalreadyerror = $('#type-category-already-error'),
     typeitemalreadyerror = $('#type-item-already-error'),
     typeblogalreadyerror = $('#type-blog-already-error'),
+    typepricingalreadyerror = $('#type-pricing-already-error'),
     typeuserpassalreadyerror = $('#type-userpass-already-error'),
     typealreadydatasuccess = $('#type-already-data-success'),
 
@@ -111,6 +112,15 @@ $(function () {
       rtl: isRtl
     });
   });
+
+  typepricingalreadyerror.on('click', function () {
+    toastr['error']('👋 The Slider already exists.', 'Error!', {
+      closeButton: true,
+      tapToDismiss: false,
+      rtl: isRtl
+    });
+  });
+  
   typeuserpassalreadyerror.on('click', function () {
     toastr['error']('👋 Wrong Password.', 'Error!', {
       closeButton: true,

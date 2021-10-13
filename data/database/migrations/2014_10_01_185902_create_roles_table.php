@@ -46,6 +46,21 @@ class CreateRolesTable extends Migration
             $table->string("siteinfo_create")->nullable();
             $table->string("siteinfo_delete")->nullable();
             $table->string("siteinfo_list");
+
+            // staticinfo
+            $table->string("staticinfo_view")->nullable();
+            $table->string("staticinfo_write")->nullable();
+            $table->string("staticinfo_create")->nullable();
+            $table->string("staticinfo_delete")->nullable();
+            $table->string("staticinfo_list");
+
+            // pricing
+            $table->string("pricing_view")->nullable();
+            $table->string("pricing_write")->nullable();
+            $table->string("pricing_create")->nullable();
+            $table->string("pricing_delete")->nullable();
+            $table->string("pricing_list");
+
             // currency 
             $table->string("currency_view")->nullable();
             $table->string("currency_write")->nullable();

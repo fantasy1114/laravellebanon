@@ -90,6 +90,18 @@ class UserroleController extends Controller
             'siteinfo_delete' => request('superadmin-siteinfo-delete'),
             'siteinfo_list' => request('superadmin-siteinfo-list'),
 
+            'staticinfo_view' => request('superadmin-staticinfo-read'),
+            'staticinfo_write' => request('superadmin-staticinfo-write'),
+            'staticinfo_create' => request('superadmin-staticinfo-create'),
+            'staticinfo_delete' => request('superadmin-staticinfo-delete'),
+            'staticinfo_list' => request('superadmin-staticinfo-list'),
+
+            'pricing_view' => request('superadmin-pricing-read'),
+            'pricing_write' => request('superadmin-pricing-write'),
+            'pricing_create' => request('superadmin-pricing-create'),
+            'pricing_delete' => request('superadmin-pricing-delete'),
+            'pricing_list' => request('superadmin-pricing-list'),
+
             'currency_view' => request('superadmin-currency-read'),
             'currency_write' => request('superadmin-currency-write'),
             'currency_create' => request('superadmin-currency-create'),
@@ -139,6 +151,18 @@ class UserroleController extends Controller
       'siteinfo_delete' => request('admin-siteinfo-delete'),
       'siteinfo_list' => request('admin-siteinfo-list'),
 
+      'staticinfo_view' => request('admin-staticinfo-read'),
+      'staticinfo_write' => request('admin-staticinfo-write'),
+      'staticinfo_create' => request('admin-staticinfo-create'),
+      'staticinfo_delete' => request('admin-staticinfo-delete'),
+      'staticinfo_list' => request('admin-staticinfo-list'),
+
+      'pricing_view' => request('admin-pricing-read'),
+      'pricing_write' => request('admin-pricing-write'),
+      'pricing_create' => request('admin-pricing-create'),
+      'pricing_delete' => request('admin-pricing-delete'),
+      'pricing_list' => request('admin-pricing-list'),
+
       'currency_view' => request('admin-currency-read'),
       'currency_write' => request('admin-currency-write'),
       'currency_create' => request('admin-currency-create'),
@@ -185,6 +209,18 @@ class UserroleController extends Controller
       'siteinfo_create' => request('subscriber-siteinfo-create'),
       'siteinfo_delete' => request('subscriber-siteinfo-delete'),
       'siteinfo_list' => request('subscriber-siteinfo-list'),
+
+      'staticinfo_view' => request('subscriber-staticinfo-read'),
+      'staticinfo_write' => request('subscriber-staticinfo-write'),
+      'staticinfo_create' => request('subscriber-staticinfo-create'),
+      'staticinfo_delete' => request('subscriber-staticinfo-delete'),
+      'staticinfo_list' => request('subscriber-staticinfo-list'),
+
+      'pricing_view' => request('subscriber-pricing-read'),
+      'pricing_write' => request('subscriber-pricing-write'),
+      'pricing_create' => request('subscriber-pricing-create'),
+      'pricing_delete' => request('subscriber-pricing-delete'),
+      'pricing_list' => request('subscriber-pricing-list'),
 
       'currency_view' => request('subscriber-currency-read'),
       'currency_write' => request('subscriber-currency-write'),

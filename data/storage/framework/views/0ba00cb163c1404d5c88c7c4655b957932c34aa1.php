@@ -17,7 +17,7 @@
     <!-- END LAYOUT -->
 
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->staticinfo_view != 'on'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -25,7 +25,7 @@
             </div>
             <div class="content-body mb-5">
                 <!-- users list start -->
-                <div class="content-body">
+                <div class="content-body <?php if(Auth::user()->rolefunction->staticinfo_write != 'on'): ?> data-page-close <?php endif; ?>">
                     <!-- account setting page -->
                     <section id="page-account-settings">
                         <div class="row">
@@ -415,6 +415,9 @@
                                                                 </div>
                                                                 <div class="col-12 col-sm-3"></div>
                                                             </div>
+                                                            <div class="row col-12">
+                                                                <input type="text" class="form-control" id="pricing_video_link" name="pricing_video_link" placeholder="https://www.youtube.com" value="<?php echo e($staticinfo->pricing_video_link); ?>" />
+                                                            </div>
                                                         </div> 
                                                         <div class="col-12">
                                                             <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
@@ -501,6 +504,45 @@
                                                     <!--/ form -->
                                                 </div>
                                                 <!--/ blog tab -->
+
+                                                <!-- contact tab -->
+                                                <div role="tabpanel" class="tab-pane" id="account-vertical-contact" aria-labelledby="account-pill-contact" aria-expanded="true">
+        
+                                                    <!-- form -->
+                                                    <form class="validate-form update-contact-page mt-2">
+                                                        
+                                                        <div class="row">
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="contact_title">Title</label>
+                                                                        <input type="text" class="form-control" id="contact_title" name="contact_title" placeholder="Title" value="<?php echo e($staticinfo->contact_title); ?>" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row col-12">
+                                                                <div class="col-12 col-sm-3"></div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="contact_desc">Description</label>
+                                                                        <textarea class="form-control" id="contact_desc" name="contact_desc" placeholder="description"  rows="5"><?php echo e($staticinfo->contact_desc); ?>
+
+                                                                        </textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-3"></div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                        </div>
+                                                    
+                                                    </form>
+                                                    <!--/ form -->
+                                                </div>
+                                                <!--/ blog tab -->
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </div>
@@ -509,7 +551,6 @@
                             </div>
                             <!--/ right content section -->
                         </div>
-                        
                     </section>
                     <!-- / account setting page -->
     
@@ -674,6 +715,29 @@
             $('.update-blog-page').submit(function(e){
                 var formData = new FormData(this);
                 var $userid = 'staticblogupdate/1'
+                
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'post',
+                    url: $userid,
+                    cache:false,
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if(data['success']){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+
+            $('.update-contact-page').submit(function(e){
+                var formData = new FormData(this);
+                var $userid = 'staticcontactupdate/1'
                 
                 e.preventDefault();
                 $.ajax({

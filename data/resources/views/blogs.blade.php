@@ -126,7 +126,7 @@
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="companyname">Comapny Name</label>
+                                        <label class="form-label" for="companyname">Text</label>
                                         <input type="text" class="form-control" id="blog_text"
                                         placeholder="Text" name="blog_text" aria-label="blog_text"
                                         aria-describedby="blog_text" />

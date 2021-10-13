@@ -41,6 +41,7 @@ $(function () {
   var deletecategorydata = $('.delete_category_data');
   var deletedataitem = $('.delete_data_item');
   var deleteblogdata = $('.delete_blog_data');
+  var deletepricingsloderdata = $('.delete_pricingsloder_data');
 
   var confirmColor = $('#confirm-color');
 
@@ -633,6 +634,43 @@ $(function () {
     deleteblogdata.on('click', function () {
       var $id = $(this).data('id');      
       var $userid = 'blogsdelete/' + $id;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        customClass: {
+          confirmButton: 'btn btn-primary',
+          cancelButton: 'btn btn-outline-danger ml-1'
+        },
+        buttonsStyling: false
+      }).then(function (result) {
+        if (result.value) {
+          $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'get',
+            url: $userid,
+            success: function(data) {
+                if(data['success']){
+                    window.location.reload();
+                }
+            }
+          });
+        }
+      });
+    });
+  }
+  
+
+  // delete pricing slider deletedata
+
+  if (deletepricingsloderdata.length) {
+    deletepricingsloderdata.on('click', function () {
+      var $id = $(this).data('id');      
+      var $userid = 'pricingsliderdelete/' + $id;
       Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",

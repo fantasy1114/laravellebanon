@@ -240,6 +240,76 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>Static Info</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-staticinfo-read" name="superadmin-staticinfo-read" <?php if($superadmin->staticinfo_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-staticinfo-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-staticinfo-write" name="superadmin-staticinfo-write" <?php if($superadmin->staticinfo_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-staticinfo-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-staticinfo-create" name="superadmin-staticinfo-create" <?php if($superadmin->staticinfo_create == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-staticinfo-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-staticinfo-delete" name="superadmin-staticinfo-delete" <?php if($superadmin->staticinfo_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-staticinfo-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="superadmin-staticinfo-list" class="form-control" name="superadmin-staticinfo-list">
+                                                                            <option value="All" <?php echo e($superadmin->staticinfo_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($superadmin->staticinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($superadmin->staticinfo_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Pricing Slider</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-pricing-read" name="superadmin-pricing-read" <?php if($superadmin->pricing_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-pricing-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-pricing-write" name="superadmin-pricing-write" <?php if($superadmin->pricing_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-pricing-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-pricing-create" name="superadmin-pricing-create" <?php if($superadmin->pricing_create == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-pricing-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="superadmin-pricing-delete" name="superadmin-pricing-delete" <?php if($superadmin->pricing_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="superadmin-pricing-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="superadmin-pricing-list" class="form-control" name="superadmin-pricing-list">
+                                                                            <option value="All" <?php echo e($superadmin->pricing_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($superadmin->pricing_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($superadmin->pricing_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td>Currency Exchange</td>
                                                                     <td>
                                                                         <div class="custom-control custom-checkbox">
@@ -527,6 +597,74 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
+                                                                    <td>Static info</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->staticinfo_view == 'on'): ?> checked <?php endif; ?> id="admin-staticinfo-read" name="admin-staticinfo-read"/>
+                                                                            <label class="custom-control-label" for="admin-staticinfo-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->staticinfo_write == 'on'): ?> checked <?php endif; ?> id="admin-staticinfo-write" name="admin-staticinfo-write"/>
+                                                                            <label class="custom-control-label" for="admin-staticinfo-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->staticinfo_create == 'on'): ?> checked <?php endif; ?> id="admin-staticinfo-create" name="admin-staticinfo-create"/>
+                                                                            <label class="custom-control-label" for="admin-staticinfo-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->staticinfo_delete == 'on'): ?> checked <?php endif; ?> id="admin-staticinfo-delete" name="admin-staticinfo-delete"/>
+                                                                            <label class="custom-control-label" for="admin-staticinfo-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="admin-staticinfo-list" class="form-control" name="admin-staticinfo-list">
+                                                                            <option value="All" <?php echo e($admin->staticinfo_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($admin->staticinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($admin->staticinfo_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Pricing Slider</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->pricing_view == 'on'): ?> checked <?php endif; ?> id="admin-pricing-read" name="admin-pricing-read"/>
+                                                                            <label class="custom-control-label" for="admin-pricing-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->pricing_write == 'on'): ?> checked <?php endif; ?> id="admin-pricing-write" name="admin-pricing-write"/>
+                                                                            <label class="custom-control-label" for="admin-pricing-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->pricing_create == 'on'): ?> checked <?php endif; ?> id="admin-pricing-create" name="admin-pricing-create"/>
+                                                                            <label class="custom-control-label" for="admin-pricing-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" <?php if($admin->pricing_delete == 'on'): ?> checked <?php endif; ?> id="admin-pricing-delete" name="admin-pricing-delete"/>
+                                                                            <label class="custom-control-label" for="admin-pricing-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="admin-pricing-list" class="form-control" name="admin-pricing-list">
+                                                                            <option value="All" <?php echo e($admin->pricing_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($admin->pricing_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($admin->pricing_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
                                                                     <td>Currency Exchange</td>
                                                                     <td>
                                                                         <div class="custom-control custom-checkbox">
@@ -807,6 +945,76 @@
                                                                             <option value="All" <?php echo e($subscriber->siteinfo_list== "All" ? "selected" : ""); ?>>All</option>
                                                                             <option value="Only his" <?php echo e($subscriber->siteinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
                                                                             <option value="No" <?php echo e($subscriber->siteinfo_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Static info</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-staticinfo-read" name="subscriber-staticinfo-read" <?php if($subscriber->staticinfo_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-staticinfo-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-staticinfo-write" name="subscriber-staticinfo-write" <?php if($subscriber->staticinfo_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-staticinfo-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-staticinfo-create" name="subscriber-staticinfo-create" <?php if($subscriber->staticinfo_create == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-staticinfo-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-staticinfo-delete" name="subscriber-staticinfo-delete" <?php if($subscriber->staticinfo_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-staticinfo-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="subscribe-staticinfo-list" class="form-control" name="subscriber-staticinfo-list">
+                                                                            <option value="All" <?php echo e($subscriber->staticinfo_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->staticinfo_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->staticinfo_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            
+                                                                        </select>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Pricing Slider</td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-pricing-read" name="subscriber-pricing-read" <?php if($subscriber->pricing_view == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-pricing-read"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-pricing-write" name="subscriber-pricing-write" <?php if($subscriber->pricing_write == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-pricing-write"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-pricing-create" name="subscriber-pricing-create" <?php if($subscriber->pricing_create == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-pricing-create"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="custom-control custom-checkbox">
+                                                                            <input type="checkbox" class="custom-control-input" id="subscribe-pricing-delete" name="subscriber-pricing-delete" <?php if($subscriber->pricing_delete == 'on'): ?> checked <?php endif; ?>/>
+                                                                            <label class="custom-control-label" for="subscribe-pricing-delete"></label>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select id="subscribe-pricing-list" class="form-control" name="subscriber-pricing-list">
+                                                                            <option value="All" <?php echo e($subscriber->pricing_list== "All" ? "selected" : ""); ?>>All</option>
+                                                                            <option value="Only his" <?php echo e($subscriber->pricing_list== "Only his" ? "selected" : ""); ?>>Only his</option>
+                                                                            <option value="No" <?php echo e($subscriber->pricing_list== "No" ? "selected" : ""); ?>>No</option>
                                                                             
                                                                         </select>
                                                                     </td>

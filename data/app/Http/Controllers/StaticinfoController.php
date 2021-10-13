@@ -115,6 +115,7 @@ class StaticinfoController extends Controller
       DB::table('staticinfos')->where('id', $id)->update([
         'pricing_title' => request('pricing_title'),
         'pricing_desc' => request('pricing_desc'),
+        'pricing_video_link' => request('pricing_video_link'),
       ]);
       return response()->json(['success'=>true]);
     
@@ -126,6 +127,28 @@ class StaticinfoController extends Controller
       DB::table('staticinfos')->where('id', $id)->update([
         'team_title' => request('team_title'),
         'team_desc' => request('team_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    
+  }
+
+  public function staticblogupdate(Request $request, $id)
+  {
+
+      DB::table('staticinfos')->where('id', $id)->update([
+        'blog_title' => request('blog_title'),
+        'blog_desc' => request('blog_desc'),
+      ]);
+      return response()->json(['success'=>true]);
+    
+  }
+
+  public function staticcontactupdate(Request $request, $id)
+  {
+
+      DB::table('staticinfos')->where('id', $id)->update([
+        'contact_title' => request('contact_title'),
+        'contact_desc' => request('contact_desc'),
       ]);
       return response()->json(['success'=>true]);
     

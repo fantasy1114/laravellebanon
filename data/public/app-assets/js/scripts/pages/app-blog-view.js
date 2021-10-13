@@ -32,8 +32,7 @@ $(function() {
                 { data: 'text' },
                 { data: 'date' },
             ],
-            columnDefs: [{
-                },
+            columnDefs: [
                 {
                     targets: 5,
                     responsivePriority: 4,

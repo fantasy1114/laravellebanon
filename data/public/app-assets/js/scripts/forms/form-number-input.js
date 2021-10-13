@@ -27,8 +27,8 @@
   // Min - Max
 
   var touchspinValue = $('.touchspin-min-max'),
-    counterMin = 17,
-    counterMax = 21;
+    counterMin = 0,
+    counterMax = 50;
   if (touchspinValue.length > 0) {
     touchspinValue
       .TouchSpin({

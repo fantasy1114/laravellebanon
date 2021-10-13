@@ -43,20 +43,28 @@
                 <li class="<?php if(Request::path() == 'siteinfo'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="siteinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Site Info</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->staticinfo_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'staticinfo'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="staticinfo"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Static info</span></a>
+                </li>
+            </ul>
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->pricing_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="<?php if(Request::path() == 'pricingslider'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="pricingslider"><i data-feather='info'></i><span class="menu-title text-truncate" data-i18n="User">Pricing Slider</span></a>
                 </li>
             </ul>
             <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->currency_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'exchange'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="exchange"><i data-feather='zap'></i><span class="menu-title text-truncate" data-i18n="User">Currency Exchange</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="<?php if(Request::path() == 'setting'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->blog_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="<?php if(Request::path() == 'blogs'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="blogs"><i data-feather='command'></i><span class="menu-title text-truncate" data-i18n="User">Blogs</span></a>
                 </li>
             </ul>
             <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->blog_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="<?php if(Request::path() == 'blogs'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="blogs"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Blogs</span></a>
+                <li class="<?php if(Request::path() == 'shopping'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="shopping"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Shopping</span></a>
+                </li>
+            </ul>
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="<?php if(Request::path() == 'setting'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="setting"><i data-feather='settings'></i><span class="menu-title text-truncate" data-i18n="User">Setting</span></a>
                 </li>
             </ul>
 
