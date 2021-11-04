@@ -229,7 +229,7 @@
     <script>
     $(function() {
 
-        $(".userupdate_new").on("click", function() {
+        $(document).on("click", ".userupdate_new", function()  {
             var $id = $(this).data('id');
             var $userid = 'pricingsliderupdate/' + ($(this).data('id'));
 

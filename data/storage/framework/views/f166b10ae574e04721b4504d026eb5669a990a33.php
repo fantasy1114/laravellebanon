@@ -302,7 +302,7 @@
 
     <script>
         $(function(){
-            $(".userupdate_new").on("click", function(){
+            $(document).on("click", ".userupdate_new", function() {
                 var $checkstatus = ($(this).data('status'))
                 var $id = $(this).data('id');
                 var $userid = 'companymanagementupdate/' + ($(this).data('id'));

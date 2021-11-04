@@ -222,7 +222,7 @@
 
 .ecommerce-application .list-view .ecommerce-card .card-body {
   padding: 1.5rem 1rem;
-  border-right: 1px solid #ebe9f1;
+  /* border-right: 1px solid #ebe9f1; */
   display: flex;
   flex-direction: column; }
 

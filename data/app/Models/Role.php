@@ -60,6 +60,7 @@ class Role extends Model
         'blog_delete',
         'blog_list',
         
+        'shopping_list',
     ];
 
 }

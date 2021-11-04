@@ -59,7 +59,7 @@
                 <li class="@if(Request::path() == 'blogs') active @endif nav-item"><a class="d-flex align-items-center" href="blogs"><i data-feather='command'></i><span class="menu-title text-truncate" data-i18n="User">Blogs</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->blog_view != 'on') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main @if(Auth::user()->rolefunction->shopping_list != 'View') data-page-close @endif" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="@if(Request::path() == 'shopping') active @endif nav-item"><a class="d-flex align-items-center" href="shopping"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Shopping</span></a>
                 </li>
             </ul>

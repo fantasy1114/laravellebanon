@@ -12,7 +12,7 @@ class MainController extends Controller
   {
     $users = DB::table('users')->where('user_show', 'on')->take(4)->get();
     $items = DB::table('items')->take(20)->get();
-    $blogs = DB::table('blogs')->orderBy('photo', 'desc')->take(3)->get();
+    $blogs = DB::table('blogs')->orderBy('id', 'desc')->take(3)->get();
     $siteinfos = DB::table('siteinfo')->get();
     $staticinfos = DB::table('staticinfos')->get();
     $pricingsliders = DB::table('pricingsliders')->get();

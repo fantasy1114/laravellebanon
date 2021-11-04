@@ -355,7 +355,7 @@
             $('#lbpprice').attr('value', $usd * $cateDatas);
         });
 
-        $(".userupdate_new").on("click", function() {
+        $(document).on("click", ".userupdate_new", function() {
             var $uallprice = '';
             $('.ulbp_price').attr('value', '');
             $('#ulbpprice').attr('value', $(this).data('lbpprice'));

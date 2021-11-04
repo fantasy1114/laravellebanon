@@ -383,6 +383,31 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="superadmin-shopping-list" class="form-control" name="superadmin-shopping-list" >
+                                                                                <option value="View" <?php echo e($superadmin->shopping_list== "View" ? "selected" : ""); ?>>View</option>
+                                                                                <option value="None" <?php echo e($superadmin->shopping_list== "None" ? "selected" : ""); ?>>None</option>
+                                                                            
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
 
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </tbody>
@@ -732,6 +757,30 @@
                                                                                 <option value="All" <?php echo e($admin->blog_list== "All" ? "selected" : ""); ?>>All</option>
                                                                                 <option value="Only his" <?php echo e($admin->blog_list== "Only his" ? "selected" : ""); ?>>Only his</option>
                                                                                 <option value="No" <?php echo e($admin->blog_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="admin-shopping-list" class="form-control" name="admin-shopping-list" >
+                                                                                <option value="View" <?php echo e($admin->shopping_list== "View" ? "selected" : ""); ?>>View</option>
+                                                                                <option value="None" <?php echo e($admin->shopping_list== "None" ? "selected" : ""); ?>>None</option>
+                                                                            
                                                                             </select>
                                                                         </div>
                                                                     </td>
@@ -1088,6 +1137,30 @@
                                                                                 <option value="All" <?php echo e($subscriber->blog_list== "All" ? "selected" : ""); ?>>All</option>
                                                                                 <option value="Only his" <?php echo e($subscriber->blog_list== "Only his" ? "selected" : ""); ?>>Only his</option>
                                                                                 <option value="No" <?php echo e($subscriber->blog_list== "No" ? "selected" : ""); ?>>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="subscribe-shopping-list" class="form-control" name="subscriber-shopping-list" >
+                                                                                <option value="View" <?php echo e($subscriber->shopping_list== "View" ? "selected" : ""); ?>>View</option>
+                                                                                <option value="None" <?php echo e($subscriber->shopping_list== "None" ? "selected" : ""); ?>>None</option>
+                                                                            
                                                                             </select>
                                                                         </div>
                                                                     </td>

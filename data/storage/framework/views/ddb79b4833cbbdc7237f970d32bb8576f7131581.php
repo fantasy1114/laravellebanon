@@ -16,7 +16,7 @@
     <?php echo $__env->make('layouts/layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content <?php if(Auth::user()->rolefunction->blog_view != 'on'): ?> data-page-close <?php endif; ?>">
+    <div class="app-content content <?php if(Auth::user()->rolefunction->pricing_view != 'on'): ?> data-page-close <?php endif; ?>">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -35,27 +35,25 @@
                                         <th>ID</th>
                                         <th>title</th>
                                         <th>photo</th>
-                                        
-                                        <th>date</th>                   
-                                        <th class="<?php if(Auth::user()->rolefunction->blog_delete != 'on' && Auth::user()->rolefunction->blog_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
+                                        <th>text</th>                
+                                        <th class="<?php if(Auth::user()->rolefunction->pricing_delete != 'on' && Auth::user()->rolefunction->pricing_write != 'on'): ?> data-page-close <?php endif; ?>">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $index = 1; ?>
-                                    <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $pricingsliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pricingslider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
-                                            <td><?php echo e($blog->title); ?></td>
-                                            <td><img src="<?php echo e($blog->photo); ?>" style="width:48px; height:34px;"></td>
-                                            
+                                            <td><?php echo e($pricingslider->title); ?></td>
+                                            <td><img src="<?php echo e($pricingslider->photo); ?>" style="width:48px; height:34px;"></td>
                                             <td>
-                                                <?php echo e($blog->blog_date); ?>
+                                                <?php echo e($pricingslider->description); ?>
 
                                             </td>
                                             <td>
-                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->blog_write != 'on'): ?> data-page-close <?php endif; ?>"
-                                                    data-id="<?php echo e($blog->id); ?>" data-title="<?php echo e($blog->title); ?>"
-                                                    data-photo="<?php echo e($blog->photo); ?>" data-blog_text="<?php echo e($blog->blog_text); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>
+                                                <button class="dropdown-item userupdate_new <?php if(Auth::user()->rolefunction->pricing_write != 'on'): ?> data-page-close <?php endif; ?>"
+                                                    data-id="<?php echo e($pricingslider->id); ?>" data-title="<?php echo e($pricingslider->title); ?>"
+                                                    data-photo="<?php echo e($pricingslider->photo); ?>" data-description="<?php echo e($pricingslider->description); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>
                                                     >
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -69,7 +67,7 @@
                                                     <span></span>
                                                 </button>
                                             
-                                                <button class="dropdown-item delete_blog_data <?php if(Auth::user()->rolefunction->blog_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($blog->id); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
+                                                <button class="dropdown-item delete_pricingsloder_data <?php if(Auth::user()->rolefunction->pricing_delete != 'on'): ?> data-page-close <?php endif; ?>" data-id="<?php echo e($pricingslider->id); ?>" <?php if(Auth::user()->status == ''): ?> disabled <?php endif; ?>>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                         stroke-width="2" stroke-linecap="round"
@@ -99,7 +97,7 @@
                                 <button type="button" class="close" data-dismiss="modal"
                                     aria-label="Close">×</button>
                                 <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Blog</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">New Slider</h5>
                                 </div>
                                 <div class="modal-body flex-grow-1">
                                     <div class="form-group">
@@ -126,12 +124,12 @@
                                         
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="companyname">Text</label>
-                                        <textarea  class="form-control" id="blog_text"
-                                        placeholder="Text" name="blog_text" aria-label="blog_text"
-                                        aria-describedby="blog_text"></textarea>
+                                        <label class="form-label" for="description">Description</label>
+                                        <input type="text" class="form-control" id="description"
+                                        placeholder="Description" name="description" aria-label="description"
+                                        aria-describedby="description" />
                                     </div>
-                                    
+                                  
                                     <button type="submit" class="btn btn-primary mr-1 data-submit ">Submit</button>
                                     <button type="reset" class="btn btn-outline-secondary"
                                         data-dismiss="modal">Cancel</button>
@@ -150,7 +148,7 @@
                                 <button type="button" class="close" data-dismiss="modal"
                                     aria-label="Close">×</button>
                                 <div class="modal-header mb-1">
-                                    <h5 class="modal-title">Update Blog</h5>
+                                    <h5 class="modal-title">Update Slider</h5>
                                 </div>
                                 <div class="modal-body flex-grow-1">
                                     <div class="form-group">
@@ -176,12 +174,12 @@
                                  
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="ublog_text">Text</label>
-                                        <textarea type="text" class="form-control" id="ublog_text"
-                                            placeholder="Text" name="ublog_text" aria-label="Name"
-                                            aria-describedby="ublog_text2"></textarea>
+                                        <label class="form-label" for="udescription">Description</label>
+                                        <input type="text" class="form-control" id="udescription"
+                                            placeholder="Text" name="udescription" aria-label="Name"
+                                            aria-describedby="udescription2"/>
                                     </div>
-                                    
+                                   
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary mr-1 data-submit update_data_user">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
@@ -194,7 +192,7 @@
                 </section>
                 <!-- users list ends -->
                 <button type="button" class="btn btn-outline-success toast-sucess-message" id="type-success" hidden>Success</button>
-                <button type="button" class="btn btn-outline-danger toast-blog-already-message" id="type-blog-already-error" hidden>Error</button>
+                <button type="button" class="btn btn-outline-danger toast-pricing-already-message" id="type-pricing-already-error" hidden>Error</button>
                
             </div>
         </div>
@@ -205,7 +203,7 @@
     <div class="drag-target"></div>
 
         
-    <?php if(Auth::user()->rolefunction->blog_create != "on"): ?>
+    <?php if(Auth::user()->rolefunction->pricing_create != "on"): ?>
         <script>
             var $createdata = "data-page-close";
         </script>
@@ -227,20 +225,19 @@
 
     <!-- BEGIN: Page JS-->
     
-    <script src="../../../app-assets/js/scripts/pages/app-blog-view.js"></script>
+    <script src="../../../app-assets/js/scripts/pages/app-pricingslider-view.js"></script>
     <script src="../../../app-assets/js/scripts/pages/page-account-settings.js"></script>
     <!-- END: Page JS-->
 
     <script>
     $(function() {
 
-        $(document).on("click", ".userupdate_new", function() {
-            console.log('ok');
+        $(document).on("click", ".userupdate_new", function()  {
             var $id = $(this).data('id');
-            var $userid = 'blogsupdate/' + ($(this).data('id'));
+            var $userid = 'pricingsliderupdate/' + ($(this).data('id'));
 
             $("#utitle").val($(this).data('title'));
-            $("#ublog_text").val($(this).data('blog_text'));
+            $("#udescription").val($(this).data('description'));
             $("#uaccount-upload-img").attr('src',($(this).data('photo')));
             
             $(".update_user_modal").modal('show');
@@ -264,7 +261,7 @@
                         }
                         else{
                             $('.btn-outline-secondary').click();
-                            $('.toast-blog-already-message').click();
+                            $('.toast-pricing-already-message').click();
                         }
                     }
                 });
@@ -284,4 +281,4 @@
 </body>
 <!-- END: Body-->
 
-</html><?php /**PATH D:\Lebanon\phpframe\data\resources\views//blogs.blade.php ENDPATH**/ ?>
+</html><?php /**PATH D:\Lebanon\phpframe\data\resources\views//pricingslider.blade.php ENDPATH**/ ?>

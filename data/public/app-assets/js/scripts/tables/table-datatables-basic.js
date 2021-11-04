@@ -2,7 +2,9 @@
  * DataTables Basic
  */
 
-$(function () {
+
+
+ $(function () {
   'use strict';
 
   var dt_basic_table = $('.datatables-basic'),
@@ -18,8 +20,7 @@ $(function () {
 
   if (dt_basic_table.length) {
     var dt_basic = dt_basic_table.DataTable({
-      
-        "ordering": false,
+      "ordering": false,
       columnDefs: [
         {
           // Actions
@@ -33,14 +34,11 @@ $(function () {
               '</a>'
             );
           }
-        },
-        
-        { "bSortable": false, "aTargets": [ 0, 1, 2, 3] }, 
-        { "bSearchable": false, "aTargets": [ 0, 1, 2, 3] }
+        }
       ],
       
       columns: [
-        { data: 'Product' },
+        { data: 'product' },
         { data: 'price' },
         { data: 'qty' },
         { data: 'subtotal' },
@@ -48,6 +46,8 @@ $(function () {
       ],
       dom:
         '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      displayLength: 100,
+      lengthMenu: [100, 200, 300],
       buttons: [
         {
           extend: 'collection',
@@ -76,7 +76,56 @@ $(function () {
               extend: 'pdf',
               text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 mr-50' }) + 'Pdf',
               className: 'dropdown-item',
-              exportOptions: { columns: [0, 1, 2, 3] }
+              title: nowusername + '                              ' +  'Invoice   ' + '                               ' + currenttime,
+              exportOptions: { columns: [0, 1, 2, 3]},
+              
+              customize: function ( doc ) {
+                var rcout = doc.content[doc.content.length - 1].table.body.length - 1;
+                for (var i = 0; i < rcout; i++) {
+                  var obj = doc.content[doc.content.length - 1].table.body[i + 1];
+                  // doc.content[doc.content.length - 1].table.body[(i + 1)][0] = { text: obj[0].text, style: [obj[0].style], bold: true };
+                  doc.content[doc.content.length - 1].table.body[(i + 1)][0] = {
+                      text: obj[0].text,
+                      style: [obj[0].style],
+                      alignment: 'center',                  
+                      // bold: obj[0].text > 60 ? true : false,
+                      // fillColor: obj[3].text > 60 ? 'red' : null
+                  };
+                  doc.content[doc.content.length - 1].table.body[(i + 1)][1] = {
+                    text: obj[1].text,
+                    style: [obj[1].style],
+                    alignment: 'center'
+                  };
+                  doc.content[doc.content.length - 1].table.body[(i + 1)][2] = {
+                    text: obj[1].text,
+                    style: [obj[1].style],
+                    alignment: 'center'
+                  };
+                  doc.content[doc.content.length - 1].table.body[(i + 1)][3] = {
+                    text: obj[1].text,
+                    style: [obj[1].style],
+                    alignment: 'center'
+                  };
+                }
+                // doc.content.splice( 0, 0, {
+                //   margin: [ 0, 0, 0, 30 ],
+                //   alignment: 'left',
+                //   text: nowusername,
+                // })
+                // doc.content.splice( 0, 0, {
+                //   margin: [ 0, 0, 0, -13 ],
+                //   alignment: 'right',
+                //   text: currenttime,
+                // })
+
+                doc.content[1].table.widths = [
+                  '25%',
+                  '25%',
+                  '25%',
+                  '25%',
+                ]
+              },
+             
             },
             {
               extend: 'copy',
@@ -107,9 +156,9 @@ $(function () {
       ],
      
     });
+    $('div.head-label').html('<button class="mb-0 float-left dt-button buttons-collection btn btn-outline-secondary btn-clear">Clear</button>');
   }
-
-    // Add New record
+    // Add New Record
     // ? Remove/Update this code as per your requirements ?
     var tmpProducts = [];
     if (sessionStorage.getItem('key') != null){
@@ -119,7 +168,7 @@ $(function () {
       $.each(tmpProducts, function(index, value){
         dt_basic.row
           .add({
-            Product: value.name,
+            product: value.product,
             price: value.price,
             qty: value.qty,
             subtotal: value.subtotal,
@@ -136,34 +185,44 @@ $(function () {
       
     }
     $('.add-to-cart-send').on('click', function () {
-      // var $Product = $('.dt-full-name').val(),
-        // $price = $('.dt-post').val(),
-        // $qty = $('.dt-posts').val(),
-        // $subtotal = $('.dt-salary').val();
-        
       var $productid = $(this).data('id');
       var $productname = $(this).data('title');
       var $productprice = $(this).data('price');                
       var $productqty = $('.product_qty' + $productid).val();
       var $subtotal = $productprice * $productqty;
 
-      var $pagesave = { "name": $productname, "price": $productprice, "qty": $productqty, "subtotal": $subtotal }
+      var $pagesave = { "product": $productname, "price": $productprice, "qty": $productqty, "subtotal": $subtotal }
       
       var allqtyvalue = $('#allqty').text();
       var allsubtotalvalue = $('#allsubtotal').text();
       if ($productqty != 0) {
-        
-        dt_basic.row
-          .add({
-            Product: $productname,
-            price: $productprice,
-            qty: $productqty,
-            subtotal: $subtotal,
-            status: '',
-       
-          })
-          .draw();
+        var isExist = false;
+        for(var i=0; i <tmpProducts.length; i++){
+          if (tmpProducts[i].product == $pagesave.product){
+            tmpProducts[i].qty = Number(tmpProducts[i].qty) + 1;
+            tmpProducts[i].subtotal = Number(tmpProducts[i].subtotal) + Number($productprice);
+            isExist = true;
+          }
+        }
+        if(!isExist){
           tmpProducts.push($pagesave);
+          // console.log('false');
+        }
+        
+        dt_basic.clear();
+        dt_basic.rows.add(tmpProducts);
+        dt_basic.draw();
+        // dt_basic.row
+        //   .add({
+        //     Product: $productname,
+        //     price: $productprice,
+        //     qty: $productqty,
+        //     subtotal: $subtotal,
+        //     status: '',
+        //   })
+          
+        //   .draw();
+          
           allqtyvalue = Number(allqtyvalue) + Number($pagesave.qty);
           allsubtotalvalue = Number(allsubtotalvalue) + Number($pagesave.subtotal);
           $('#allproduct').html(tmpProducts.length);
@@ -173,7 +232,7 @@ $(function () {
       }
       // myStorage = window.sessionStorage;
       sessionStorage.setItem('key', JSON.stringify(tmpProducts));
-      $('.product_qty' + $productid).val('0');
+      $('.product_qty' + $productid).val('1');
     });
   
     // Delete Record
@@ -196,7 +255,9 @@ $(function () {
     
       $('#allqty').html(allqtyvalue);
       $('#allsubtotal').html(allsubtotalvalue);
-        
-      
     });
+    $('.btn-clear').on('click', function(){
+      sessionStorage.removeItem('key');
+      $('.delete-record').click();
+    })
 });

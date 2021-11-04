@@ -59,7 +59,7 @@
                 <li class="<?php if(Request::path() == 'blogs'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="blogs"><i data-feather='command'></i><span class="menu-title text-truncate" data-i18n="User">Blogs</span></a>
                 </li>
             </ul>
-            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->blog_view != 'on'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main <?php if(Auth::user()->rolefunction->shopping_list != 'View'): ?> data-page-close <?php endif; ?>" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="<?php if(Request::path() == 'shopping'): ?> active <?php endif; ?> nav-item"><a class="d-flex align-items-center" href="shopping"><i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="User">Shopping</span></a>
                 </li>
             </ul>

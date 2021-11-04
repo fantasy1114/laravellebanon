@@ -29,12 +29,12 @@ $(function() {
                 { data: 'responsive_id' },
                 { data: 'title' },
                 { data: 'photo' },
-                { data: 'text' },
+                // { data: 'text' },
                 { data: 'date' },
             ],
             columnDefs: [
                 {
-                    targets: 5,
+                    targets: 4,
                     responsivePriority: 4,
                 },
             ],

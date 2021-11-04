@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Items;
 use Illuminate\Support\Facades\DB;
@@ -17,17 +18,23 @@ class ShoppingController extends Controller
     // return view('/shopping', ['items' => $items]);
 
     $filter = request('query');
-    if($filter == 'company'){
-      $items = Items::with('categories')->orderBy('category_id')->paginate(6);
-      return view('/shopping', ['items' => $items]);
-    }
-    else if($filter == 'category'){
-      $items = Items::with('categories')->orderBy('category_id')->paginate(6);
-      return view('/shopping', ['items' => $items]);
+    if($filter){
+      if($filter == 'all'){
+        $categorys = Categories::with('companies')->get();
+        $items = Items::with('categories')->paginate(6);
+        return view('/shopping')->with('items', $items)->with('categorys', $categorys);
+      }
+      else{
+        $categorys = Categories::with('companies')->get();
+        $items = Items::with('categories')->where('category_id', $filter)->paginate(6);
+        return view('/shopping')->with('items', $items)->with('categorys', $categorys);
+      }
+     
     }
     else{
+      $categorys = Categories::with('companies')->get();
       $items = Items::with('categories')->paginate(6);
-      return view('/shopping', ['items' => $items]);
+      return view('/shopping')->with('items', $items)->with('categorys', $categorys);
     }
   }
 

@@ -383,6 +383,31 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="superadmin-shopping-list" class="form-control" name="superadmin-shopping-list" >
+                                                                                <option value="View" {{$superadmin->shopping_list== "View" ? "selected" : ""}}>View</option>
+                                                                                <option value="None" {{$superadmin->shopping_list== "None" ? "selected" : ""}}>None</option>
+                                                                            
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
 
                                                             @endforeach
                                                         </tbody>
@@ -732,6 +757,30 @@
                                                                                 <option value="All" {{$admin->blog_list== "All" ? "selected" : ""}}>All</option>
                                                                                 <option value="Only his" {{$admin->blog_list== "Only his" ? "selected" : ""}}>Only his</option>
                                                                                 <option value="No" {{$admin->blog_list== "No" ? "selected" : ""}}>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="admin-shopping-list" class="form-control" name="admin-shopping-list" >
+                                                                                <option value="View" {{$admin->shopping_list== "View" ? "selected" : ""}}>View</option>
+                                                                                <option value="None" {{$admin->shopping_list== "None" ? "selected" : ""}}>None</option>
+                                                                            
                                                                             </select>
                                                                         </div>
                                                                     </td>
@@ -1088,6 +1137,30 @@
                                                                                 <option value="All" {{$subscriber->blog_list== "All" ? "selected" : ""}}>All</option>
                                                                                 <option value="Only his" {{$subscriber->blog_list== "Only his" ? "selected" : ""}}>Only his</option>
                                                                                 <option value="No" {{$subscriber->blog_list== "No" ? "selected" : ""}}>No</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Shopping</td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-group">
+                                                                            <select id="subscribe-shopping-list" class="form-control" name="subscriber-shopping-list" >
+                                                                                <option value="View" {{$subscriber->shopping_list== "View" ? "selected" : ""}}>View</option>
+                                                                                <option value="None" {{$subscriber->shopping_list== "None" ? "selected" : ""}}>None</option>
+                                                                            
                                                                             </select>
                                                                         </div>
                                                                     </td>

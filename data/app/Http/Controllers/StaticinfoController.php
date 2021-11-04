@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Siteinfo;
 use Illuminate\Support\Facades\DB;
-use App\Models\Logs;
 
 class StaticinfoController extends Controller
 {
@@ -27,6 +25,10 @@ class StaticinfoController extends Controller
         DB::table('staticinfos')->where('id', $id)->update([
           'home_title' => request('home_title'),
           'home_desc' => request('home_desc'),
+          'home_button_one_title' => request('home_button_one_title'),
+          'home_button_one_desc' => request('home_button_one_desc'),
+          'home_button_two_title' => request('home_button_two_title'),
+          'home_button_two_desc' => request('home_button_two_desc'),
           'home_image' => './uploads/static/'.$imageName,
         ]);
         return response()->json(['success'=>true]);
@@ -35,6 +37,10 @@ class StaticinfoController extends Controller
       DB::table('staticinfos')->where('id', $id)->update([
         'home_title' => request('home_title'),
         'home_desc' => request('home_desc'),
+        'home_button_one_title' => request('home_button_one_title'),
+        'home_button_one_desc' => request('home_button_one_desc'),
+        'home_button_two_title' => request('home_button_two_title'),
+        'home_button_two_desc' => request('home_button_two_desc'),
       ]);
       return response()->json(['success'=>true]);
     }
@@ -111,13 +117,58 @@ class StaticinfoController extends Controller
 
   public function staticpricingupdate(Request $request, $id)
   {
-
+    if ($request->file('pricing_img')) {
+      $imagePath = $request->file('pricing_img');
+      $imageName = time().'.png';
+      $imagePath->move(public_path('uploads/static/'), $imageName);
       DB::table('staticinfos')->where('id', $id)->update([
         'pricing_title' => request('pricing_title'),
         'pricing_desc' => request('pricing_desc'),
         'pricing_video_link' => request('pricing_video_link'),
+        'pricing_img' => './uploads/static/'.$imageName,
+        'package_one' => request('package_one'),
+        'package_one_price' => request('package_one_price'),
+        'package_one_feature' => request('package_one_feature'),
+        'package_one_button' => request('package_one_button'),
+        'package_two' => request('package_two'),
+        'package_two_price' => request('package_two_price'),
+        'package_two_feature' => request('package_two_feature'),
+        'package_two_button' => request('package_two_button'),
+        'package_three' => request('package_three'),
+        'package_three_price' => request('package_three_price'),
+        'package_three_feature' => request('package_three_feature'),
+        'package_three_button' => request('package_three_button'),
+        'package_one_link' => request('package_one_link'),
+        'package_two_link' => request('package_two_link'),
+        'package_three_link' => request('package_three_link'),
+        
+        
       ]);
       return response()->json(['success'=>true]);
+    }
+    else{
+      DB::table('staticinfos')->where('id', $id)->update([
+        'pricing_title' => request('pricing_title'),
+        'pricing_desc' => request('pricing_desc'),
+        'pricing_video_link' => request('pricing_video_link'),
+        'package_one' => request('package_one'),
+        'package_one_price' => request('package_one_price'),
+        'package_one_feature' => request('package_one_feature'),
+        'package_one_button' => request('package_one_button'),
+        'package_two' => request('package_two'),
+        'package_two_price' => request('package_two_price'),
+        'package_two_feature' => request('package_two_feature'),
+        'package_two_button' => request('package_two_button'),
+        'package_three' => request('package_three'),
+        'package_three_price' => request('package_three_price'),
+        'package_three_feature' => request('package_three_feature'),
+        'package_three_button' => request('package_three_button'),
+        'package_one_link' => request('package_one_link'),
+        'package_two_link' => request('package_two_link'),
+        'package_three_link' => request('package_three_link'),
+      ]);
+      return response()->json(['success'=>true]);
+    }
     
   }
 

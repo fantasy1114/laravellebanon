@@ -155,5 +155,27 @@ $(function () {
     });
   }
 
+  // pricing
+
+  var form = $('.validate-form'),
+  flat_picker = $('.flatpickr'),
+  pricingimgimg = $('#pricing_img-img'),
+  pricingimg = $('#pricing_img');
+
+  // Update user photo on click of button
+  if (pricingimg) {
+    pricingimg.on('change', function (e) {
+      var reader = new FileReader(),
+        files = e.target.files;
+      reader.onload = function () {
+        if (pricingimgimg) {
+          pricingimgimg.attr('src', reader.result);
+        }
+      };
+      reader.readAsDataURL(files[0]);
+    });
+  }
+
+  // End
 
 });

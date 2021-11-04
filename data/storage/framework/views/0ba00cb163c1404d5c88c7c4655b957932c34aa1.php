@@ -132,9 +132,38 @@
                                                                         </textarea>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-12">
-                                                                    <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_button_one_title">Button Title</label>
+                                                                        <input type="text" class="form-control" id="home_button_one_title" name="home_button_one_title" placeholder="Title" value="<?php echo e($staticinfo->home_button_one_title); ?>" />
+                                                                    </div>
                                                                 </div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_button_one_desc">Link</label>
+                                                                        <input type="text" class="form-control" id="home_button_one_desc" name="home_button_one_desc" placeholder="Link" value="<?php echo e($staticinfo->home_button_one_desc); ?>" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_button_two_title">Title</label>
+                                                                        <input type="text" class="form-control" id="home_button_two_title" name="home_button_two_title" placeholder="Title" value="<?php echo e($staticinfo->home_button_two_title); ?>" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12 col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label for="home_button_two_desc">Link</label>
+                                                                        <input type="text" class="form-control" id="home_button_two_desc" name="home_button_two_desc" placeholder="Link" value="<?php echo e($staticinfo->home_button_two_desc); ?>" />
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
                                                             </div>
                                                     
                                                     </form>
@@ -418,7 +447,94 @@
                                                             <div class="row col-12">
                                                                 <input type="text" class="form-control" id="pricing_video_link" name="pricing_video_link" placeholder="https://www.youtube.com" value="<?php echo e($staticinfo->pricing_video_link); ?>" />
                                                             </div>
-                                                        </div> 
+                                                        </div>
+                                                        <div class="row col-12 mt-2">
+                                                            <!-- header media -->
+                                                           <div class="media">
+                                                               <a href="javascript:void(0);" class="mr-25 mt-5">
+                                                                   <img src="<?php echo e($staticinfo->pricing_img); ?>" id="pricing_img-img" class="rounded mr-50" alt="profile image" height="240" width="360" />
+                                                               </a>
+                                                               <!-- upload and reset button -->
+                                                               <div class="media-body mt-75 ml-1 align-middle">
+                                                                   <label for="pricing_img" class="btn btn-sm btn-primary mb-75 mr-75 mt-5">Upload</label>
+                                                                   <input type="file" id="pricing_img" hidden accept="image/*" name="pricing_img" />
+                                                               </div>
+                                                               <!--/ upload and reset button -->
+                                                           </div>
+                                                           <!--/ header media -->
+                                                        </div>
+                                                        <div class="row col-12">
+                                                            
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="package_one">Package</label>
+                                                                    <input type="text" class="form-control" id="package_one" name="package_one" placeholder="Title" value="<?php echo e($staticinfo->package_one); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_one_price">Price</label>
+                                                                    <input type="text" class="form-control" id="package_one_price" name="package_one_price" placeholder="Title" value="<?php echo e($staticinfo->package_one_price); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_one_feature">Features</label>
+                                                                    <textarea  class="form-control" id="package_one_feature" name="package_one_feature" placeholder="Title" value=""> <?php echo e($staticinfo->package_one_feature); ?></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_one_button">Button Name</label>
+                                                                    <input type="text" class="form-control" id="package_one_button" name="package_one_button" placeholder="Title" value="<?php echo e($staticinfo->package_one_button); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_one_link">Link</label>
+                                                                    <input type="text" class="form-control" id="package_one_link" name="package_one_link" placeholder="http://" value="<?php echo e($staticinfo->package_one_link); ?>" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="package_two">Package</label>
+                                                                    <input type="text" class="form-control" id="package_two" name="package_two" placeholder="Title" value="<?php echo e($staticinfo->package_two); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_two_price">Price</label>
+                                                                    <input type="text" class="form-control" id="package_two_price" name="package_two_price" placeholder="Title" value="<?php echo e($staticinfo->package_two_price); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_two_feature">Features</label>
+                                                                    <textarea  class="form-control" id="package_two_feature" name="package_two_feature" placeholder="Title" value=""> <?php echo e($staticinfo->package_two_feature); ?></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_two_button">Button Name</label>
+                                                                    <input type="text" class="form-control" id="package_two_button" name="package_two_button" placeholder="Title" value="<?php echo e($staticinfo->package_two_button); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_two_link">Link</label>
+                                                                    <input type="text" class="form-control" id="package_two_link" name="package_two_link" placeholder="http://" value="<?php echo e($staticinfo->package_two_link); ?>" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-12 col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label for="package_three">Package</label>
+                                                                    <input type="text" class="form-control" id="package_three" name="package_three" placeholder="Title" value="<?php echo e($staticinfo->package_three); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_three_price">Price</label>
+                                                                    <input type="text" class="form-control" id="package_three_price" name="package_three_price" placeholder="Title" value="<?php echo e($staticinfo->package_three_price); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_three_feature">Features</label>
+                                                                    <textarea  class="form-control" id="package_three_feature" name="package_three_feature" placeholder="Title" value=""> <?php echo e($staticinfo->package_three_feature); ?></textarea>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_three_button">Button Name</label>
+                                                                    <input type="text" class="form-control" id="package_three_button" name="package_three_button" placeholder="Title" value="<?php echo e($staticinfo->package_three_button); ?>" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="package_three_link">Link</label>
+                                                                    <input type="text" class="form-control" id="package_three_link" name="package_three_link" placeholder="http://" value="<?php echo e($staticinfo->package_three_link); ?>" />
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
                                                         <div class="col-12">
                                                             <button type="submit" class="btn btn-primary mt-2 mr-1">Save changes</button>
                                                         </div>

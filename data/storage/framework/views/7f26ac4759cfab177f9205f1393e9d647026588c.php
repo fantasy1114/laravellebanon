@@ -252,7 +252,7 @@
     <script>
     $(function() {
         $(".dt-buttons").last().addClass("<?php echo e(Auth::user()->role); ?>");
-        $(".userupdate_new").on("click", function() {
+        $(document).on("click", ".userupdate_new", function()  {
             var $id = $(this).data('id');
             var $userid = 'categoryupdate/' + ($(this).data('id'));
             // $("#uUserid").val($(this).data('id'));

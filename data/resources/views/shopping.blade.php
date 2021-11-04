@@ -8,11 +8,12 @@
     div.table-responsive>div.dataTables_wrapper>div.row{
         display: none!important ;
     }
+   
 </style>
 @include('layouts/header')
-
 <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
-{{-- <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css">  --}}
+
+{{-- <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/forms/select/select2.min.css"> --}}
 
 <!-- END: Head-->
 <!-- BEGIN: Body-->
@@ -28,7 +29,7 @@
     @include('layouts/layout')
     <!-- END LAYOUT -->
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content @if(Auth::user()->rolefunction->shopping_list != 'View') data-page-close @endif">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -47,21 +48,18 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
                                 </button>
                             </div> --}}
-                            
                             <div class="card-datatable table-responsive pt-2">
-                                <table class="w-100 datatables-basic datatables-basic-shopping" id="vorschlaege">
+                                <table class="w-100 datatables-basic datatables-basic-shopping d-nowrap" id="vorschlaege">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>price</th>
-                                            <th>qty</th>             
-                                            <th>subtotal</th>
-                                            <th>
-                                                Actions
-                                            </th>
+                                            <th style="text-align: left;">product</th>
+                                            <th style="text-align: left;">price</th>
+                                            <th style="text-align: left;">qty</th>             
+                                            <th style="text-align: left;">subtotal</th>
+                                            <th style="text-align: left;">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="tbody_data text-center">
 
                                     </tbody>
                                 </table>
@@ -75,26 +73,16 @@
                     </section>
                 </div>
                 <div class="col-md-7 h-100" style="border-left: dashed #7367f0;">
-
                     <div class="content-detached">
                             <form class="shopping-filter" action="shopping" method="GET">
-                                
-                                <div class="content-body">
-                                    <div class="demo-inline-spacing mb-1">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio1" name="query" class="custom-control-input" value="all" />
-                                            <label class="custom-control-label" for="customRadio1">All</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio2" name="query" class="custom-control-input" value="company"/>
-                                            <label class="custom-control-label" for="customRadio2">Company</label>
-                                        </div>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio3" name="query" class="custom-control-input" value="category"/>
-                                            <label class="custom-control-label" for="customRadio3">Category</label>
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-success">Filter</button>
-                                    </div>
+                               
+                                <select class="form-control form-control-lg" name="query" style="width: 65%!important; display:inline-block">
+                                    <option value="all" @if(request()->get('query') == 'all') selected @endif>All</option>
+                                    @foreach ($categorys as $category)
+                                        <option value="{{$category->id}}" @if(request()->get('query') == $category->id) selected @endif>{{$category->categoryname}}<small>({{$category->companies->companyname}})</small></option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="btn btn-outline-success ml-1">Filter</button>
                             </form>
                             <!-- E-commerce Products Starts -->
                             <section id="ecommerce-products" class="grid-view row">
@@ -121,8 +109,8 @@
                                             </p>
                                         </div>
                                         <div class="item-options text-center">
-                                            <div class="input-group d-inline-flex">
-                                                <input type="number" class="touchspin-min-max product_qty{{$item->id}}" value="0"/>
+                                            <div class="input-group" hidden>
+                                                <input type="number" class="touchspin-min-max product_qty{{$item->id}}" value="1"/>
                                             </div>
                                             <button data-id="{{$item->id}}" data-title="{{$item->title}}" data-price="{{$item->usprice}}" class="btn btn-primary btn-cart add-to-cart-send">
                                                 <i data-feather="shopping-cart"></i>
@@ -134,29 +122,7 @@
                                 
                             </section>
                             <!-- E-commerce Products Ends -->                                    
-                            <!-- E-commerce Pagination Starts -->
-                            <section id="ecommerce-pagination">
-                                {{-- <div class="row">
-                                    <div class="col-sm-12">
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-center mt-2">
-                                                <li class="page-item prev-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                                <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                                <li class="page-item" aria-current="page"><a class="page-link" href="javascript:void(0);">4</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">6</a></li>
-                                                <li class="page-item"><a class="page-link" href="javascript:void(0);">7</a></li>
-                                                <li class="page-item next-item"><a class="page-link" href="javascript:void(0);"></a></li>
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div> --}}
-                                {!! $items->links() !!}
-                            </section>
-                            <!-- E-commerce Pagination Ends -->
-        
+                            {!! $items->links() !!}
                         </div>
                     </div>
                 
@@ -173,73 +139,61 @@
     <div class="drag-target"></div>
     
     <!-- BEGIN: Footer-->
-    @include('layouts/footer')
-    {{-- <script>
-        $(function(){
-            $('.add-to-cart-send').on('click', function(e){
-                var $productid = $(this).data('id');
-                var $productname = $(this).data('title');
-                var $productprice = $(this).data('price');                
-                var $productqty = $('.product_qty' + $productid).val();
-                var $subtotal = $productprice * $productqty;
-                
-                // $('#vorschlaege> tbody:last-child').append(
-                // '<tr>'// need to change closing tag to an opening `<tr>` tag.
-                // +'<td>'+$productname+'</td>'
-                // +'<td>'+$productprice+'</td>'
-                // +'<td>'+$productqty+'</td>'
-                // +'<td>'+$subtotal+'</td>'
-                // +'<td><button class="dropdown-item delete_product_item"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"          stroke-width="2" stroke-linecap="round"                                        stroke-linejoin="round" class="feather feather-trash mr-50">                         <polyline points="3 6 5 6 21 6"></polyline>                                                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">    </path></svg></button></td>'
-                // +'</tr>');
-                // $('.product_qty' + $productid).val('0');
-               
-            });
-            $(document).on('click', '.delete_product_item', function(e){
-                console.log('delete');
-                e.preventDefault();
-                $(this).parent().parent().remove();
-            });
-        });
-    </script> --}}
+    @include('layouts/footer')  
     <!-- END: Footer-->
+
+    <script>
+        var nowusername = '{{Auth::user()->name}}'
+        var datetime = new Date;
+        var currentyear = datetime.getFullYear();
+        var currentmonth = Number(datetime.getMonth()) + 1;
+        var currentday = datetime.getDay();
+        var currenthour = datetime.getHours();
+        var currentminute = datetime.getMinutes();
+        var currenttime = currentyear + '/' + currentmonth + '/' + currentday + '/' + currenthour + '/' + currentminute;
+      
+    </script>
   <!-- BEGIN: Page Vendor JS-->
-  <script src="../../../app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
-    <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/responsive.bootstrap4.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+<script src="../../../app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+<script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
   <!-- END: Page Vendor JS-->
   <!-- BEGIN: Page JS-->
   <script src="../../../app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js"></script>
   <script src="../../../app-assets/js/scripts/forms/form-number-input.js"></script>
-
+  <script src="../../../app-assets/vendors/js/forms/select/select2.full.min.js"></script>
 
   <script src="../../../app-assets/js/scripts/tables/table-datatables-basic.js"></script>
+  <script src="../../../app-assets/js/scripts/forms/form-select2.js"></script>
   
   <!-- END: Page JS-->
     
     <script>
-        $(function(){
-            var nowpath = window.location.href;
-            var linkquesry = nowpath.replace("http://localhost:8000/shopping?query=", "");
-            if(linkquesry == 'company'){
-                $('#customRadio2').prop('checked', true)
-            }
-            else if(linkquesry == 'category'){
-                $('#customRadio3').prop('checked', true)
-            }
-            else{
-                $('#customRadio1').prop('checked', true)
-            }
-        });
+        // $(function(){
+            // var nowpath = window.location.href;
+            // var linkquesry = nowpath.replace("https://eduxhub.com/shopping?query=", "");
+            // if(linkquesry == 'company'){
+            //     $('#customRadio2').prop('checked', true)
+            // }
+            // else if(linkquesry == 'category'){
+            //     $('#customRadio3').prop('checked', true)
+            // }
+            // else{
+            //     $('#customRadio1').prop('checked', true)
+            // }
+            
+        // });
+        
     </script>
 
 

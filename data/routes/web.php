@@ -13,8 +13,10 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserroleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\StaticinfoController;
-use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ShoppingController;
+use App\Http\Controllers\PricingController;
+use App\Http\Controllers\BlogpagesController;
+
 use Illuminate\Support\Facades\App;
 
 /*
@@ -132,7 +134,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/shopping', [ShoppingController::class, 'index'])->name('index');
     // Route::post('/shopping', [ShoppingController::class, 'filter'])->name('filter');
 
-
 });
+Route::get('/blogpages', [BlogpagesController::class, 'index'])->name('index');
 
   

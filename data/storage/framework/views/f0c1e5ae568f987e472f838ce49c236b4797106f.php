@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css">
     <!-- END: Vendor CSS-->
-
+    
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.css">

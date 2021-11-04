@@ -35,7 +35,7 @@
                                         <th>ID</th>
                                         <th>title</th>
                                         <th>photo</th>
-                                        <th>text</th>
+                                        {{-- <th>text</th> --}}
                                         <th>date</th>                   
                                         <th class="@if(Auth::user()->rolefunction->blog_delete != 'on' && Auth::user()->rolefunction->blog_write != 'on') data-page-close @endif">Action</th>
                                     </tr>
@@ -47,9 +47,9 @@
                                             <td style="cursor:pointer;"><div class="rounded-circle justify-content-center text-center" style="width:34px;height:34px;background-color:#7367f0;color:white;line-height: 2.3;font-weight: 600;"><?php  echo $index++ ?></div></td>
                                             <td>{{$blog->title}}</td>
                                             <td><img src="{{$blog->photo}}" style="width:48px; height:34px;"></td>
-                                            <td>
+                                            {{-- <td>
                                                 {{$blog->blog_text}}
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 {{$blog->blog_date}}
                                             </td>
@@ -127,9 +127,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="companyname">Text</label>
-                                        <input type="text" class="form-control" id="blog_text"
+                                        <textarea  class="form-control" id="blog_text"
                                         placeholder="Text" name="blog_text" aria-label="blog_text"
-                                        aria-describedby="blog_text" />
+                                        aria-describedby="blog_text"></textarea>
                                     </div>
                                     {{-- <div class="form-group">
                                         <label class="form-label" for="status">Status</label>
@@ -182,9 +182,9 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label" for="ublog_text">Text</label>
-                                        <input type="text" class="form-control" id="ublog_text"
+                                        <textarea type="text" class="form-control" id="ublog_text"
                                             placeholder="Text" name="ublog_text" aria-label="Name"
-                                            aria-describedby="ublog_text2"/>
+                                            aria-describedby="ublog_text2"></textarea>
                                     </div>
                                     {{-- <div class="form-group">
                                         <label class="form-label" for="status">Status</label>
@@ -245,7 +245,8 @@
     <script>
     $(function() {
 
-        $(".userupdate_new").on("click", function() {
+        $(document).on("click", ".userupdate_new", function() {
+            console.log('ok');
             var $id = $(this).data('id');
             var $userid = 'blogsupdate/' + ($(this).data('id'));
 

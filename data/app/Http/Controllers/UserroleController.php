@@ -113,8 +113,9 @@ class UserroleController extends Controller
             'blog_create' => request('superadmin-blog-create'),
             'blog_delete' => request('superadmin-blog-delete'),
             'blog_list' => request('superadmin-blog-list'),
-            
-            
+
+            'shopping_list' => request('superadmin-shopping-list')
+          
         ]);
       return response()->json(['success'=>true]);
   }
@@ -174,6 +175,8 @@ class UserroleController extends Controller
       'blog_create' => request('admin-blog-create'),
       'blog_delete' => request('admin-blog-delete'),
       'blog_list' => request('admin-blog-list'),
+
+      'shopping_list' => request('admin-shopping-list')
       
     ]);
     return response()->json(['success'=>true]);
@@ -233,6 +236,8 @@ class UserroleController extends Controller
       'blog_create' => request('subscriber-blog-create'),
       'blog_delete' => request('subscriber-blog-delete'),
       'blog_list' => request('subscriber-blog-list'),
+
+      'shopping_list' => request('subscriber-shopping-list')
       
     ]);
     return response()->json(['success'=>true]);
